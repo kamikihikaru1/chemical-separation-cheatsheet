@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>化工分离过程 · 公式速查 & 模拟训练</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+:root {
+  --bg:#0a0c10; --bg2:#0f1117; --bg3:#161a24; --bg4:#1c2130;
+  --border:#1f2840; --border2:#2a3550;
+  --c1:#60a5fa; --c2:#fb923c; --c3:#4ade80; --c4:#c084fc; --c5:#f472b6;
+  --gold:#fbbf24; --red:#f87171; --cyan:#22d3ee;
+  --text:#dde5f0; --text2:#8899bb; --text3:#4a5a7a;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Noto Sans SC',sans-serif;
+  font-size:13px;
+  line-height:1.75;
+}
+
+/* ─── LAYOUT ─── */
+.wrap{max-width:1100px;margin:0 auto;padding:32px 24px;}
+
+/* ─── TOP NAV TABS ─── */
+.tabs{
+  display:flex;
+  gap:4px;
+  border-bottom:1px solid var(--border);
+  margin-bottom:32px;
+  flex-wrap:wrap;
+  position:sticky;
+  top:0;
+  background:var(--bg);
+  z-index:100;
+  padding:12px 0 0;
+}
+
+.tab{
+  padding:8px 18px;
+  font-size:12px;
+  font-weight:700;
+  color:var(--text2);
+  cursor:pointer;
+  border-radius:6px 6px 0 0;
+  border:1px solid transparent;
+  border-bottom:none;
+  transition:all 0.15s;
+  letter-spacing:0.03em;
+}
+.tab:hover{color:var(--text);background:var(--bg3);}
+.tab.active{
+  background:var(--bg3);
+  color:var(--c1);
+  border-color:var(--border);
+  border-bottom:1px solid var(--bg3);
+  margin-bottom:-1px;
+}
+
+/* ─── PANEL ─── */
+.panel{display:none;}
+.panel.active{display:block;}
+
+/* ─── SECTION TITLE ─── */
+.sec-title{
+  font-family:'Noto Serif SC',serif;
+  font-size:22px;
+  font-weight:900;
+  color:var(--text);
+  margin-bottom:6px;
+}
+.sec-sub{font-size:12px;color:var(--text2);margin-bottom:24px;}
+
+/* ─── FORMULA CARD ─── */
+.fcards{display:flex;flex-direction:column;gap:16px;}
+
+.fcard{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.fcard-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 18px;
+  background:var(--bg3);
+  border-bottom:1px solid var(--border);
+  cursor:pointer;
+  user-select:none;
+}
+.fcard-head:hover{background:var(--bg4);}
+
+.fcard-name{
+  font-size:14px;
+  font-weight:700;
+  color:var(--text);
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.fcard-chapter{
+  font-size:10px;
+  color:var(--text3);
+  font-weight:400;
+  font-family:'JetBrains Mono',monospace;
+}
+
+.fcard-body{
+  padding:16px 20px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+
+.fcol-label{
+  font-size:10px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.09em;
+  color:var(--text3);
+  margin-bottom:6px;
+}
+
+/* ─── FORMULA DISPLAY ─── */
+.fml{
+  background:var(--bg4);
+  border-left:3px solid var(--c1);
+  border-radius:4px;
+  padding:10px 14px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;
+  color:var(--c1);
+  line-height:1.9;
+  white-space:pre-wrap;
+  word-break:break-all;
+}
+.fml.orange{border-left-color:var(--c2);color:var(--c2);}
+.fml.green{border-left-color:var(--c3);color:var(--c3);}
+.fml.purple{border-left-color:var(--c4);color:var(--c4);}
+.fml.red{border-left-color:var(--red);color:var(--red);}
+.fml.gold{border-left-color:var(--gold);color:var(--gold);}
+
+/* ─── TAGS ─── */
+.tag{
+  display:inline-block;
+  font-size:9px;
+  font-weight:700;
+  padding:2px 7px;
+  border-radius:3px;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+}
+.t-red{background:rgba(248,113,113,.15);color:var(--red);border:1px solid rgba(248,113,113,.3);}
+.t-blue{background:rgba(96,165,250,.15);color:var(--c1);border:1px solid rgba(96,165,250,.3);}
+.t-green{background:rgba(74,222,128,.15);color:var(--c3);border:1px solid rgba(74,222,128,.3);}
+.t-orange{background:rgba(251,146,60,.15);color:var(--c2);border:1px solid rgba(251,146,60,.3);}
+.t-gold{background:rgba(251,191,36,.15);color:var(--gold);border:1px solid rgba(251,191,36,.3);}
+.t-purple{background:rgba(192,132,252,.15);color:var(--c4);border:1px solid rgba(192,132,252,.3);}
+
+/* ─── INFO GRID ─── */
+.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:8px;}
+.info-item{background:var(--bg4);border-radius:5px;padding:10px 12px;}
+.info-key{font-size:10px;color:var(--text3);font-weight:700;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:4px;}
+.info-val{font-size:12px;color:var(--text2);}
+.info-val strong{color:var(--text);}
+
+/* ─── TRIGGER TABLE ─── */
+.ttable{width:100%;border-collapse:collapse;margin:4px 0;}
+.ttable th{
+  background:var(--bg4);
+  color:var(--text3);
+  font-size:9px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.09em;
+  padding:7px 10px;
+  text-align:left;
+  border-bottom:1px solid var(--border2);
+}
+.ttable td{
+  padding:8px 10px;
+  border-bottom:1px solid var(--border);
+  font-size:12px;
+  color:var(--text2);
+  vertical-align:top;
+}
+.ttable tr:last-child td{border-bottom:none;}
+.ttable tr:hover td{background:var(--bg4);}
+.kw{color:var(--gold);font-family:'JetBrains Mono',monospace;font-size:11.5px;}
+.fr{color:var(--c1);font-weight:600;}
+.lg{color:var(--c3);font-size:11px;}
+
+/* ─── CHEATSHEET GRID ─── */
+.cheat-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+  margin-bottom:20px;
+}
+
+.cheat-block{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:14px 16px;
+}
+
+.cheat-ch{
+  font-size:9px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.1em;
+  color:var(--text3);
+  margin-bottom:8px;
+}
+
+.cheat-title{
+  font-size:13px;
+  font-weight:700;
+  color:var(--text);
+  margin-bottom:10px;
+  border-bottom:1px solid var(--border);
+  padding-bottom:6px;
+}
+
+.cheat-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  margin-bottom:6px;
+  gap:8px;
+}
+
+.cheat-lhs{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11.5px;
+  color:var(--c1);
+  flex-shrink:0;
+}
+
+.cheat-rhs{
+  font-size:11px;
+  color:var(--text2);
+  text-align:right;
+}
+
+/* ─── QUIZ PANEL ─── */
+.quiz-container{max-width:700px;}
+
+.quiz-q{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:10px;
+  margin-bottom:24px;
+  overflow:hidden;
+}
+
+.quiz-header{
+  background:var(--bg3);
+  padding:12px 18px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.quiz-num{
+  width:26px;height:26px;
+  border-radius:50%;
+  background:var(--c1);
+  color:#000;
+  font-size:12px;
+  font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+
+.quiz-meta{font-size:11px;color:var(--text3);}
+.quiz-body{padding:18px 20px;}
+
+.quiz-stem{
+  font-size:13.5px;
+  color:var(--text);
+  margin-bottom:16px;
+  line-height:1.75;
+}
+
+.quiz-options{display:flex;flex-direction:column;gap:8px;}
+
+.quiz-opt{
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:10px 14px;
+  cursor:pointer;
+  font-size:13px;
+  color:var(--text2);
+  transition:all 0.15s;
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+}
+.quiz-opt:hover{border-color:var(--c1);color:var(--text);}
+.quiz-opt.correct{background:rgba(74,222,128,.12);border-color:var(--c3);color:var(--c3);}
+.quiz-opt.wrong{background:rgba(248,113,113,.12);border-color:var(--red);color:var(--red);}
+.quiz-opt.reveal-correct{background:rgba(74,222,128,.08);border-color:var(--c3);color:var(--c3);}
+.quiz-opt.disabled{cursor:default;}
+
+.opt-letter{
+  width:22px;height:22px;
+  border-radius:4px;
+  background:var(--bg4);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;
+  flex-shrink:0;
+}
+
+.quiz-explain{
+  display:none;
+  margin-top:14px;
+  padding:12px 16px;
+  background:var(--bg4);
+  border-radius:6px;
+  border-left:3px solid var(--c3);
+  font-size:12.5px;
+  color:var(--text2);
+  line-height:1.75;
+}
+.quiz-explain.show{display:block;}
+.quiz-explain strong{color:var(--text);}
+.quiz-explain .explain-formula{
+  font-family:'JetBrains Mono',monospace;
+  color:var(--c1);
+  font-size:12px;
+  margin:6px 0;
+}
+
+.quiz-controls{
+  display:flex;gap:8px;margin-top:12px;
+}
+
+.btn{
+  padding:8px 16px;
+  border-radius:5px;
+  font-size:12px;
+  font-weight:700;
+  cursor:pointer;
+  border:1px solid;
+  transition:all 0.15s;
+}
+.btn-show{background:transparent;color:var(--c1);border-color:var(--c1);}
+.btn-show:hover{background:rgba(96,165,250,.1);}
+.btn-next{background:var(--c1);color:#000;border-color:var(--c1);}
+.btn-next:hover{opacity:0.85;}
+
+/* ─── SCORE BAR ─── */
+.score-bar{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:16px 20px;
+  margin-bottom:20px;
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+.score-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:28px;
+  font-weight:700;
+  color:var(--c3);
+}
+.score-label{font-size:11px;color:var(--text3);}
+
+/* ─── MINDMAP PANEL ─── */
+.mindmap-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+
+.mm-card{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:16px;
+}
+
+.mm-title{
+  font-size:13px;
+  font-weight:700;
+  color:var(--text);
+  margin-bottom:12px;
+  padding-bottom:8px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.mm-row{
+  display:flex;
+  align-items:flex-start;
+  gap:8px;
+  margin-bottom:8px;
+  font-size:12px;
+}
+.mm-arrow{color:var(--text3);flex-shrink:0;font-size:11px;margin-top:1px;}
+.mm-content{color:var(--text2);}
+.mm-content strong{color:var(--text);}
+.mm-content .sub{
+  display:block;
+  font-size:11px;
+  color:var(--text3);
+  margin-top:2px;
+  padding-left:8px;
+  border-left:1px solid var(--border2);
+}
+
+/* ─── CONDITION MATRIX ─── */
+.cmatrix{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:8px;
+  margin-bottom:16px;
+  overflow:hidden;
+}
+.cmatrix-title{
+  padding:11px 16px;
+  background:var(--bg3);
+  border-bottom:1px solid var(--border);
+  font-size:13px;
+  font-weight:700;
+  color:var(--text);
+}
+.cmatrix-body{padding:14px 16px;}
+.cmatrix-row{
+  display:grid;
+  grid-template-columns:180px 1fr 1fr;
+  gap:10px;
+  padding:8px 0;
+  border-bottom:1px solid var(--border);
+  font-size:12px;
+}
+.cmatrix-row:last-child{border-bottom:none;}
+.cmatrix-row.head{
+  font-size:10px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.07em;
+  color:var(--text3);
+}
+.cmatrix-key{color:var(--text);}
+.cmatrix-v1{color:var(--c3);}
+.cmatrix-v2{color:var(--c2);}
+
+/* ─── DIVIDER ─── */
+hr{border:none;border-top:1px solid var(--border);margin:24px 0;}
+
+/* ─── MISC ─── */
+p{color:var(--text2);font-size:13px;margin-bottom:8px;}
+ul,ol{margin:8px 0 8px 18px;color:var(--text2);font-size:13px;}
+li{margin-bottom:4px;}
+strong{color:var(--text);}
+
+.alert{
+  border-radius:6px;
+  padding:10px 14px;
+  margin:10px 0;
+  font-size:12.5px;
+  color:var(--text2);
+}
+.alert-w{background:rgba(251,191,36,.09);border:1px solid rgba(251,191,36,.25);}
+.alert-i{background:rgba(96,165,250,.09);border:1px solid rgba(96,165,250,.25);}
+.alert-s{background:rgba(74,222,128,.09);border:1px solid rgba(74,222,128,.25);}
+.alert-e{background:rgba(248,113,113,.09);border:1px solid rgba(248,113,113,.25);}
+
+.full-width{grid-column:1/-1;}
+
+@media(max-width:768px){
+  .cheat-grid{grid-template-columns:1fr;}
+  .fcard-body{grid-template-columns:1fr;}
+  .info-grid{grid-template-columns:1fr;}
+  .mindmap-grid{grid-template-columns:1fr;}
+  .cmatrix-row{grid-template-columns:1fr;}
+  .tabs{gap:2px;}
+  .tab{padding:6px 10px;font-size:11px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ─── TOP NAV ─── -->
+<div style="margin-bottom:0;">
+  <div style="font-family:'Noto Serif SC',serif;font-size:18px;font-weight:900;color:var(--text);margin-bottom:2px;">化工分离过程 · 第二册</div>
+  <div style="font-size:11px;color:var(--text3);">公式速查手册 · 判断逻辑训练 · 模拟自测</div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('cheatsheet')">📋 极简速查表</div>
+  <div class="tab" onclick="switchTab('trigger')">⚡ 公式触发矩阵</div>
+  <div class="tab" onclick="switchTab('conditions')">🎯 条件判断手册</div>
+  <div class="tab" onclick="switchTab('mindmap')">🧠 解题思维导图</div>
+  <div class="tab" onclick="switchTab('quiz')">✏️ 模拟自测（30题）</div>
+  <div class="tab" onclick="switchTab('formulas')">∑ 公式全库</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- PANEL 1: CHEATSHEET -->
+<!-- ══════════════════════════════════════════════════ -->
+<div id="cheatsheet" class="panel active">
+  <div class="sec-title">极简速查表</div>
+  <div class="sec-sub">考场30秒找到公式。按章节分块，只保留最核心的形式。</div>
+
+  <div class="cheat-grid">
+
+    <!-- CH2 K值 -->
+    <div class="cheat-block">
+      <div class="cheat-ch">第二章 · 相平衡基础</div>
+      <div class="cheat-title">K值 & 泡露点</div>
+      <div class="cheat-row">
+        <div class="cheat-lhs">K_i = y_i/x_i</div>
+        <div class="cheat-rhs">定义，通用</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-lhs">K_i = P_i^s/P</div>
+        <div class="cheat-rhs">低压理想</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-lhs">K_i = γ_i·P_i^s/P</div>
+        <div class="cheat-rhs">中压，液非理想</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-lhs">α_ij = K_i/K_j</div>
+        <div class="cheat-rhs">相对挥发度</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-lhs">ΣK_i·x_i = 1</div>
+        <div class="cheat-rhs">泡点方程</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-lhs">Σy_i/K_i = 1</div>
+        <div class="cheat-rhs">露点方程</div>
+      </div>
+    </div>
+
+    <!-- CH2 闪蒸 -->
+    <div class="cheat-block">
+      <div class="cheat-ch">第二章 · 闪蒸</div>
+      <div class="cheat-title">Rachford-Rice & 判据</div>
+      <div class="cheat-row">
+        <div class="cheat-lhs">ψ = V/F</div>
+        <div class="cheat-rhs">汽化率定义</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-lhs">Σz_i(K_i-1)/[1+ψ(K_i-1)]=0</div>
+        <div class="cheat-rhs">R-R方程</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-lhs">x_i = z_i/[1+ψ(K_i-1)]</div>
+        <div class="cheat-rhs">液相组成</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-lhs">y_i = K_i·x_i</div>
+        <div class="cheat-rhs">气相组成</div>
+      </div>
+      <div style="border-top:1px solid var(--border);margin:8px 0;padding-top:8px;font-size:11px;color:var(--text3);">两相判据</div>
+      <div class="cheat-row">
+        <div class="cheat-lhs" style="color:var(--c3);">ΣKz&gt;1 且 Σz/K&gt;1</div>
+        <div class="cheat-rhs">两相区 ✓</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-lhs" style="color:var(--red);">ΣKz&lt;1</div>
+        <div class="cheat-rhs">全液相</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-lhs" style="color:var(--red);">Σz/K&lt;1</div>
+        <div class="cheat-rhs">全气相</div>
+      </div>
+    </div>
+
+    <!-- CH3 精馏 -->
+    <div class="cheat-block" style="grid-column:1/-1;">
+      <div class="cheat-ch">第三章 · 精馏 FUG法</div>
+      <div class="cheat-title">Fenske · Underwood · Gilliland · Kirkbride</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;">
+        <div>
+          <div style="font-size:10px;color:var(--text3);font-weight:700;margin-bottom:6px;">F · Fenske（全回流）</div>
+          <div class="cheat-row"><div class="cheat-lhs" style="font-size:11px;">N_min = ln[A·B]/ln(ᾱ)</div></div>
+          <div style="font-size:11px;color:var(--text3);">A=(x_DLK/x_DHK)<br>B=(x_BHK/x_BLK)<br>ᾱ=√(α_顶·α_釜)</div>
+        </div>
+        <div>
+          <div style="font-size:10px;color:var(--text3);font-weight:700;margin-bottom:6px;">U · Underwood（最小回流）</div>
+          <div style="font-size:11px;color:var(--c2);">第①式：Σαᵢzᵢ/(αᵢ-θ)=1-q</div>
+          <div style="font-size:11px;color:var(--text3);margin:3px 0;">→ 求θ，满足α_HK&lt;θ&lt;α_LK</div>
+          <div style="font-size:11px;color:var(--c2);">第②式：Σαᵢx_Di/(αᵢ-θ)=R_min+1</div>
+        </div>
+        <div>
+          <div style="font-size:10px;color:var(--text3);font-weight:700;margin-bottom:6px;">G · Gilliland（实际板数）</div>
+          <div class="cheat-row"><div class="cheat-lhs" style="font-size:11px;">X=(R-R_min)/(R+1)</div></div>
+          <div class="cheat-row"><div class="cheat-lhs" style="font-size:11px;">Y=(N-N_min)/(N+1)</div></div>
+          <div style="font-size:11px;color:var(--text3);">Y=0.75(1-X^0.566)<br>（Molokanov近似）</div>
+        </div>
+        <div>
+          <div style="font-size:10px;color:var(--text3);font-weight:700;margin-bottom:6px;">Kirkbride（进料位置）</div>
+          <div style="font-size:11px;color:var(--c4);">log(N精/N提)=0.206·log[...]</div>
+          <div style="font-size:10px;color:var(--text3);margin-top:4px;">[...]=(x_HKF/x_LKF)·(B/D)·(x_LKB/x_HKD)²</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CH4 吸收 -->
+    <div class="cheat-block">
+      <div class="cheat-ch">第四章 · 吸收</div>
+      <div class="cheat-title">亨利定律 · 传质 · Kremser</div>
+      <div class="cheat-row">
+        <div class="cheat-lhs">y = m·x</div>
+        <div class="cheat-rhs">亨利定律</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-lhs">A = L/(m·V)</div>
+        <div class="cheat-rhs">吸收因子</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-lhs">S = m·V/L = 1/A</div>
+        <div class="cheat-rhs">气提因子</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-lhs">1/K_y=1/k_y+m/k_x</div>
+        <div class="cheat-rhs">总传质系数</div>
+      </div>
+      <div style="font-size:11px;color:var(--c3);margin:6px 0 3px;">Kremser方程</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--c3);line-height:1.8;">
+        N=ln[(y₁-mx₀)/(y_{N+1}-mx₀)·(1-1/A)+1/A]/ln(A)
+      </div>
+    </div>
+
+    <!-- CH5 MESH -->
+    <div class="cheat-block">
+      <div class="cheat-ch">第五章 · 严格计算</div>
+      <div class="cheat-title">MESH方程</div>
+      <div class="cheat-row">
+        <div class="cheat-lhs" style="color:var(--c1);">M</div>
+        <div class="cheat-rhs">物料衡算，c个/级</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-lhs" style="color:var(--c2);">E</div>
+        <div class="cheat-rhs">y_i=K_i·x_i，c个/级</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-lhs" style="color:var(--c3);">S</div>
+        <div class="cheat-rhs">Σx_i=1, Σy_i=1，2个/级</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-lhs" style="color:var(--gold);">H</div>
+        <div class="cheat-rhs">热量衡算，1个/级</div>
+      </div>
+      <div style="border-top:1px solid var(--border);margin:8px 0;padding-top:8px;">
+        <div class="cheat-row">
+          <div class="cheat-lhs">每级方程数</div>
+          <div class="cheat-rhs" style="color:var(--red);font-weight:700;">2c + 3</div>
+        </div>
+        <div class="cheat-row">
+          <div class="cheat-lhs">N级总方程</div>
+          <div class="cheat-rhs" style="color:var(--red);font-weight:700;">N(2c+3)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CH6 萃取 -->
+    <div class="cheat-block">
+      <div class="cheat-ch">第六章 · 液液萃取</div>
+      <div class="cheat-title">分配系数 · 选择性 · 超临界</div>
+      <div class="cheat-row">
+        <div class="cheat-lhs">K_A = y_A/x_A</div>
+        <div class="cheat-rhs">分配系数</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-lhs">β = K_A/K_B</div>
+        <div class="cheat-rhs">选择性系数</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-lhs">杠杆规则</div>
+        <div class="cheat-rhs">E/R=距离反比</div>
+      </div>
+      <div style="border-top:1px solid var(--border);margin:8px 0;padding-top:8px;font-size:11px;color:var(--text3);">超临界流体</div>
+      <div class="cheat-row">
+        <div class="cheat-lhs">萃取条件</div>
+        <div class="cheat-rhs" style="color:var(--c3);">加压降温 ↑ρ</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-lhs">分离条件</div>
+        <div class="cheat-rhs" style="color:var(--c2);">减压降温 ↓ρ</div>
+      </div>
+    </div>
+
+    <!-- CH7 吸附 -->
+    <div class="cheat-block">
+      <div class="cheat-ch">第七章 · 吸附</div>
+      <div class="cheat-title">Langmuir · Freundlich</div>
+      <div class="cheat-row">
+        <div class="cheat-lhs">q=q_m·bP/(1+bP)</div>
+        <div class="cheat-rhs">Langmuir</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-lhs">q = K·P^n</div>
+        <div class="cheat-rhs">Freundlich</div>
+      </div>
+      <div style="font-size:11px;color:var(--text3);margin:6px 0 3px;">线性化</div>
+      <div class="cheat-row">
+        <div class="cheat-lhs" style="font-size:11px;">P/q=1/(q_m·b)+P/q_m</div>
+        <div class="cheat-rhs">Langmuir线性</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-lhs" style="font-size:11px;">lnq=lnK+n·lnP</div>
+        <div class="cheat-rhs">Freundlich线性</div>
+      </div>
+    </div>
+
+    <!-- CH8 膜 -->
+    <div class="cheat-block">
+      <div class="cheat-ch">第八章 · 膜分离</div>
+      <div class="cheat-title">RO推动力 · 膜通量</div>
+      <div class="cheat-row">
+        <div class="cheat-lhs">净推动力=ΔP-Δπ</div>
+        <div class="cheat-rhs">RO核心</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-lhs">J = Q/A</div>
+        <div class="cheat-rhs">膜通量</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-lhs">α_ij = P_i/P_j</div>
+        <div class="cheat-rhs">气体分离因子</div>
+      </div>
+      <div style="border-top:1px solid var(--border);margin:8px 0;padding-top:8px;font-size:11px;color:var(--text3);">膜性能指标</div>
+      <div class="cheat-row"><div class="cheat-lhs">MF</div><div class="cheat-rhs">平均孔径</div></div>
+      <div class="cheat-row"><div class="cheat-lhs">UF</div><div class="cheat-rhs">截留分子量MWCO</div></div>
+      <div class="cheat-row"><div class="cheat-lhs">NF/RO</div><div class="cheat-rhs">截留率</div></div>
+      <div class="cheat-row"><div class="cheat-lhs">GS/PVap</div><div class="cheat-rhs">分离因子</div></div>
+    </div>
+
+    <!-- 设计变量 -->
+    <div class="cheat-block">
+      <div class="cheat-ch">第一章 · 设计变量</div>
+      <div class="cheat-title">自由度分析</div>
+      <div class="cheat-row">
+        <div class="cheat-lhs">Ni = Nv - Nc</div>
+        <div class="cheat-rhs">设计变量数</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-lhs">Na = Ni - Nx</div>
+        <div class="cheat-rhs">可调设计变量</div>
+      </div>
+      <div style="font-size:11px;color:var(--text3);margin:6px 0 3px;">常见装置可调变量数</div>
+      <div class="cheat-row"><div class="cheat-lhs">普通精馏塔</div><div class="cheat-rhs" style="color:var(--red);">5个</div></div>
+      <div class="cheat-row"><div class="cheat-lhs">吸收塔</div><div class="cheat-rhs" style="color:var(--red);">1个</div></div>
+      <div class="cheat-row"><div class="cheat-lhs">绝热闪蒸</div><div class="cheat-rhs" style="color:var(--red);">1个</div></div>
+      <div style="font-size:11px;color:var(--text3);margin:6px 0 3px;">描述c组分两相物流</div>
+      <div class="cheat-row"><div class="cheat-lhs">独立变量数</div><div class="cheat-rhs" style="color:var(--red);">2c + 1 个</div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- PANEL 2: TRIGGER MATRIX -->
+<!-- ══════════════════════════════════════════════════ -->
+<div id="trigger" class="panel">
+  <div class="sec-title">公式触发矩阵</div>
+  <div class="sec-sub">看到题目关键词 → 立刻对应公式。这是考场上最快的反应方式。</div>
+
+  <div class="fcards">
+
+    <div class="fcard">
+      <div class="fcard-head" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'">
+        <div class="fcard-name">🔵 第二章关键词触发表<span class="fcard-chapter">相平衡 / K值 / 闪蒸</span></div>
+        <span class="tag t-blue">展开/收起</span>
+      </div>
+      <div style="display:block;">
+        <table class="ttable" style="margin:0;">
+          <tr><th>题目看到这些词</th><th>→ 触发公式</th><th>判断逻辑</th></tr>
+          <tr><td class="kw">理想物系、低压</td><td class="fr">K_i = P_i^s / P</td><td class="lg">γ≈1，φ≈1，直接拉乌尔定律</td></tr>
+          <tr><td class="kw">非理想、活度系数</td><td class="fr">K_i = γ_i · P_i^s / P</td><td class="lg">液相非理想，气相仍理想</td></tr>
+          <tr><td class="kw">高压、逸度系数</td><td class="fr">K_i = γ_iP_i^sφ_i^s·exp[...] / (φ_iP)</td><td class="lg">高压下气相也非理想</td></tr>
+          <tr><td class="kw">已知液相x，求T或P</td><td class="fr">泡点：ΣK_i·x_i = 1</td><td class="lg">液→气转变，求开始沸腾条件</td></tr>
+          <tr><td class="kw">已知气相y，求T或P</td><td class="fr">露点：Σy_i/K_i = 1</td><td class="lg">气→液转变，求开始冷凝条件</td></tr>
+          <tr><td class="kw">部分汽化、闪蒸、汽化率</td><td class="fr">R-R方程：Σz_i(K_i-1)/[1+ψ(K_i-1)]=0</td><td class="lg">单级平衡，求ψ</td></tr>
+          <tr><td class="kw">过冷液体、是否闪蒸</td><td class="fr">判据：ΣK_iz_i 和 Σz_i/K_i</td><td class="lg">两者都&gt;1 → 两相；否则判断全液/全气</td></tr>
+          <tr><td class="kw">绝热闪蒸</td><td class="fr">R-R方程 + 热量衡算：Q=0</td><td class="lg">T和ψ耦合迭代，多一个外层循环</td></tr>
+          <tr><td class="kw">相平衡条件</td><td class="fr">f̂_i^V = f̂_i^L（逸度相等）</td><td class="lg">不是φ相等！φ等于逸度系数，相平衡时两相φ可以不等</td></tr>
+          <tr><td class="kw">q值、进料热状况</td><td class="fr">q = (饱和液进料为1；过热汽为负)</td><td class="lg">泡点液q=1，饱和汽q=0；决定Underwood右端</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="fcard">
+      <div class="fcard-head" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'">
+        <div class="fcard-name">🟠 第三章关键词触发表<span class="fcard-chapter">精馏 FUG法 / 特殊精馏</span></div>
+        <span class="tag t-orange">展开/收起</span>
+      </div>
+      <div style="display:block;">
+        <table class="ttable" style="margin:0;">
+          <tr><th>题目看到这些词</th><th>→ 触发公式</th><th>判断逻辑</th></tr>
+          <tr><td class="kw">最少理论板数、全回流</td><td class="fr">Fenske：N_min = ln[...] / ln(ᾱ)</td><td class="lg">全回流=极限条件，Fenske正是全回流推导来的</td></tr>
+          <tr><td class="kw">最小回流比、夹点</td><td class="fr">Underwood：两步求θ和R_min</td><td class="lg">最小回流时塔内出现夹点，推动力趋于零</td></tr>
+          <tr><td class="kw">实际回流比R=1.2Rmin，求N</td><td class="fr">Gilliland关联：X→Y→N</td><td class="lg">X=(R-Rmin)/(R+1)，Y=(N-Nmin)/(N+1)</td></tr>
+          <tr><td class="kw">进料位置、精馏段提馏段比</td><td class="fr">Kirkbride公式</td><td class="lg">经验公式，给初值</td></tr>
+          <tr><td class="kw">关键组分、LK/HK</td><td class="fr">清晰分割假设：轻于LK全顶，重于HK全底</td><td class="lg">先确定关键组分才能用FUG</td></tr>
+          <tr><td class="kw">α越大、分离越容易</td><td class="fr">ᾱ在Fenske分母：α大→Nmin小</td><td class="lg">α=1不能精馏，α越大越好</td></tr>
+          <tr><td class="kw">萃取精馏、溶剂改变α</td><td class="fr">加入第三组分→改变γ_i→改变K→改变α</td><td class="lg">热力学路径改变相平衡</td></tr>
+          <tr><td class="kw">共沸物无法分离</td><td class="fr">x=y → α=1 → 精馏无推动力</td><td class="lg">需要萃取精馏或共沸精馏</td></tr>
+          <tr><td class="kw">塔顶/塔底组成要求</td><td class="fr">先写物料衡算，再用Fenske</td><td class="lg">xD和xB必须先确定才能代入Fenske</td></tr>
+          <tr><td class="kw">回流比对能耗的影响</td><td class="fr">R增大→塔板数减少，但再沸/冷凝负荷增大</td><td class="lg">能耗与设备的折中关系=Gilliland图的本质</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="fcard">
+      <div class="fcard-head" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'">
+        <div class="fcard-name">🟢 第四章关键词触发表<span class="fcard-chapter">吸收 / 解吸 / 双膜理论</span></div>
+        <span class="tag t-green">展开/收起</span>
+      </div>
+      <div style="display:block;">
+        <table class="ttable" style="margin:0;">
+          <tr><th>题目看到这些词</th><th>→ 触发公式</th><th>判断逻辑</th></tr>
+          <tr><td class="kw">吸收因子A、液气比</td><td class="fr">A = L/(m·V)</td><td class="lg">A&gt;1有利吸收；A&lt;1吸收不完全</td></tr>
+          <tr><td class="kw">气提因子S</td><td class="fr">S = mV/L = 1/A</td><td class="lg">S&gt;1有利解吸；与A互为倒数</td></tr>
+          <tr><td class="kw">理论级数（吸收/气提）</td><td class="fr">Kremser方程（用A或S代入）</td><td class="lg">线性平衡线+操作线下的等比级数</td></tr>
+          <tr><td class="kw">总传质系数、气膜液膜</td><td class="fr">1/Ky = 1/ky + m/kx</td><td class="lg">串联阻力，液膜阻力折算乘m</td></tr>
+          <tr><td class="kw">气体难溶（H₂、O₂）</td><td class="fr">液膜阻力控制：1/Ky≈m/kx</td><td class="lg">m大→液膜阻力项大→液膜控制</td></tr>
+          <tr><td class="kw">气体易溶（NH₃、HCl）</td><td class="fr">气膜阻力控制：1/Ky≈1/ky</td><td class="lg">m小→气膜阻力项占主导</td></tr>
+          <tr><td class="kw">化学吸收、增强因子</td><td class="fr">E = 化学/物理吸收速率；E&gt;1</td><td class="lg">化学反应消耗溶质→界面浓度降低→推动力增大</td></tr>
+          <tr><td class="kw">最小液气比</td><td class="fr">(L/V)_min = m（当y/x=m时为最小液气比）</td><td class="lg">此时需无限多级，实际取1.5倍以上</td></tr>
+          <tr><td class="kw">多组分吸收，哪个是关键组分</td><td class="fr">题目明确要求的那个组分</td><td class="lg">吸收只有一个可调变量(L/V)，只能对一个组分提严格要求</td></tr>
+          <tr><td class="kw">VOC气提、饮用水</td><td class="fr">Kremser（气提）：用S代替A</td><td class="lg">最难气提组分取S_min，其他组分用相同S校核</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="fcard">
+      <div class="fcard-head" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'">
+        <div class="fcard-name">⚫ 第五～八章关键词触发表<span class="fcard-chapter">MESH / 萃取 / 吸附 / 膜</span></div>
+        <span class="tag t-purple">展开/收起</span>
+      </div>
+      <div style="display:block;">
+        <table class="ttable" style="margin:0;">
+          <tr><th>题目看到这些词</th><th>→ 触发公式/知识点</th><th>判断逻辑</th></tr>
+          <tr><td class="kw">MESH方程、严格计算、每级方程数</td><td class="fr">每级2c+3个；N级共N(2c+3)个</td><td class="lg">M:c个 + E:c个 + S:2个 + H:1个 = 2c+3</td></tr>
+          <tr><td class="kw">初值差、不收敛</td><td class="fr">先用简捷法(FUG)给初值</td><td class="lg">严格计算对初值敏感；简捷法是前置步骤</td></tr>
+          <tr><td class="kw">分配系数K（萃取）</td><td class="fr">K_A = y_A/x_A（萃取相/萃余相）</td><td class="lg">注意与精馏K值的区别（符号相同，含义不同）</td></tr>
+          <tr><td class="kw">选择性系数β（萃取）</td><td class="fr">β = K_A/K_B</td><td class="lg">对应精馏的α，β≈1无法分离</td></tr>
+          <tr><td class="kw">超临界流体密度</td><td class="fr">密度决定溶解能力，接近液体密度</td><td class="lg">加压→密度↑→溶解↑；减压→密度↓→析出</td></tr>
+          <tr><td class="kw">Langmuir、单层吸附、饱和平台</td><td class="fr">q = q_m·bP/(1+bP)</td><td class="lg">高压时q→q_m（表面全部占满）</td></tr>
+          <tr><td class="kw">Freundlich、非均匀表面</td><td class="fr">q = K·P^n（n&lt;1）</td><td class="lg">无饱和上限，适合中等浓度范围</td></tr>
+          <tr><td class="kw">穿透曲线、破点时间</td><td class="fr">C_out/C_in = 5%时视为穿透</td><td class="lg">S型曲线；传质区移动导致出口浓度突增</td></tr>
+          <tr><td class="kw">变温吸附TSA vs 变压吸附PSA</td><td class="fr">TSA：升温解吸；PSA：降压解吸</td><td class="lg">TSA周期长能耗高；PSA周期短能耗低</td></tr>
+          <tr><td class="kw">RO净推动力</td><td class="fr">ΔP - Δπ（不是单纯ΔP）</td><td class="lg">渗透压抵消部分驱动力，是高频判断题</td></tr>
+          <tr><td class="kw">浓差极化 vs 膜污染</td><td class="fr">极化：可逆浓度堆积；污染：不可逆沉积</td><td class="lg">极化改变操作条件可恢复；污染需清洗或换膜</td></tr>
+          <tr><td class="kw">MF/UF/NF/RO各用什么指标</td><td class="fr">MF→孔径；UF→MWCO；NF/RO→截留率；GS/PVap→分离因子</td><td class="lg">每种膜对应独特指标，考试常考</td></tr>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- PANEL 3: CONDITIONS -->
+<!-- ══════════════════════════════════════════════════ -->
+<div id="conditions" class="panel">
+  <div class="sec-title">条件判断手册</div>
+  <div class="sec-sub">每个知识点的适用条件、边界条件、极限情况。这是简答题和判断题的核心。</div>
+
+  <div class="cmatrix">
+    <div class="cmatrix-title">📐 K值公式适用条件对照</div>
+    <div class="cmatrix-body">
+      <div class="cmatrix-row head">
+        <div>体系类型</div>
+        <div class="cmatrix-v1">简化K值公式</div>
+        <div class="cmatrix-v2">适用条件</div>
+      </div>
+      <div class="cmatrix-row">
+        <div class="cmatrix-key">低压理想（A类）</div>
+        <div class="cmatrix-v1">K_i = P_i^s / P</div>
+        <div class="cmatrix-v2">P &lt; 5atm；气液均理想；φ≈1，γ≈1</div>
+      </div>
+      <div class="cmatrix-row">
+        <div class="cmatrix-key">中压非理想液（B类）</div>
+        <div class="cmatrix-v1">K_i = γ_i·P_i^s / P</div>
+        <div class="cmatrix-v2">气相可近似理想（φ≈1），液相非理想（γ≠1）</div>
+      </div>
+      <div class="cmatrix-row">
+        <div class="cmatrix-key">高压完整（E类）</div>
+        <div class="cmatrix-v1">K_i = γ_i·P_i^s·φ_i^s·exp[...] / (φ_i·P)</div>
+        <div class="cmatrix-v2">P &gt; 10atm；气液均非理想；Poynting因子不可忽略</div>
+      </div>
+      <div class="cmatrix-row">
+        <div class="cmatrix-key">轻烃体系（查图法）</div>
+        <div class="cmatrix-v1">查P-T-K列线图</div>
+        <div class="cmatrix-v2">C1-C10轻烃；需T和P至少给一个；非极性物系</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cmatrix">
+    <div class="cmatrix-title">⚡ 闪蒸相态判断与ψ范围</div>
+    <div class="cmatrix-body">
+      <div class="cmatrix-row head">
+        <div>判断条件</div>
+        <div class="cmatrix-v1">相态结论</div>
+        <div class="cmatrix-v2">ψ的值</div>
+      </div>
+      <div class="cmatrix-row">
+        <div class="cmatrix-key">ΣK_iz_i &lt; 1</div>
+        <div class="cmatrix-v1" style="color:var(--c1);">全液相（过冷液体）</div>
+        <div class="cmatrix-v2">ψ = 0</div>
+      </div>
+      <div class="cmatrix-row">
+        <div class="cmatrix-key">Σz_i/K_i &lt; 1</div>
+        <div class="cmatrix-v1" style="color:var(--c2);">全气相（过热蒸汽）</div>
+        <div class="cmatrix-v2">ψ = 1</div>
+      </div>
+      <div class="cmatrix-row">
+        <div class="cmatrix-key">ΣK_iz_i&gt;1 且 Σz_i/K_i&gt;1</div>
+        <div class="cmatrix-v1" style="color:var(--c3);">气液两相共存</div>
+        <div class="cmatrix-v2">0 &lt; ψ &lt; 1，用R-R方程求解</div>
+      </div>
+      <div class="cmatrix-row">
+        <div class="cmatrix-key">注意：q与ψ的关系</div>
+        <div class="cmatrix-v1">q = 1 - ψ（液相分率+汽化率=1）</div>
+        <div class="cmatrix-v2">q∈(0,1)对应两相区</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cmatrix">
+    <div class="cmatrix-title">🎯 精馏极限条件对比</div>
+    <div class="cmatrix-body">
+      <div class="cmatrix-row head">
+        <div>极限条件</div>
+        <div class="cmatrix-v1">特征</div>
+        <div class="cmatrix-v2">对应公式</div>
+      </div>
+      <div class="cmatrix-row">
+        <div class="cmatrix-key">全回流（R→∞）</div>
+        <div class="cmatrix-v1" style="color:var(--c3);">N最少；分离能力最强；无产品输出</div>
+        <div class="cmatrix-v2">Fenske方程 → N_min</div>
+      </div>
+      <div class="cmatrix-row">
+        <div class="cmatrix-key">最小回流（R=R_min）</div>
+        <div class="cmatrix-v1" style="color:var(--c2);">N→∞；出现夹点；推动力趋于零</div>
+        <div class="cmatrix-v2">Underwood方程 → R_min</div>
+      </div>
+      <div class="cmatrix-row">
+        <div class="cmatrix-key">实际操作</div>
+        <div class="cmatrix-v1" style="color:var(--c1);">R = (1.2~1.5)×R_min；N由Gilliland确定</div>
+        <div class="cmatrix-v2">Gilliland关联 → N实际</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cmatrix">
+    <div class="cmatrix-title">🔄 吸附与解吸有利条件对比</div>
+    <div class="cmatrix-body">
+      <div class="cmatrix-row head">
+        <div>操作</div>
+        <div class="cmatrix-v1">有利条件</div>
+        <div class="cmatrix-v2">原理</div>
+      </div>
+      <div class="cmatrix-row">
+        <div class="cmatrix-key">吸附（富集）</div>
+        <div class="cmatrix-v1" style="color:var(--c3);">低温、高压</div>
+        <div class="cmatrix-v2">低温→分子运动慢→更易被吸附；高压→气体浓度高→吸附量增加</div>
+      </div>
+      <div class="cmatrix-row">
+        <div class="cmatrix-key">解吸TSA（变温）</div>
+        <div class="cmatrix-v1" style="color:var(--c2);">升温</div>
+        <div class="cmatrix-v2">升温→吸附平衡向脱附方向移动</div>
+      </div>
+      <div class="cmatrix-row">
+        <div class="cmatrix-key">解吸PSA（变压）</div>
+        <div class="cmatrix-v1" style="color:var(--c2);">降压/抽真空</div>
+        <div class="cmatrix-v2">降压→吸附量减少→溶质脱附</div>
+      </div>
+      <div class="cmatrix-row">
+        <div class="cmatrix-key">TSA vs PSA 选用</div>
+        <div class="cmatrix-v1">强吸附→TSA；弱吸附气体→PSA</div>
+        <div class="cmatrix-v2">TSA能耗高周期长；PSA能耗低周期短</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cmatrix">
+    <div class="cmatrix-title">💧 膜分离各类型适用条件</div>
+    <div class="cmatrix-body">
+      <div class="cmatrix-row head">
+        <div>膜类型</div>
+        <div class="cmatrix-v1">截留对象</div>
+        <div class="cmatrix-v2">主要机理 + 指标</div>
+      </div>
+      <div class="cmatrix-row">
+        <div class="cmatrix-key">MF（微滤）0.1-10μm</div>
+        <div class="cmatrix-v1">颗粒、细菌、酵母</div>
+        <div class="cmatrix-v2">筛分 | 指标：平均孔径</div>
+      </div>
+      <div class="cmatrix-row">
+        <div class="cmatrix-key">UF（超滤）1-100nm</div>
+        <div class="cmatrix-v1">蛋白质、大分子</div>
+        <div class="cmatrix-v2">筛分 | 指标：MWCO截留分子量</div>
+      </div>
+      <div class="cmatrix-row">
+        <div class="cmatrix-key">NF（纳滤）~1nm</div>
+        <div class="cmatrix-v1">MW 200-1000的分子</div>
+        <div class="cmatrix-v2">筛分+电荷排斥 | 指标：截留率</div>
+      </div>
+      <div class="cmatrix-row">
+        <div class="cmatrix-key">RO（反渗透）&lt;1nm</div>
+        <div class="cmatrix-v1">几乎所有溶质（包括盐）</div>
+        <div class="cmatrix-v2">溶解-扩散 | 指标：截留率 | 净推动力=ΔP-Δπ</div>
+      </div>
+      <div class="cmatrix-row">
+        <div class="cmatrix-key">GS（气体分离）</div>
+        <div class="cmatrix-v1">不同渗透速率的气体</div>
+        <div class="cmatrix-v2">溶解-扩散 | 指标：分离因子αij=Pi/Pj</div>
+      </div>
+      <div class="cmatrix-row">
+        <div class="cmatrix-key">PVap（渗透蒸发）</div>
+        <div class="cmatrix-v1">醇-水等共沸体系</div>
+        <div class="cmatrix-v2">溶解-扩散 | 指标：分离因子 | 下游侧抽真空/吹扫</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cmatrix">
+    <div class="cmatrix-title">⚖️ γ→1（理想液体）和φ→1（理想气体）的条件</div>
+    <div class="cmatrix-body">
+      <div class="cmatrix-row head">
+        <div>参数</div>
+        <div class="cmatrix-v1">趋向1的条件</div>
+        <div class="cmatrix-v2">偏差大的条件</div>
+      </div>
+      <div class="cmatrix-row">
+        <div class="cmatrix-key">活度系数 γ_i</div>
+        <div class="cmatrix-v1" style="color:var(--c3);">组分结构相似（苯/甲苯）；纯组分极限（x→1）</div>
+        <div class="cmatrix-v2">极性差异大；存在氢键；强缔合作用（水/醇）</div>
+      </div>
+      <div class="cmatrix-row">
+        <div class="cmatrix-key">逸度系数 φ_i</div>
+        <div class="cmatrix-v1" style="color:var(--c3);">低压（P&lt;10atm）；高温；远离临界点</div>
+        <div class="cmatrix-v2">高压；低温；接近临界点；极性气体混合</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- PANEL 4: MINDMAP -->
+<!-- ══════════════════════════════════════════════════ -->
+<div id="mindmap" class="panel">
+  <div class="sec-title">解题思维导图</div>
+  <div class="sec-sub">遇到大题时，大脑应该按照哪条路径走。每种题型的"第一反应"。</div>
+
+  <div class="mindmap-grid">
+
+    <div class="mm-card">
+      <div class="mm-title"><span style="color:var(--c2);">🔥</span> 遇到精馏大题</div>
+      <div class="mm-row"><div class="mm-arrow">①</div><div class="mm-content"><strong>读题 → 找分离要求</strong><span class="sub">塔顶/塔底对哪个组分有要求 → 确定LK和HK</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">②</div><div class="mm-content"><strong>清晰分割判断</strong><span class="sub">比LK轻的全进塔顶；比HK重的全进塔底</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">③</div><div class="mm-content"><strong>物料衡算</strong><span class="sub">确定D、B和各组分在塔顶塔底的量</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">④</div><div class="mm-content"><strong>算ᾱ = √(α顶 × α釜)</strong><span class="sub">题目若给固定α则直接用</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">⑤</div><div class="mm-content"><strong>Fenske → Nmin</strong><span class="sub">代入LK/HK在塔顶塔底分率</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">⑥</div><div class="mm-content"><strong>Underwood → θ → Rmin</strong><span class="sub">迭代找θ（αHK&lt;θ&lt;αLK），q=1则右端=0</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">⑦</div><div class="mm-content"><strong>R = 1.2Rmin → Gilliland → N</strong><span class="sub">算X，查图或Molokanov公式得Y，反解N</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">⑧</div><div class="mm-content"><strong>（可选）Kirkbride → 进料板位置</strong></div></div>
+    </div>
+
+    <div class="mm-card">
+      <div class="mm-title"><span style="color:var(--c1);">⚡</span> 遇到闪蒸/泡露点题</div>
+      <div class="mm-row"><div class="mm-arrow">①</div><div class="mm-content"><strong>读题 → 判断题型</strong><span class="sub">已知x → 泡点；已知y → 露点；"部分汽化"→ 闪蒸</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">②</div><div class="mm-content"><strong>闪蒸必须先判相态</strong><span class="sub">ΣKz&gt;1 且 Σz/K&gt;1 → 两相；否则不闪蒸</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">③</div><div class="mm-content"><strong>写核心方程</strong><span class="sub">泡点：ΣKx=1；露点：Σy/K=1；闪蒸：R-R方程</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">④</div><div class="mm-content"><strong>求K值</strong><span class="sub">理想物系：K=Pˢ/P；安托万方程求Pˢ</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">⑤</div><div class="mm-content"><strong>迭代（泡露点需迭代T）</strong><span class="sub">猜T → 算Pˢ → 算K → 检查方程 → 调整T</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">⑥</div><div class="mm-content"><strong>求另一相组成 → 双重验证</strong><span class="sub">Σx=1 且 Σy=1</span></div></div>
+    </div>
+
+    <div class="mm-card">
+      <div class="mm-title"><span style="color:var(--c3);">🟢</span> 遇到吸收/气提题</div>
+      <div class="mm-row"><div class="mm-arrow">①</div><div class="mm-content"><strong>判断类型：吸收or气提？</strong><span class="sub">气→液=吸收（用A）；液→气=气提（用S）</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">②</div><div class="mm-content"><strong>确定关键组分</strong><span class="sub">题目明确有回收率要求的组分</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">③</div><div class="mm-content"><strong>求最小液气比（或气液比）</strong><span class="sub">取多组分中最难吸收/气提的那个作基准</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">④</div><div class="mm-content"><strong>实际比 = 2 × 最小比（题目通常给倍数）</strong></div></div>
+      <div class="mm-row"><div class="mm-arrow">⑤</div><div class="mm-content"><strong>Kremser求N（用关键组分）</strong><span class="sub">代入A_关键组分和分离要求</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">⑥</div><div class="mm-content"><strong>用N反算其他组分出口浓度</strong></div></div>
+    </div>
+
+    <div class="mm-card">
+      <div class="mm-title"><span style="color:var(--c4);">🟣</span> 遇到MESH/设计变量题</div>
+      <div class="mm-row"><div class="mm-arrow">①</div><div class="mm-content"><strong>确认是哪类问题</strong><span class="sub">设计变量分析 / 方程个数计数 / 严格计算思想</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">②</div><div class="mm-content"><strong>MESH计数</strong><span class="sub">每级：M(c) + E(c) + S(2) + H(1) = 2c+3</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">③</div><div class="mm-content"><strong>设计变量公式</strong><span class="sub">Ni=Nv-Nc；Na=Ni-Nx</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">④</div><div class="mm-content"><strong>BP法迭代顺序</strong><span class="sub">预设T_j → 求K_ij → M方程求x → S归一 → E求y → H方程更新T</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">⑤</div><div class="mm-content"><strong>不收敛原因</strong><span class="sub">初值差（用简捷法给初值）；体系高度非线性（逐步松弛）</span></div></div>
+    </div>
+
+    <div class="mm-card">
+      <div class="mm-title"><span style="color:var(--gold);">🟡</span> 遇到概念辨析题</div>
+      <div class="mm-row"><div class="mm-arrow">▶</div><div class="mm-content"><strong>浓差极化 vs 膜污染</strong><span class="sub">极化=可逆浓度堆积；污染=不可逆沉积</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">▶</div><div class="mm-content"><strong>物理吸附 vs 化学吸附</strong><span class="sub">物理=范德华力+可逆；化学=化学键+不可逆+选择性强</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">▶</div><div class="mm-content"><strong>萃取精馏 vs 共沸精馏</strong><span class="sub">萃取精馏：溶剂沸点高，不共沸，从釜排出；共沸精馏：形成新共沸物</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">▶</div><div class="mm-content"><strong>泡点 vs 露点</strong><span class="sub">泡点：液→出现第一个气泡（已知x）；露点：气→出现第一滴液（已知y）</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">▶</div><div class="mm-content"><strong>TSA vs PSA</strong><span class="sub">TSA：升温解吸，周期长能耗高；PSA：降压解吸，周期短能耗低</span></div></div>
+    </div>
+
+    <div class="mm-card">
+      <div class="mm-title"><span style="color:var(--red);">❌</span> 最高频错误预警</div>
+      <div class="mm-row"><div class="mm-arrow">!</div><div class="mm-content"><strong>Fenske中ᾱ忘记取几何平均</strong><span class="sub">正确：ᾱ=√(α_顶×α_釜)，不是算术平均</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">!</div><div class="mm-content"><strong>Underwood的θ超出范围</strong><span class="sub">θ必须严格满足α_HK &lt; θ &lt; α_LK</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">!</div><div class="mm-content"><strong>泡点进料q混淆</strong><span class="sub">q=1是饱和液体（泡点液体），不是全气！</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">!</div><div class="mm-content"><strong>RO净推动力只写ΔP</strong><span class="sub">正确：ΔP - Δπ；漏掉渗透压项</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">!</div><div class="mm-content"><strong>相平衡条件写φ相等</strong><span class="sub">正确：逸度f相等；φ不一定相等</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">!</div><div class="mm-content"><strong>安托万方程T单位混用</strong><span class="sub">确认是°C还是K，不统一会导致Pˢ算错</span></div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- PANEL 5: QUIZ -->
+<!-- ══════════════════════════════════════════════════ -->
+<div id="quiz" class="panel">
+  <div class="sec-title">模拟自测（30题）</div>
+  <div class="sec-sub">覆盖高频考点，点击选项后显示解析。每题做完再看答案。</div>
+
+  <div class="score-bar">
+    <div>
+      <div class="score-num" id="score-display">0/0</div>
+      <div class="score-label">答对/已答题数</div>
+    </div>
+    <div style="flex:1;margin-left:20px;">
+      <div style="font-size:12px;color:var(--text2);">选择题 · 即时反馈 · 含详细解析</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:3px;">建议：先选答案，再展开解析</div>
+    </div>
+    <button class="btn btn-show" onclick="resetQuiz()" style="flex-shrink:0;">重置</button>
+  </div>
+
+  <div class="quiz-container" id="quiz-container">
+  <!-- Questions inserted by JS -->
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- PANEL 6: FORMULAS -->
+<!-- ══════════════════════════════════════════════════ -->
+<div id="formulas" class="panel">
+  <div class="sec-title">公式全库</div>
+  <div class="sec-sub">所有公式详细版，含推导逻辑、变量说明、常见变形。</div>
+
+  <div class="fcards">
+
+    <div class="fcard">
+      <div class="fcard-head" onclick="toggleFcard(this)">
+        <div class="fcard-name"><span style="color:var(--red);">★</span> Rachford-Rice 方程（闪蒸）<span class="fcard-chapter">Ch.2 · 最高频大题</span></div>
+        <span class="tag t-red">核心</span>
+      </div>
+      <div class="fcard-body" style="display:none;">
+        <div>
+          <div class="fcol-label">标准形式</div>
+          <div class="fml">f(ψ) = Σ zᵢ(Kᵢ-1) / [1 + ψ(Kᵢ-1)] = 0</div>
+          <div class="fcol-label" style="margin-top:10px;">求组成</div>
+          <div class="fml green">xᵢ = zᵢ / [1 + ψ(Kᵢ-1)]
+yᵢ = Kᵢ · xᵢ</div>
+        </div>
+        <div>
+          <div class="info-grid" style="margin-top:0;">
+            <div class="info-item"><div class="info-key">推导来源</div><div class="info-val">物料衡算(Fzᵢ=Vyᵢ+Lxᵢ) + 相平衡(yᵢ=Kᵢxᵢ) + ψ=V/F联立消去xᵢ,yᵢ</div></div>
+            <div class="info-item"><div class="info-key">单调性</div><div class="info-val">f(ψ)对ψ严格<strong>单调递减</strong>，两相区内只有唯一根</div></div>
+            <div class="info-item"><div class="info-key">根区间</div><div class="info-val">0 &lt; ψ &lt; 1（两相区）；避开分母极点 ψ=-1/(Kᵢ-1)</div></div>
+            <div class="info-item"><div class="info-key">迭代方法</div><div class="info-val">Newton法：ψ_new=ψ_old-f(ψ)/f'(ψ)；初值ψ₀=0.5</div></div>
+            <div class="info-item"><div class="info-key">绝热闪蒸</div><div class="info-val">外层迭代T，内层用R-R求ψ；热量衡算 Q=VHᵥ+LHₗ-FHF=0 校验T</div></div>
+            <div class="info-item"><div class="info-key">易错点</div><div class="info-val">f(ψ)值受T影响（Kᵢ是T的函数）；等温闪蒸T固定所以Kᵢ固定</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fcard">
+      <div class="fcard-head" onclick="toggleFcard(this)">
+        <div class="fcard-name"><span style="color:var(--red);">★</span> Fenske 方程（全回流最少板数）<span class="fcard-chapter">Ch.3 · 精馏第一步</span></div>
+        <span class="tag t-red">核心</span>
+      </div>
+      <div class="fcard-body" style="display:none;">
+        <div>
+          <div class="fcol-label">标准形式</div>
+          <div class="fml">N_min = ln[(x_D,LK/x_D,HK)·(x_B,HK/x_B,LK)] / ln(ᾱ_LK,HK)</div>
+          <div class="fcol-label" style="margin-top:10px;">平均相对挥发度</div>
+          <div class="fml orange">ᾱ = √(α_顶 × α_釜)  [几何平均]</div>
+          <div class="fcol-label" style="margin-top:10px;">非关键组分全回流分配</div>
+          <div class="fml green">dᵢ/bᵢ = (d_LK/b_LK) · αᵢ,LK^N_min</div>
+        </div>
+        <div>
+          <div class="info-grid" style="margin-top:0;">
+            <div class="info-item"><div class="info-key">推导本质</div><div class="info-val">每级：(yLK/yHK)=α·(xLK/xHK)，N级连乘后取对数</div></div>
+            <div class="info-item"><div class="info-key">使用条件</div><div class="info-val">全回流(R=∞)；恒摩流；平均α代表全塔</div></div>
+            <div class="info-item"><div class="info-key">为什么ln？</div><div class="info-val">多级过程是指数积累，对数取出指数就是级数</div></div>
+            <div class="info-item"><div class="info-key">α越大</div><div class="info-val">分母越大 → N_min越小 → 越容易分离</div></div>
+            <div class="info-item"><div class="info-key">分离要求越高</div><div class="info-val">分子越大（产品更纯）→ N_min越大</div></div>
+            <div class="info-item"><div class="info-key">ᾱ计算易错</div><div class="info-val">必须是几何平均√(α顶×α釜)，不是算术平均！</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fcard">
+      <div class="fcard-head" onclick="toggleFcard(this)">
+        <div class="fcard-name"><span style="color:var(--red);">★</span> Underwood 方程（最小回流比）<span class="fcard-chapter">Ch.3 · 精馏第二步</span></div>
+        <span class="tag t-red">核心</span>
+      </div>
+      <div class="fcard-body" style="display:none;">
+        <div>
+          <div class="fcol-label">第一方程（求θ）</div>
+          <div class="fml orange">Σ αᵢzᵢF / (αᵢ - θ) = 1 - q</div>
+          <div class="fcol-label" style="margin-top:10px;">第二方程（求Rmin）</div>
+          <div class="fml orange">Σ αᵢxᵢD / (αᵢ - θ) = Rmin + 1</div>
+          <div class="fcol-label" style="margin-top:10px;">θ的约束</div>
+          <div class="fml red">α_HK  &lt;  θ  &lt;  α_LK  (必须满足！)</div>
+        </div>
+        <div>
+          <div class="info-grid" style="margin-top:0;">
+            <div class="info-item"><div class="info-key">θ的物理意义</div><div class="info-val">夹点参数，代表最小回流时塔内夹点处的"虚拟挥发度"</div></div>
+            <div class="info-item"><div class="info-key">q值的影响</div><div class="info-val">泡点液(q=1)→右端=0；饱和汽(q=0)→右端=1；过热汽q&lt;0</div></div>
+            <div class="info-item"><div class="info-key">迭代求θ</div><div class="info-val">二分法，区间(α_HK, α_LK)；f(θ)=Σαᵢzᵢ/(αᵢ-θ)-(1-q)=0</div></div>
+            <div class="info-item"><div class="info-key">xᵢD的近似</div><div class="info-val">理论上用最小回流下的塔顶组成；实际中用Fenske全回流结果代入（可接受误差）</div></div>
+            <div class="info-item"><div class="info-key">为什么存在夹点</div><div class="info-val">最小回流→推动力→0→某级需无限多平衡级→夹点出现</div></div>
+            <div class="info-item"><div class="info-key">多组分注意</div><div class="info-val">若有n个关键组分区间，就有n个θ根；通常只取αHK&lt;θ&lt;αLK那个根</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fcard">
+      <div class="fcard-head" onclick="toggleFcard(this)">
+        <div class="fcard-name"><span style="color:var(--c2);">★</span> Gilliland 关联（实际理论板数）<span class="fcard-chapter">Ch.3 · 精馏第三步</span></div>
+        <span class="tag t-orange">高频</span>
+      </div>
+      <div class="fcard-body" style="display:none;">
+        <div>
+          <div class="fcol-label">无因次变量定义</div>
+          <div class="fml">X = (R - Rmin) / (R + 1)
+Y = (N - Nmin) / (N + 1)</div>
+          <div class="fcol-label" style="margin-top:10px;">Molokanov近似公式</div>
+          <div class="fml purple">Y = 1 - exp[(1+54.4X)/(11+117.2X) · (X-1)/X^0.5]
+简化: Y ≈ 0.75(1 - X^0.5668)</div>
+          <div class="fcol-label" style="margin-top:10px;">反解N</div>
+          <div class="fml green">N = (Y·Nmin + Nmin - Y) / (1 - Y)
+  → 向上取整</div>
+        </div>
+        <div>
+          <div class="info-grid" style="margin-top:0;">
+            <div class="info-item"><div class="info-key">物理意义</div><div class="info-val">X→0（R刚超Rmin）→Y大→N多；X→1（R→∞）→Y小→N→Nmin</div></div>
+            <div class="info-item"><div class="info-key">工程本质</div><div class="info-val">能耗（回流比）和设备投资（塔板数）的折中关系</div></div>
+            <div class="info-item"><div class="info-key">使用步骤</div><div class="info-val">①算X→②查图或公式得Y→③反解N→④向上取整</div></div>
+            <div class="info-item"><div class="info-key">典型工程R值</div><div class="info-val">R=(1.2~1.5)Rmin为工程最优区间（N和操作费折中最优）</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fcard">
+      <div class="fcard-head" onclick="toggleFcard(this)">
+        <div class="fcard-name"><span style="color:var(--c3);">★</span> Kremser 方程（吸收/气提）<span class="fcard-chapter">Ch.4 · 吸收大题</span></div>
+        <span class="tag t-green">高频</span>
+      </div>
+      <div class="fcard-body" style="display:none;">
+        <div>
+          <div class="fcol-label">理论级数公式（吸收，A≠1）</div>
+          <div class="fml green">N = ln{ [(y_{N+1}-mx₀)/(y₁-mx₀)]·(1-1/A) + 1/A } / ln(A)</div>
+          <div class="fcol-label" style="margin-top:10px;">吸收因子</div>
+          <div class="fml">A = L / (m·V)    [液/气 × 1/m]</div>
+          <div class="fcol-label" style="margin-top:10px;">气提因子</div>
+          <div class="fml orange">S = m·V / L = 1/A    [气/液 × m]</div>
+        </div>
+        <div>
+          <div class="info-grid" style="margin-top:0;">
+            <div class="info-item"><div class="info-key">推导本质</div><div class="info-val">每级物料衡算+相平衡形成递推等比数列，对N级求和取对数</div></div>
+            <div class="info-item"><div class="info-key">适用条件</div><div class="info-val">平衡线和操作线均为直线（稀溶液）；A在全塔恒定</div></div>
+            <div class="info-item"><div class="info-key">A的物理意义</div><div class="info-val">A&gt;1→液多→利于吸收；A&lt;1→液少→吸收不完全</div></div>
+            <div class="info-item"><div class="info-key">多组分吸收</div><div class="info-val">各组分独立计算Aᵢ；用关键组分的Aᵢ求N；用N反算其他组分出口</div></div>
+            <div class="info-item"><div class="info-key">气提用法</div><div class="info-val">将A替换为S=1/A，y₁和y_{N+1}对换（稀端在顶）</div></div>
+            <div class="info-item"><div class="info-key">与Fenske的类比</div><div class="info-val">两个方程结构相似：都是多级递推的对数表达，本质相同</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fcard">
+      <div class="fcard-head" onclick="toggleFcard(this)">
+        <div class="fcard-name">双膜传质系数<span class="fcard-chapter">Ch.4 · 双膜理论</span></div>
+        <span class="tag t-blue">重要</span>
+      </div>
+      <div class="fcard-body" style="display:none;">
+        <div>
+          <div class="fcol-label">以气相为基准</div>
+          <div class="fml">1/Ky = 1/ky + m/kx</div>
+          <div class="fcol-label" style="margin-top:10px;">以液相为基准</div>
+          <div class="fml">1/Kx = 1/(m·ky) + 1/kx</div>
+          <div class="fcol-label" style="margin-top:10px;">传质速率</div>
+          <div class="fml green">N_A = Ky·(y - y*) = Kx·(x* - x)</div>
+        </div>
+        <div>
+          <div class="info-grid" style="margin-top:0;">
+            <div class="info-item"><div class="info-key">为什么液膜阻力要乘m</div><div class="info-val">液相阻力1/kx折算到气相推动力基准时，需通过平衡关系y=mx换算，所以乘m</div></div>
+            <div class="info-item"><div class="info-key">气膜控制条件</div><div class="info-val">m小（气体易溶如NH₃）→m/kx项小→1/Ky≈1/ky→气膜控制</div></div>
+            <div class="info-item"><div class="info-key">液膜控制条件</div><div class="info-val">m大（气体难溶如O₂）→m/kx项大→1/Ky≈m/kx→液膜控制</div></div>
+            <div class="info-item"><div class="info-key">化学吸收强化</div><div class="info-val">反应消耗溶质→界面xᵢ↓→推动力↑→速率增加→E=化学/物理速率&gt;1</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fcard">
+      <div class="fcard-head" onclick="toggleFcard(this)">
+        <div class="fcard-name">Langmuir 吸附方程<span class="fcard-chapter">Ch.7 · 吸附等温线</span></div>
+        <span class="tag t-purple">重要</span>
+      </div>
+      <div class="fcard-body" style="display:none;">
+        <div>
+          <div class="fcol-label">标准形式</div>
+          <div class="fml purple">q = q_m · b · P / (1 + b·P)</div>
+          <div class="fcol-label" style="margin-top:10px;">线性化（用于实验求q_m和b）</div>
+          <div class="fml">P/q = 1/(q_m·b) + P/q_m
+→ 作P/q vs P图，斜率=1/q_m，截距=1/(q_m·b)</div>
+          <div class="fcol-label" style="margin-top:10px;">两个极限</div>
+          <div class="fml green">低压: q ≈ q_m·b·P  (线性)
+高压: q ≈ q_m      (饱和平台)</div>
+        </div>
+        <div>
+          <div class="info-grid" style="margin-top:0;">
+            <div class="info-item"><div class="info-key">4个假设</div><div class="info-val">①单层吸附 ②表面均匀 ③吸附位等效 ④分子间无作用</div></div>
+            <div class="info-item"><div class="info-key">为什么有平台</div><div class="info-val">表面吸附位有限，全部占满后q不再增加</div></div>
+            <div class="info-item"><div class="info-key">vs Freundlich</div><div class="info-val">Freundlich适合非均匀表面，无饱和上限，经验方程</div></div>
+            <div class="info-item"><div class="info-key">对应等温线类型</div><div class="info-val">L型（Langmuir型）等温线，最常见</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div><!-- end .wrap -->
+
+<script>
+// ─── TAB SWITCHING ───
+function switchTab(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ─── FORMULA CARD TOGGLE ───
+function toggleFcard(head) {
+  const body = head.nextElementSibling;
+  body.style.display = body.style.display === 'none' ? 'grid' : 'none';
+}
+
+// ─── QUIZ DATA ───
+const questions = [
+  {
+    q: "在理想物系中，其他条件不变时，必然使组分相平衡常数Kᵢ增大的是（）",
+    opts: ["系统压力增大，温度升高", "系统压力增大，温度降低", "系统压力减小，温度升高", "系统压力减小，温度降低"],
+    ans: 2,
+    ch: "第二章 · K值",
+    explain: "<strong>分析：</strong>理想物系 K_i = P_i^s / P。<br>温度升高 → P_i^s 增大（安托万方程：T↑→P^s↑）→ K_i 增大；<br>压力减小 → 分母减小 → K_i 增大。<br>两个条件方向一致，都使 K_i 增大，选C。",
+    formula: "K_i = P_i^s / P  (低压理想物系)"
+  },
+  {
+    q: "闪蒸方程 f(ψ) = Σzᵢ(Kᵢ-1)/[1+ψ(Kᵢ-1)] = 0，对ψ而言是一个（）函数",
+    opts: ["单调递增", "单调递减", "先增后减", "先减后增"],
+    ans: 1,
+    ch: "第二章 · 闪蒸",
+    explain: "<strong>分析：</strong>对f(ψ)求导：df/dψ = -Σ zᵢ(Kᵢ-1)² / [1+ψ(Kᵢ-1)]² < 0（分子为负，分母为正）。<br>因此 f(ψ) 对 ψ 严格单调递减，这保证了两相区内根的唯一性。",
+    formula: "df/dψ = -Σ zᵢ(Kᵢ-1)² / [1+ψ(Kᵢ-1)]² < 0"
+  },
+  {
+    q: "某c组分混合物为过冷液体，其相平衡常数Kᵢ和进料组成zᵢ应满足（）",
+    opts: ["ΣKᵢzᵢ > 1 且 Σzᵢ/Kᵢ > 1", "ΣKᵢzᵢ > 1 且 Σzᵢ/Kᵢ < 1", "ΣKᵢzᵢ < 1 且 Σzᵢ/Kᵢ > 1", "ΣKᵢzᵢ < 1 且 Σzᵢ/Kᵢ < 1"],
+    ans: 3,
+    ch: "第二章 · 闪蒸判据",
+    explain: "<strong>分析：</strong>三个区间：<br>全液相（过冷）：ΣKᵢzᵢ &lt; 1 且 Σzᵢ/Kᵢ &lt; 1 → 选D<br>气液两相：两者都 &gt; 1<br>全气相（过热）：Σzᵢ/Kᵢ &lt; 1<br>过冷液体=全液相，选D。",
+    formula: "过冷液体判据：ΣKᵢzᵢ < 1（双小）"
+  },
+  {
+    q: "已知汽相组成y和系统压力P，这属于（）计算",
+    opts: ["泡点温度", "泡点压力", "露点温度", "露点压力"],
+    ans: 2,
+    ch: "第二章 · 泡露点",
+    explain: "<strong>分析：</strong>已知气相y + P → 求T，这是露点温度计算。<br>规律：已知哪相组成 → 对应哪种状态（液相→泡点；气相→露点）；求T→温度型；求P→压力型。",
+    formula: "露点温度：已知y,P → 用 Σyᵢ/Kᵢ=1 迭代求T"
+  },
+  {
+    q: "泡点温度计算中，收敛条件是（）",
+    opts: ["Σxᵢ = 1", "Σyᵢ = 1", "ΣKᵢxᵢ = 1", "Σxᵢ = Σyᵢ"],
+    ans: 2,
+    ch: "第二章 · 泡点计算",
+    explain: "<strong>分析：</strong>泡点计算的核心方程就是 ΣKᵢxᵢ = 1。<br>迭代过程：猜T → 求Kᵢ → 计算ΣKᵢxᵢ → 若=1则收敛，否则调整T。<br>收敛后再由 yᵢ=Kᵢxᵢ 求气相组成，验证Σyᵢ=1（不是收敛条件，是验算）。",
+    formula: "泡点收敛方程：ΣKᵢxᵢ = 1"
+  },
+  {
+    q: "Fenske方程适用的条件是（）",
+    opts: ["最小回流比操作", "全回流操作", "恒摩流假设下的任意回流比", "只适用于二组分系统"],
+    ans: 1,
+    ch: "第三章 · Fenske",
+    explain: "<strong>分析：</strong>Fenske方程是在全回流（R=∞）条件下推导的。<br>全回流时：L=V（精馏段），操作线方程变为 yₙ=xₙ₊₁，即相邻板液相气相组成相等。在此条件下，每级的(yLK/yHK)=(αLK,HK)×(xLK/xHK)，N级后取对数得Fenske方程。",
+    formula: "Fenske适用条件：全回流(R→∞)"
+  },
+  {
+    q: "Underwood方程中参数θ必须满足（）",
+    opts: ["θ < αHK", "αHK < θ < αLK", "θ > αLK", "θ = (αHK + αLK)/2"],
+    ans: 1,
+    ch: "第三章 · Underwood",
+    explain: "<strong>分析：</strong>θ是Underwood方程的核心参数，物理上代表夹点状态的特征参数。<br>θ必须位于两个关键组分的挥发度之间：α_HK &lt; θ &lt; α_LK。<br>这是因为Underwood第一方程在θ = αᵢ处有奇点（分母为零），θ必须在相邻奇点之间才有物理意义。",
+    formula: "θ约束：α_HK < θ < α_LK"
+  },
+  {
+    q: "吉利兰关联图中，X轴变量X = (R-Rmin)/(R+1)，当R趋向无穷大时，X趋向（）",
+    opts: ["0", "0.5", "1", "∞"],
+    ans: 2,
+    ch: "第三章 · Gilliland",
+    explain: "<strong>分析：</strong>X = (R-Rmin)/(R+1)。当R→∞时：<br>分子 = R-Rmin ≈ R（Rmin可忽略）<br>分母 = R+1 ≈ R<br>因此X→R/R=1。<br>此时Y→0，意味着N→Nmin（全回流时板数最少）。",
+    formula: "R→∞ 时 X→1，Y→0，N→Nmin"
+  },
+  {
+    q: "泡点液体进料时，Underwood第一方程的右端等于（）",
+    opts: ["1", "0", "-1", "q"],
+    ans: 1,
+    ch: "第三章 · Underwood",
+    explain: "<strong>分析：</strong>Underwood第一方程：Σαᵢzᵢ/(αᵢ-θ) = 1-q<br>泡点液体进料时，q = 1（定义：泡点液体q=1）<br>代入：右端 = 1-1 = 0<br>这使得θ的方程更简洁，迭代更容易。",
+    formula: "泡点液体(q=1)→方程右端=0：Σαᵢzᵢ/(αᵢ-θ)=0"
+  },
+  {
+    q: "多组分精馏塔的可调设计变量数为（）",
+    opts: ["1", "3", "5", "7"],
+    ans: 2,
+    ch: "第三章 · 设计变量",
+    explain: "<strong>分析：</strong>普通多组分精馏塔（无中间换热器、无侧线采出）的可调设计变量数为5个，包括：<br>①回流比R；②塔顶采出率D/F；③进料板位置；④塔顶压力；⑤再沸器热负荷（或塔底采出）。",
+    formula: "普通精馏塔可调设计变量 = 5"
+  },
+  {
+    q: "吸收因子A=L/(mV)，当A>1时（）",
+    opts: ["吸收不完全，需增大气体流量", "有利于吸收，液气比足够大", "需要增大溶剂用量", "对吸收没有影响"],
+    ans: 1,
+    ch: "第四章 · 吸收因子",
+    explain: "<strong>分析：</strong>吸收因子A=L/(mV)=L/(KV)，物理意义是液气摩尔流率比除以相平衡常数。<br>A&gt;1：液相流量大于平衡所需最小量 → 溶质更倾向进入液相 → 有利于吸收。<br>A&lt;1：液量不足 → 吸收不完全。<br>类比：A对应精馏中L/V的概念。",
+    formula: "A = L/(mV) > 1 → 有利吸收"
+  },
+  {
+    q: "双膜理论中，气体难溶（m值很大）时，总传质阻力主要由（）控制",
+    opts: ["气膜阻力", "液膜阻力", "界面阻力", "两者相当"],
+    ans: 1,
+    ch: "第四章 · 双膜理论",
+    explain: "<strong>分析：</strong>总传质系数：1/Ky = 1/ky + m/kx<br>m很大 → m/kx项远大于1/ky → 1/Ky ≈ m/kx<br>总阻力由液膜(m/kx)控制。<br>直觉理解：气体难溶(m大)→溶质宁愿待在气相→液相中溶质浓度极低→液膜浓度梯度决定速率。<br>反之，气体易溶(m小)→气膜控制。",
+    formula: "m大→液膜控制：1/Ky ≈ m/kx"
+  },
+  {
+    q: "多组分吸收中，可以提出严格分离要求的组分数为（）",
+    opts: ["1个", "2个", "等于关键组分数", "没有限制"],
+    ans: 0,
+    ch: "第四章 · 吸收设计变量",
+    explain: "<strong>分析：</strong>吸收塔只有一个可调设计变量——液气比L/V（或吸收剂流量L）。<br>因此只能对1个组分提出严格的分离要求（关键组分），其他组分的分离程度由此决定，不能独立控制。<br>这与精馏塔有5个可调变量形成鲜明对比。",
+    formula: "吸收塔可调变量=1 → 只能控制1个关键组分"
+  },
+  {
+    q: "MESH方程中，单个平衡级上的方程总数（c为组分数）为（）",
+    opts: ["c+1", "2c+1", "2c+3", "3c+2"],
+    ans: 2,
+    ch: "第五章 · MESH",
+    explain: "<strong>分析：</strong>每个平衡级的MESH方程数：<br>M（物料衡算）：c个（每个组分一个）<br>E（相平衡）：c个（yᵢ=Kᵢxᵢ）<br>S（加和归一）：2个（Σxᵢ=1, Σyᵢ=1）<br>H（热量衡算）：1个<br>合计：c+c+2+1 = 2c+3",
+    formula: "每级MESH方程数 = 2c + 3"
+  },
+  {
+    q: "下列不属于MESH方程组的是（）",
+    opts: ["物料衡算关系", "热量衡算关系", "浓度相等关系", "摩尔分率加和关系"],
+    ans: 2,
+    ch: "第五章 · MESH",
+    explain: "<strong>分析：</strong>MESH四类：<br>M=物料衡算；E=相平衡(y=Kx)；S=摩尔分率加和(Σx=1,Σy=1)；H=热量衡算。<br>MESH中没有'浓度相等'方程。注意：相平衡是y=Kx（不等于x），不是浓度相等。",
+    formula: "MESH = Material + Equilibrium + Summation + Heat"
+  },
+  {
+    q: "液液萃取三角相图中，同一条系线上的两个混合物，分层后（）",
+    opts: ["两相组成相同，两相量也相同", "两相组成相同，两相量不同", "两相组成不同，两相量相同", "两相组成和两相量都不同"],
+    ans: 1,
+    ch: "第六章 · 三角相图",
+    explain: "<strong>分析：</strong>系线（联结线）连接的两个端点是处于平衡的萃取相和萃余相组成。<br>同一条系线上的任意总组成点，分层后都得到同样两相组成（由系线两端点确定），但两相的相对量（由杠杆规则决定）随总组成点位置不同而不同。",
+    formula: "杠杆规则：E/R = (M距R端)/(M距E端)"
+  },
+  {
+    q: "超临界流体萃取操作中，萃取环节的操作条件应为（）",
+    opts: ["加压升温", "减压降温", "加压降温", "减压升温"],
+    ans: 2,
+    ch: "第六章 · 超临界萃取",
+    explain: "<strong>分析：</strong>超临界流体的溶解能力主要取决于密度。<br>萃取环节需要溶解能力强→需要密度大：<br>加压→密度↑；降温→密度↑（离临界点更近时密度对压力敏感）<br>所以萃取用'加压降温'。<br>反之，分离环节（析出溶质）用'减压降温'降低密度。",
+    formula: "超临界萃取：加压降温↑ρ↑溶解；分离：减压降温↓ρ↓溶解"
+  },
+  {
+    q: "Langmuir吸附方程在高压（bP≫1）极限下，q趋向于（）",
+    opts: ["0", "KP^n", "q_m（最大吸附量）", "bP"],
+    ans: 2,
+    ch: "第七章 · Langmuir",
+    explain: "<strong>分析：</strong>q = q_m·bP/(1+bP)<br>当bP≫1时：分母≈bP<br>q ≈ q_m·bP/bP = q_m<br>即达到饱和平台，这是Langmuir单层吸附有限位点的直接推论：所有吸附位都被占满后，吸附量不再增加。",
+    formula: "高压极限：q → q_m (饱和平台，所有位点占满)"
+  },
+  {
+    q: "变压吸附(PSA)和变温吸附(TSA)相比，PSA的特点是（）",
+    opts: ["操作周期长，能耗高", "操作周期短，能耗低", "操作周期长，能耗低", "操作周期短，能耗高"],
+    ans: 1,
+    ch: "第七章 · 吸附再生",
+    explain: "<strong>分析：</strong>PSA（变压）：通过降压/抽真空解吸，压力切换很快→周期短；不需要加热冷却→能耗低。<br>TSA（变温）：需要升温和冷却，时间长→周期长；反复热循环→能耗高。<br>记忆口诀：PSA快省；TSA慢贵。",
+    formula: "PSA: 周期短，能耗低 | TSA: 周期长，能耗高"
+  },
+  {
+    q: "固定床吸附的破点（穿透点）通常定义为出口浓度Cout与进料浓度CF之比达到（）",
+    opts: ["1%", "5%", "10%", "50%"],
+    ans: 1,
+    ch: "第七章 · 穿透曲线",
+    explain: "<strong>分析：</strong>工程上定义破点(breakthrough point)为 C_out/C_F = 0.05（即5%）。<br>当出口浓度达到进料浓度的5%时，认为床层已经'穿透'，需要切换到再生状态。<br>这是工程约定，不同行业标准可能有所不同，但5%是最常用的定义。",
+    formula: "破点定义：C_out/C_F = 0.05 = 5%"
+  },
+  {
+    q: "RO膜操作的净推动力为（）",
+    opts: ["操作压差ΔP", "渗透压差Δπ", "ΔP - Δπ", "ΔP + Δπ"],
+    ans: 2,
+    ch: "第八章 · 反渗透",
+    explain: "<strong>分析：</strong>RO膜操作中：<br>施加压力ΔP驱动水透过膜；<br>但渗透压Δπ是抵抗水从稀侧→浓侧流动的天然阻力。<br>因此净推动力 = ΔP - Δπ。<br>只有当ΔP &gt; Δπ时，才能实现反渗透（水从浓侧→稀侧）。",
+    formula: "RO净推动力 = ΔP - Δπ  (不是单纯ΔP！)"
+  },
+  {
+    q: "下列膜分离过程中，主要属于筛分机理的是（）",
+    opts: ["RO和NF", "MF和UF", "GS和PVap", "NF和UF"],
+    ans: 1,
+    ch: "第八章 · 膜分离机理",
+    explain: "<strong>分析：</strong>筛分机理：依靠物理孔径截留大于孔径的颗粒/分子，主要是MF和UF。<br>RO/NF：还存在溶解-扩散机理和电荷排斥。<br>GS/PVap：主要是溶解-扩散机理。<br>孔径越小→筛分机理越弱，溶解-扩散越重要。",
+    formula: "筛分：MF、UF | 溶解-扩散：RO、GS、PVap"
+  },
+  {
+    q: "浓差极化与膜污染的本质区别是（）",
+    opts: ["浓差极化导致通量下降，膜污染不影响通量", "浓差极化是可逆的，膜污染是不可逆的", "浓差极化只发生在RO，膜污染发生在所有膜", "两者没有本质区别"],
+    ans: 1,
+    ch: "第八章 · 浓差极化",
+    explain: "<strong>分析：</strong>浓差极化：溶质在膜表面堆积造成的浓度升高，是传质现象；<br>关键特征：可逆（降低通量或提高流速可恢复）。<br>膜污染：有机物吸附、无机物结垢、微生物生长等造成的真实物理/化学堵塞；<br>关键特征：不可逆（需要化学清洗或更换膜）。",
+    formula: "浓差极化：可逆浓度堆积 | 膜污染：不可逆沉积堵塞"
+  },
+  {
+    q: "气体膜分离的性能指标是（）",
+    opts: ["截留分子量MWCO", "截留率", "平均孔径", "分离因子αij"],
+    ans: 3,
+    ch: "第八章 · 气体分离膜",
+    explain: "<strong>分析：</strong>不同膜的性能指标：<br>MF：平均孔径（μm）<br>UF：截留分子量MWCO（Da）<br>NF/RO：截留率（%）<br>GS（气体分离）：分离因子αij = Pᵢ/Pⱼ（渗透速率之比）<br>PVap（渗透蒸发）：分离因子（同GS）",
+    formula: "气体分离膜：α_ij = P_i/P_j (渗透速率比)"
+  },
+  {
+    q: "萃取精馏塔中，萃取剂从塔（）离开",
+    opts: ["顶", "底（釜）", "中间", "进料板"],
+    ans: 1,
+    ch: "第三章 · 萃取精馏",
+    explain: "<strong>分析：</strong>萃取剂（溶剂）的沸点远高于被分离的原料组分，因此萃取剂：<br>①不会从塔顶挥发出来（需要溶剂回收段防止夹带）<br>②随重组分液体从塔底（釜）流出<br>之后进入溶剂回收塔回收循环使用。<br>萃取剂从靠近塔顶处加入，从塔底排出。",
+    formula: "萃取精馏：溶剂从塔顶附近加入 → 从塔底排出"
+  },
+  {
+    q: "平均相对挥发度ᾱ的计算方式为（）",
+    opts: ["塔顶和塔底α的算术平均值", "塔顶和塔底α的几何平均值（√积）", "塔顶和塔底α的调和平均值", "进料处的α值"],
+    ans: 1,
+    ch: "第三章 · 平均α",
+    explain: "<strong>分析：</strong>ᾱ = √(α_顶 × α_釜)，即几何平均值。<br>为什么用几何平均？因为α沿塔板变化，而Fenske方程中每级都乘以一个α，多级连乘的'等效'α是几何平均，而不是算术平均。<br>高频易错点：很多同学误用算术平均，导致Nmin计算偏差。",
+    formula: "ᾱ = √(α_顶 × α_釜)  [几何平均！不是算术平均]"
+  },
+  {
+    q: "比较精馏和吸收的传质方向，吸收属于（）",
+    opts: ["双向传质（轻重组分各一个方向）", "单向传质（溶质单方向进入液相）", "无传质（纯物理过程）", "多方向传质"],
+    ans: 1,
+    ch: "第四章 · 吸收本质",
+    explain: "<strong>分析：</strong>精馏：双向传质。轻组分↑（液→气）+ 重组分↓（气→液），两个方向同时进行。<br>吸收：单向传质。溶质单方向从气相→液相，惰性气体和吸收剂不参与传质。<br>这个区别影响传质方程的形式（吸收中的'单向扩散'校正系数）。",
+    formula: "精馏=双向传质 | 吸收=单向传质(溶质气→液)"
+  },
+  {
+    q: "多组分吸收塔的可调设计变量数为（）",
+    opts: ["5", "3", "2", "1"],
+    ans: 3,
+    ch: "第四章 · 设计变量",
+    explain: "<strong>分析：</strong>多组分吸收塔只有1个可调设计变量：液气比（或吸收剂流量L）。<br>对比精馏塔有5个可调变量，吸收塔的可调自由度极少，这也是为什么：①吸收只能对1个关键组分提要求；②吸收效果对L/V特别敏感。",
+    formula: "吸收塔可调设计变量 = 1（液气比）"
+  },
+  {
+    q: "完全描述一股c组分的两相物流，所需的独立变量数为（）",
+    opts: ["c+1", "2c", "2c+1", "2c+2"],
+    ans: 2,
+    ch: "第一章 · 设计变量",
+    explain: "<strong>分析：</strong>两相物流变量：c个气相摩尔分率 + c个液相摩尔分率 + T + P + 气相分率 = 2c+3个总变量。<br>约束：Σyᵢ=1（1个）+ Σxᵢ=1（1个）= 2个约束。<br>独立变量 = 2c+3 - 2 = 2c+1。",
+    formula: "c组分两相物流：独立变量数 = 2c+1"
+  },
+  {
+    q: "物理吸附与化学吸附最本质的区别是（）",
+    opts: ["吸附热的大小", "是否可逆", "作用力类型（范德华力 vs 化学键）", "速率快慢"],
+    ans: 2,
+    ch: "第七章 · 吸附分类",
+    explain: "<strong>分析：</strong>最本质区别是作用力类型：<br>物理吸附：范德华力（疏水力、静电力等），弱作用力，吸附热小，可逆，速率快。<br>化学吸附：形成化学键（共价键或离子键），强作用力，吸附热大，常不可逆，选择性强。<br>其他特征（可逆、速率）都是作用力类型不同的结果，不是'本质'原因。",
+    formula: "物理吸附：范德华力 | 化学吸附：化学键（本质区别）"
+  },
+  {
+    q: "FUG简捷计算法中，F、U、G分别代表（）",
+    opts: ["流率、升温、气化", "费用、效用、气提", "Fenske、Underwood、Gilliland", "填料、超滤、重力"],
+    ans: 2,
+    ch: "第三章 · FUG法",
+    explain: "<strong>分析：</strong>FUG三步法是多组分精馏设计的核心：<br>F = Fenske（芬斯克）→ 全回流 → 求Nmin<br>U = Underwood（昂德伍德）→ 最小回流 → 求Rmin<br>G = Gilliland（吉利兰）→ 实际操作 → 求N实际<br>三个方程环环相扣，构成完整的简捷设计体系。",
+    formula: "FUG = Fenske(Nmin) + Underwood(Rmin) + Gilliland(N)"
+  }
+];
+
+let answered = new Array(questions.length).fill(false);
+let correct = 0;
+let total = 0;
+
+function buildQuiz() {
+  const container = document.getElementById('quiz-container');
+  container.innerHTML = '';
+  questions.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-q';
+    div.id = `q${i}`;
+    div.innerHTML = `
+      <div class="quiz-header">
+        <div class="quiz-num">${i+1}</div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--text);">第 ${i+1} 题</div>
+          <div class="quiz-meta">${q.ch}</div>
+        </div>
+      </div>
+      <div class="quiz-body">
+        <div class="quiz-stem">${q.q}</div>
+        <div class="quiz-options" id="opts${i}">
+          ${q.opts.map((o, j) => `
+            <div class="quiz-opt" id="opt${i}_${j}" onclick="selectOpt(${i},${j})">
+              <div class="opt-letter">${String.fromCharCode(65+j)}</div>
+              <div>${o}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="quiz-explain" id="exp${i}">
+          <strong>📖 解析：</strong><br>${q.explain}
+          <div class="explain-formula" style="margin-top:8px;">公式：${q.formula}</div>
+        </div>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function selectOpt(qi, oi) {
+  if (answered[qi]) return;
+  answered[qi] = true;
+  total++;
+  const isCorrect = (oi === questions[qi].ans);
+  if (isCorrect) correct++;
+  document.getElementById(`score-display`).textContent = `${correct}/${total}`;
+
+  const opts = document.querySelectorAll(`#opts${qi} .quiz-opt`);
+  opts.forEach((opt, j) => {
+    opt.classList.add('disabled');
+    if (j === questions[qi].ans) opt.classList.add('reveal-correct');
+    if (j === oi && !isCorrect) opt.classList.add('wrong');
+    if (j === oi && isCorrect) opt.classList.add('correct');
+  });
+
+  document.getElementById(`exp${qi}`).classList.add('show');
+}
+
+function resetQuiz() {
+  answered = new Array(questions.length).fill(false);
+  correct = 0; total = 0;
+  document.getElementById('score-display').textContent = '0/0';
+  buildQuiz();
+}
+
+buildQuiz();
+</script>
+</body>
+</html>
