@@ -4,6 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>化工分离过程 · 大题应试系统</title>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    displayMath: [['\\[','\\]']],
+    tags: 'none'
+  },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] },
+  startup: { typeset: true }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-chtml.min.js"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
 
@@ -861,23 +873,23 @@
     <div class="fd-body">
       <div class="formula-box">
         <div class="formula-name">定义式（适用所有体系）</div>
-        K_i = y_i / x_i
+        \[ K_i = \frac{y_i}{x_i} \]
       </div>
       <div class="formula-box" style="border-left-color:var(--accent3);">
-        <div class="formula-name">低压理想物系（φ≈1, γ≈1）</div>
-        K_i = P_i^s / P
+        <div class="formula-name">低压理想物系（\(\varphi \approx 1,\; \gamma \approx 1\)）</div>
+        \[ K_i = \frac{P_i^s}{P} \]
       </div>
       <div class="formula-box" style="border-left-color:var(--accent2);">
         <div class="formula-name">中压（液相非理想，考虑活度系数）</div>
-        K_i = γ_i · P_i^s / P
+        \[ K_i = \frac{\gamma_i P_i^s}{P} \]
       </div>
       <div class="formula-box" style="border-left-color:var(--accent4);">
         <div class="formula-name">高压完整式（活度系数法）</div>
-        K_i = γ_i · P_i^s · φ_i^s · exp[v_i(P - P_i^s)/RT] / (φ_i · P)
+        \[ K_i = \frac{\gamma_i\, P_i^s\, \varphi_i^s \exp\!\left[\dfrac{v_i(P - P_i^s)}{RT}\right]}{\varphi_i\, P} \]
       </div>
       <div class="fd-row">
         <div class="fd-key">变量意义</div>
-        <div class="fd-val">y_i：气相摩尔分率；x_i：液相摩尔分率；γ_i：活度系数（液相非理想）；P_i^s：纯组分饱和蒸气压（仅与T有关）；φ_i^s：纯i饱和时逸度系数；φ_i：混合气中i的逸度系数；v_i：液相摩尔体积；Poynting因子=exp项</div>
+        <div class="fd-val">\(y_i\)：气相摩尔分率；\(x_i\)：液相摩尔分率；\(\gamma_i\)：活度系数；\(P_i^s\)：饱和蒸气压（仅与T有关）；\(\varphi_i^s\)：纯i饱和逸度系数；\(\varphi_i\)：混合气逸度系数；\(v_i\)：液相摩尔体积；Poynting因子=\(\exp[\cdots]\)项</div>
       </div>
       <div class="fd-row">
         <div class="fd-key">触发条件</div>
@@ -885,7 +897,7 @@
       </div>
       <div class="fd-row">
         <div class="fd-key">易错点</div>
-        <div class="fd-val">⚠️ 高压下φ_i^s/φ_i≠1；中低压下exp项≈1可忽略；γ→1 只在纯组分或结构相似时成立。</div>
+        <div class="fd-val">⚠️ 高压下 \(\varphi_i^s/\varphi_i \neq 1\)；中低压下exp项\(\approx 1\)可忽略；\(\gamma \to 1\) 只在纯组分或结构相似时成立。</div>
       </div>
     </div>
   </div>
@@ -905,7 +917,7 @@
       </div>
       <div class="fd-row">
         <div class="fd-key">物理意义</div>
-        <div class="fd-val">α &gt;&gt; 1 → 容易分离；α ≈ 1 → 难分离；α = 1 → 不能精馏分离（共沸点）</div>
+        <div class="fd-val">\(\alpha \gg 1\) → 容易分离；\(\alpha \approx 1\) → 难分离；\(\alpha = 1\) → 不能精馏分离（共沸点）</div>
       </div>
       <div class="fd-row">
         <div class="fd-key">在Fenske中</div>
@@ -920,14 +932,14 @@
       <div><span class="tag tag-orange">高频</span></div>
     </div>
     <div class="fd-body">
-      <div class="formula-box">∑ x_i · K_i = 1</div>
+      <div class="formula-box">\[ \sum_i K_i x_i = 1 \]</div>
       <div class="fd-row">
         <div class="fd-key">触发条件</div>
         <div class="fd-val">已知液相组成x + P → 求T（泡点温度）<br>已知液相组成x + T → 求P（泡点压力）</div>
       </div>
       <div class="fd-row">
         <div class="fd-key">求气相组成</div>
-        <div class="fd-val">y_i = K_i · x_i（先求泡点，再逐一求y_i）</div>
+        <div class="fd-val">\(y_i = K_i x_i\)（先求泡点，再逐一求 \(y_i\)）</div>
       </div>
     </div>
   </div>
@@ -938,14 +950,14 @@
       <div><span class="tag tag-orange">高频</span></div>
     </div>
     <div class="fd-body">
-      <div class="formula-box">∑ y_i / K_i = 1</div>
+      <div class="formula-box">\[ \sum_i \frac{y_i}{K_i} = 1 \]</div>
       <div class="fd-row">
         <div class="fd-key">触发条件</div>
         <div class="fd-val">已知气相组成y + P → 求T（露点温度）<br>已知气相组成y + T → 求P（露点压力）</div>
       </div>
       <div class="fd-row">
         <div class="fd-key">求液相组成</div>
-        <div class="fd-val">x_i = y_i / K_i（先求露点，再逐一求x_i）</div>
+        <div class="fd-val">\(x_i = y_i / K_i\)（先求露点，再逐一求 \(x_i\)）</div>
       </div>
     </div>
   </div>
@@ -954,10 +966,10 @@
     <div class="card-title"><div class="icon icon-green">🎯</div> 公式触发快速识别</div>
     <table class="trigger-table">
       <tr><th>题目关键词</th><th>→ 对应公式</th><th>解释</th></tr>
-      <tr><td class="keyword">已知 x，求 y 和 T</td><td class="formula-ref">泡点计算 ΣKᵢxᵢ=1</td><td class="logic">液相已知 → 求开始沸腾的温度</td></tr>
-      <tr><td class="keyword">已知 y，求 x 和 T</td><td class="formula-ref">露点计算 Σyᵢ/Kᵢ=1</td><td class="logic">气相已知 → 求开始冷凝的温度</td></tr>
+      <tr><td class="keyword">已知 x，求 y 和 T</td><td class="formula-ref">泡点计算 \(\sum_i K_i x_i = 1\)</td><td class="logic">液相已知 → 求开始沸腾的温度</td></tr>
+      <tr><td class="keyword">已知 y，求 x 和 T</td><td class="formula-ref">露点计算 \(\sum_i y_i/K_i = 1\)</td><td class="logic">气相已知 → 求开始冷凝的温度</td></tr>
       <tr><td class="keyword">K值如何计算？</td><td class="formula-ref">K = γPˢ/P（中压）</td><td class="logic">低压理想则 γ=1</td></tr>
-      <tr><td class="keyword">判断是否发生闪蒸</td><td class="formula-ref">ΣKᵢzᵢ&gt;1 且 Σzᵢ/Kᵢ&gt;1</td><td class="logic">两个条件同时满足 → 两相区</td></tr>
+      <tr><td class="keyword">判断是否发生闪蒸</td><td class="formula-ref">\(\sum_i K_i z_i > 1\) 且 \(\sum_i z_i/K_i > 1\)</td><td class="logic">两个条件同时满足 → 两相区</td></tr>
     </table>
   </div>
 </div>
@@ -990,28 +1002,26 @@
     </div>
     <div class="fd-body">
       <div class="formula-box">
-        f(ψ) = ∑ zᵢ(Kᵢ - 1) / [1 + ψ(Kᵢ - 1)] = 0
+        \[ f(\psi) = \sum_i \frac{z_i(K_i - 1)}{1 + \psi(K_i - 1)} = 0 \]
       </div>
       <div class="formula-box" style="border-left-color:var(--accent3);">
         <div class="formula-name">求解后，各组分液相气相组成</div>
-        xᵢ = zᵢ / [1 + ψ(Kᵢ - 1)]
-        yᵢ = Kᵢ · xᵢ
+        \[ x_i = \frac{z_i}{1 + \psi(K_i - 1)}, \qquad y_i = K_i x_i \]
       </div>
       <div class="fd-row">
         <div class="fd-key">变量</div>
         <div class="fd-val">ψ = 汽化率（V/F）；zᵢ = 进料组成；Kᵢ = 气液平衡常数</div>
       </div>
       <div class="fd-row">
-        <div class="fd-key">方程特性</div>
-        <div class="fd-val">①单变量（只有ψ未知）②对ψ严格单调递减③两相区内唯一根，0 &lt; ψ &lt; 1</div>
+        <div class="fd-key">方程特性</div>\n        <div class="fd-val">①单变量（只有\(\psi\)未知） ②对\(\psi\)严格单调递减 ③两相区内唯一根，\(0 < \psi < 1\)</div>
       </div>
       <div class="fd-row">
         <div class="fd-key">求解方法</div>
-        <div class="fd-val">Newton-Raphson迭代：ψ_new = ψ_old - f(ψ)/f'(ψ)，或二分法。<br>初始猜值 ψ₀ = 0.5</div>
+        <div class="fd-val">Newton-Raphson迭代：\(\psi^{\text{new}} = \psi^{\text{old}} - f(\psi)/f'(\psi)\)，或二分法。初始猜值 \(\psi_0 = 0.5\)</div>
       </div>
       <div class="fd-row">
         <div class="fd-key">极易错</div>
-        <div class="fd-val">⚠️ 分母[1+ψ(Kᵢ-1)]不能为0，根区间要避开极点。f(ψ)的值虽受T影响，但等温闪蒸T固定，绝热闪蒸需外层迭代T。</div>
+        <div class="fd-val">⚠️ 分母 \([1+\psi(K_i-1)]\) 不能为0，根区间要避开极点。\(f(\psi)\)的值虽受T影响，但等温闪蒸T固定，绝热闪蒸需外层迭代T。</div>
       </div>
     </div>
   </div>
@@ -1021,17 +1031,17 @@
     <div class="grid-3">
       <div class="mini-card">
         <div class="mini-card-title" style="color:var(--accent3);">全液相（过冷）</div>
-        <div class="formula-box" style="font-size:12px;padding:8px;">∑ Kᵢzᵢ &lt; 1</div>
+        <div class="formula-box" style="font-size:12px;padding:8px;">\(\sum_i K_i z_i < 1\)</div>
         <p style="font-size:11px;margin:4px 0 0 0;">不能发生闪蒸，ψ=0</p>
       </div>
       <div class="mini-card">
         <div class="mini-card-title" style="color:var(--accent2);">气液两相</div>
-        <div class="formula-box" style="font-size:12px;padding:8px;">∑ Kᵢzᵢ &gt; 1<br>且 ∑ zᵢ/Kᵢ &gt; 1</div>
+        <div class="formula-box" style="font-size:12px;padding:8px;">\(\sum_i K_i z_i > 1\) 且 \(\sum_i z_i/K_i > 1\)</div>
         <p style="font-size:11px;margin:4px 0 0 0;">可用R-R方程求ψ</p>
       </div>
       <div class="mini-card">
         <div class="mini-card-title" style="color:var(--accent);">全气相（过热）</div>
-        <div class="formula-box" style="font-size:12px;padding:8px;">∑ zᵢ/Kᵢ &lt; 1</div>
+        <div class="formula-box" style="font-size:12px;padding:8px;">\(\sum_i z_i/K_i < 1\)</div>
         <p style="font-size:11px;margin:4px 0 0 0;">不能发生闪蒸，ψ=1</p>
       </div>
     </div>
@@ -1077,7 +1087,7 @@
       </li>
       <li class="step-item">
         <div class="step-num">3</div>
-        <div class="step-content"><strong>写方程：</strong>泡点用 ΣKᵢxᵢ=1；露点用 Σyᵢ/Kᵢ=1</div>
+        <div class="step-content"><strong>写方程：</strong>泡点用 \(\sum_i K_i x_i = 1\)；露点用 \(\sum_i y_i/K_i = 1\)</div>
       </li>
       <li class="step-item">
         <div class="step-num">4</div>
@@ -1181,7 +1191,7 @@
     </div>
     <div class="fd-body">
       <div class="formula-box">
-        N_min = ln[(x_D,LK / x_D,HK) · (x_B,HK / x_B,LK)] / ln(ᾱ_LK,HK)
+        \[ N_{\min} = \frac{\ln\!\left[\dfrac{x_{D,\text{LK}}}{x_{D,\text{HK}}} \cdot \dfrac{x_{B,\text{HK}}}{x_{B,\text{LK}}}\right]}{\ln \bar{\alpha}_{\text{LK,HK}}} \]
       </div>
       <div class="fd-row">
         <div class="fd-key">变量意义</div>
@@ -1197,7 +1207,7 @@
       </div>
       <div class="fd-row">
         <div class="fd-key">非关键组分分配</div>
-        <div class="fd-val">Fenske公式同样适用于非关键组分：(d_i/b_i) = (d_LK/b_LK) · α_i,LK^Nmin</div>
+        <div class="fd-val">Fenske公式同样适用于非关键组分：\(\dfrac{d_i}{b_i} = \dfrac{d_{\text{LK}}}{b_{\text{LK}}} \cdot \alpha_{i,\text{LK}}^{N_{\min}}\)</div>
       </div>
       <div class="fd-row">
         <div class="fd-key">考场速记</div>
@@ -1214,15 +1224,15 @@
     <div class="fd-body">
       <div class="formula-box">
         <div class="formula-name">第一方程（求θ参数）</div>
-        ∑ αᵢ · zᵢ,F / (αᵢ - θ) = 1 - q
+        \[ \sum_i \frac{\alpha_i z_{i,F}}{\alpha_i - \theta} = 1 - q \]
       </div>
       <div class="formula-box" style="border-left-color:var(--accent2);">
         <div class="formula-name">第二方程（求Rmin）</div>
-        ∑ αᵢ · xᵢ,D / (αᵢ - θ) = R_min + 1
+        \[ \sum_i \frac{\alpha_i x_{i,D}}{\alpha_i - \theta} = R_{\min} + 1 \]
       </div>
       <div class="fd-row">
         <div class="fd-key">θ的含义</div>
-        <div class="fd-val">夹点参数。αᵢ,HK &lt; θ &lt; αᵢ,LK，代表最小回流时塔内夹点的特征值。<strong>θ必须在两个关键组分的挥发度之间。</strong></div>
+        <div class="fd-val">夹点参数。\(\alpha_{\text{HK}} < \theta < \alpha_{\text{LK}}\)，代表最小回流时塔内夹点的特征值。<strong>θ必须在两个关键组分的挥发度之间。</strong></div>
       </div>
       <div class="fd-row">
         <div class="fd-key">q的含义</div>
@@ -1230,11 +1240,11 @@
       </div>
       <div class="fd-row">
         <div class="fd-key">计算步骤</div>
-        <div class="fd-val">① 第一方程迭代求θ（二分法，区间(αHK, αLK)）→ ② 代入第二方程，右端换x_D,LK（全回流近似）→ 求Rmin</div>
+        <div class="fd-val">① 第一方程迭代求\(\theta\)（二分法，区间\((\alpha_{\text{HK}},\alpha_{\text{LK}})\)）→ ② 代入第二方程 → 求\(R_{\min}\)</div>
       </div>
       <div class="fd-row">
         <div class="fd-key">易错点</div>
-        <div class="fd-val">⚠️ xᵢ,D 应用最小回流比下的塔顶组成，实际计算中通常用全回流下的Fenske结果近似代入。⚠️ 泡点进料(q=1)时右端=0</div>
+        <div class="fd-val">⚠️ \(x_{i,D}\) 应用最小回流比下的塔顶组成，实际中用Fenske结果近似代入。⚠️ 泡点进料(\(q=1\))时右端\(=0\)</div>
       </div>
       <div class="fd-row">
         <div class="fd-key">物理理解</div>
@@ -1250,13 +1260,12 @@
     </div>
     <div class="fd-body">
       <div class="formula-box">
-        X = (R - R_min) / (R + 1)
-        Y = (N - N_min) / (N + 1)
-        Y = f(X)  [查图或用关联式]
+        \[ X = \frac{R - R_{\min}}{R + 1}, \qquad Y = \frac{N - N_{\min}}{N + 1} \]
+        \[ Y = f(X) \quad \text{（查图或用关联式）} \]
       </div>
       <div class="fd-row">
         <div class="fd-key">常用关联式</div>
-        <div class="fd-val">Y = 0.75 - 0.75·X^0.5668（Molokanov近似公式）；或直接查Gilliland图</div>
+        <div class="fd-val">\(Y \approx 0.75(1 - X^{0.5668})\)（Molokanov近似公式）；或直接查Gilliland图</div>
       </div>
       <div class="fd-row">
         <div class="fd-key">工程意义</div>
@@ -1264,7 +1273,7 @@
       </div>
       <div class="fd-row">
         <div class="fd-key">使用步骤</div>
-        <div class="fd-val">① 计算X = (R-Rmin)/(R+1) → ② 查图或公式得Y → ③ 反解N：N = (Y·(Nmin+1) + Nmin)/(1-Y) → ④ 向上取整</div>
+        <div class="fd-val">① 计算\(X=\frac{R-R_{\min}}{R+1}\) → ② 查图/公式得\(Y\) → ③ 反解\(N=\frac{Y(N_{\min}+1)+N_{\min}}{1-Y}\) → ④ 向上取整</div>
       </div>
     </div>
   </div>
@@ -1276,7 +1285,7 @@
     </div>
     <div class="fd-body">
       <div class="formula-box">
-        log(N_精/N_提) = 0.206 · log[(x_HK,F / x_LK,F) · (B/D) · (x_LK,B / x_HK,D)²]
+        \[ \log\frac{N_{\text{精}}}{N_{\text{提}}} = 0.206\,\log\!\left[\frac{x_{\text{HK},F}}{x_{\text{LK},F}}\cdot\frac{B}{D}\cdot\left(\frac{x_{\text{LK},B}}{x_{\text{HK},D}}\right)^{\!2}\right] \]
       </div>
       <div class="fd-row">
         <div class="fd-key">变量意义</div>
@@ -1316,14 +1325,14 @@
         <div class="step-num">2</div>
         <div class="step-content">
           <strong>物料衡算</strong>（写分离要求对应的产品组成）<br>
-          FzF = DxD + BxB → 逐组分列方程
+          \(Fz_F = Dx_D + Bx_B\) → 逐组分列方程
         </div>
       </li>
       <li class="step-item">
         <div class="step-num">3</div>
         <div class="step-content">
           <strong>计算平均相对挥发度ᾱ</strong><br>
-          ᾱ = √(α_顶 × α_釜)；对LK相对HK
+          \(\bar{\alpha} = \sqrt{\alpha_{\text{顶}} \times \alpha_{\text{釜}}}\)；对LK相对HK
         </div>
       </li>
       <li class="step-item">
@@ -1397,7 +1406,7 @@
     <div class="card-title"><div class="icon icon-red">❌</div> 最高频错误整理</div>
     <ul>
       <li><strong>错误1：</strong>Fenske中ᾱ忘记取几何平均，直接用某一级的α → 导致Nmin偏差</li>
-      <li><strong>错误2：</strong>Underwood的θ没找对范围，α_HK &lt; θ &lt; α_LK 是必须满足的条件</li>
+      <li><strong>错误2：</strong>Underwood的θ没找对范围，\(\alpha_{\text{HK}} < \theta < \alpha_{\text{LK}}\) 是必须满足的条件</li>
       <li><strong>错误3：</strong>Gilliland公式中X和Y的分子分母搞反</li>
       <li><strong>错误4：</strong>进料热状况q混淆：q=1是饱和液体，不是全气！</li>
       <li><strong>错误5：</strong>物料衡算漏掉某组分，尤其是"非关键组分"</li>
@@ -1469,7 +1478,7 @@
       <div><span class="tag tag-orange">气液相平衡基础</span></div>
     </div>
     <div class="fd-body">
-      <div class="formula-box">y = m · x（或 p = H · c）</div>
+      <div class="formula-box">\[ y = mx \quad \text{（或 } p = Hc\text{）} \]</div>
       <div class="fd-row">
         <div class="fd-key">变量意义</div>
         <div class="fd-val">m = 相平衡常数（与T和P有关）；y = 气相摩尔分率；x = 液相摩尔分率</div>
@@ -1488,10 +1497,10 @@
     </div>
     <div class="fd-body">
       <div class="formula-box">
-        1/K_y = 1/k_y + m/k_x
+        \[ \frac{1}{K_y} = \frac{1}{k_y} + \frac{m}{k_x} \]
       </div>
       <div class="formula-box" style="border-left-color:var(--accent2);">
-        1/K_x = 1/k_x + 1/(m·k_y)
+        \[ \frac{1}{K_x} = \frac{1}{k_x} + \frac{1}{m k_y} \]
       </div>
       <div class="fd-row">
         <div class="fd-key">变量意义</div>
@@ -1514,7 +1523,7 @@
       <div><span class="tag tag-red">Kremser必用</span></div>
     </div>
     <div class="fd-body">
-      <div class="formula-box">A = L / (m · V) = L / (K · V)</div>
+      <div class="formula-box">\[ A = \frac{L}{mV} = \frac{L}{KV} \]</div>
       <div class="fd-row">
         <div class="fd-key">变量意义</div>
         <div class="fd-val">L = 液相流量；V = 气相流量；m = 相平衡常数；A = 吸收因子</div>
@@ -1525,7 +1534,7 @@
       </div>
       <div class="fd-row">
         <div class="fd-key">注意</div>
-        <div class="fd-val">⚠️ 气提（解吸）因子 S = 1/A = mV/L；解吸时S &gt; 1 有利于解吸</div>
+        <div class="fd-val">⚠️ 气提（解吸）因子 \(S = 1/A = mV/L\)；解吸时\(S > 1\)有利于解吸</div>
       </div>
     </div>
   </div>
@@ -1537,12 +1546,9 @@
     </div>
     <div class="fd-body">
       <div class="formula-box">
-        N = ln[(y₁ - mx₀)/(y_{N+1} - mx₀) · (1 - 1/A) + 1/A] / ln(A)
+        \[ N = \frac{\ln\!\left[\dfrac{y_1 - mx_0}{y_{N+1} - mx_0}\left(1-\dfrac{1}{A}\right)+\dfrac{1}{A}\right]}{\ln A} \]
       </div>
-      <div class="formula-box" style="border-left-color:var(--accent3);">
-        <div class="formula-name">简化理解（吸收率已知时）</div>
-        对于关键组分i：代入该组分的Aᵢ和出口气体浓度y₁求N
-      </div>
+      <div class="formula-box" style="border-left-color:var(--accent3);"><div class="formula-name">简化理解</div>对关键组分 \(i\)，代入该组分的 \(A_i\) 和出口浓度 \(y_1\) 求 \(N\)</div>
       <div class="fd-row">
         <div class="fd-key">变量意义</div>
         <div class="fd-val">y₁ = 出口气相（稀端）；y_{N+1} = 入口气相（浓端）；x₀ = 入口液相；N = 理论级数</div>
@@ -1553,7 +1559,7 @@
       </div>
       <div class="fd-row">
         <div class="fd-key">解题步骤</div>
-        <div class="fd-val">① 确定关键组分 → ② 计算Aᵢ = L/(mᵢV) → ③ 代入Kremser方程求N → ④ 由N反算其他组分出口组成</div>
+        <div class="fd-val">① 确定关键组分 → ② 计算\(A_i = L/(m_i V)\) → ③ 代入Kremser方程求N → ④ 由N反算其他组分出口组成</div>
       </div>
     </div>
   </div>
@@ -1585,7 +1591,7 @@
       </li>
       <li class="step-item">
         <div class="step-num">4</div>
-        <div class="step-content"><strong>计算各组分吸收因子：</strong>Aᵢ = L/(mᵢV)</div>
+        <div class="step-content"><strong>计算各组分吸收因子：</strong>\(A_i = L/(m_i V)\)</div>
       </li>
       <li class="step-item">
         <div class="step-num">5</div>
@@ -1603,7 +1609,7 @@
     <table class="trigger-table">
       <tr><th>特征</th><th>吸收</th><th>气提（解吸）</th></tr>
       <tr><td>传质方向</td><td>气→液（溶质进入液相）</td><td>液→气（溶质离开液相）</td></tr>
-      <tr><td>关键参数</td><td>吸收因子 A = L/(mV)</td><td>气提因子 S = mV/L = 1/A</td></tr>
+      <tr><td>关键参数</td><td>吸收因子 \(A = L/(mV)\)</td><td>气提因子 S = mV/L = 1/A</td></tr>
       <tr><td>有利条件</td><td>A &gt; 1（液多）</td><td>S &gt; 1（气多）</td></tr>
       <tr><td>稀端位置</td><td>塔顶（出口气）</td><td>塔顶（出口气）</td></tr>
       <tr><td>Kremser方程</td><td>同一个公式，用A</td><td>同一个公式，用S=1/A</td></tr>
@@ -1679,7 +1685,7 @@
       <li class="step-item"><div class="step-num">4</div><div class="step-content"><strong>由S方程归一化</strong></div></li>
       <li class="step-item"><div class="step-num">5</div><div class="step-content"><strong>由E方程求y_ij</strong></div></li>
       <li class="step-item"><div class="step-num">6</div><div class="step-content"><strong>由H方程（热量衡算）更新T_j</strong></div></li>
-      <li class="step-item"><div class="step-num">7</div><div class="step-content"><strong>检查收敛：|T_j^new - T_j^old| &lt; ε</strong>，否则回第2步</div></li>
+      <li class="step-item"><div class="step-num">7</div><div class="step-content"><strong>检查收敛：\(|T_j^{\text{new}} - T_j^{\text{old}}| < \varepsilon\)</strong>，否则回第2步</div></li>
     </ul>
   </div>
 </div>
@@ -1700,7 +1706,7 @@
       <div><span class="tag tag-orange">萃取基础</span></div>
     </div>
     <div class="fd-body">
-      <div class="formula-box">K_A = y_A / x_A（萃取相/萃余相）</div>
+      <div class="formula-box">\[ K_A = \frac{y_A}{x_A} \quad \text{（萃取相/萃余相）} \]</div>
       <div class="fd-row">
         <div class="fd-key">物理意义</div>
         <div class="fd-val">K &gt; 1 → 溶质更倾向进入萃取相（有利萃取）；K越大，萃取效率越高</div>
@@ -1714,7 +1720,7 @@
       <div><span class="tag tag-red">萃取剂评价</span></div>
     </div>
     <div class="fd-body">
-      <div class="formula-box">β = K_A / K_B</div>
+      <div class="formula-box">\[ \beta = \frac{K_A}{K_B} \]</div>
       <div class="fd-row">
         <div class="fd-key">物理意义</div>
         <div class="fd-val">β ≈ 1 → 无法分离；β越大越容易分离。对应精馏中的相对挥发度α。</div>
@@ -1768,7 +1774,7 @@
       <div><span class="tag tag-red">必会</span></div>
     </div>
     <div class="fd-body">
-      <div class="formula-box">q = q_m · b · P / (1 + b · P)</div>
+      <div class="formula-box">\[ q = \frac{q_m b P}{1 + bP} \]</div>
       <div class="fd-row">
         <div class="fd-key">变量意义</div>
         <div class="fd-val">q = 吸附量；q_m = 最大吸附量（饱和容量）；b = Langmuir常数（与吸附能有关）；P = 压力（或浓度c）</div>
@@ -1783,7 +1789,7 @@
       </div>
       <div class="fd-row">
         <div class="fd-key">线性化</div>
-        <div class="fd-val">P/q = 1/(q_m·b) + P/q_m → 作P/q vs P图，可求q_m和b</div>
+        <div class="fd-val">\(\dfrac{P}{q} = \dfrac{1}{q_m b} + \dfrac{P}{q_m}\) → 作\(P/q\) vs \(P\)图，可求\(q_m\)和\(b\)</div>
       </div>
     </div>
   </div>
@@ -1794,14 +1800,14 @@
       <div><span class="tag tag-orange">常考</span></div>
     </div>
     <div class="fd-body">
-      <div class="formula-box">q = K · P^n (n &lt; 1)</div>
+      <div class="formula-box">\[ q = K P^n \quad (n < 1) \]</div>
       <div class="fd-row">
         <div class="fd-key">特点</div>
         <div class="fd-val">经验方程，适用于非均匀表面；无饱和平台；在中等浓度范围准确</div>
       </div>
       <div class="fd-row">
         <div class="fd-key">线性化</div>
-        <div class="fd-val">ln q = ln K + n·ln P → 作ln q vs ln P图（直线），斜率=n，截距=ln K</div>
+        <div class="fd-val">\(\ln q = \ln K + n\ln P\) → 作\(\ln q\) vs \(\ln P\)图（直线），斜率\(=n\)，截距\(=\ln K\)</div>
       </div>
       <div class="fd-row">
         <div class="fd-key">与Langmuir区别</div>
@@ -1865,7 +1871,7 @@
       <div><span class="tag tag-red">高频判断题</span></div>
     </div>
     <div class="fd-body">
-      <div class="formula-box">净推动力 = ΔP - Δπ</div>
+      <div class="formula-box">\[ \text{净推动力} = \Delta P - \Delta\pi \]</div>
       <div class="fd-row">
         <div class="fd-key">变量意义</div>
         <div class="fd-val">ΔP = 操作压差；Δπ = 渗透压差；净推动力才是真正驱动水透过膜的力</div>
@@ -1998,9 +2004,9 @@
             <div class="step-num">5</div>
             <div class="step-content">
               <strong>Gilliland关联求N（R=1.2Rmin）：</strong><br>
-              X = (R - Rmin)/(R + 1) = (1.2Rmin - Rmin)/(1.2Rmin + 1)<br>
+              \(X = \frac{R-R_{\min}}{R+1} = \frac{1.2R_{\min}-R_{\min}}{1.2R_{\min}+1}\)<br>
               查图/Molokanov公式得Y<br>
-              N = Nmin/(1-Y) + Y/(1-Y) → 向上取整
+              \(N = \frac{N_{\min}}{1-Y} + \frac{Y}{1-Y}\) → 向上取整
             </div>
           </li>
           <li class="step-item">
