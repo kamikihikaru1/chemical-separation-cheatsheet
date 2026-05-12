@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>化工设计 开卷考试速查手册</title>
+<style>
+:root {
+  --bg: #0a0e1a;
+  --bg2: #111827;
+  --bg3: #1e2740;
+  --border: #2a3755;
+  --accent: #3b82f6;
+  --accent2: #10b981;
+  --accent3: #f59e0b;
+  --accent4: #ef4444;
+  --accent5: #8b5cf6;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --text3: #64748b;
+  --tag-bg: #1e3a5f;
+  --tag-text: #60a5fa;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 24px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-title {
+  font-size: 20px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #60a5fa, #34d399, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.header-sub { font-size: 12px; color: var(--text3); margin-top: 2px; }
+.exam-badge {
+  background: #991b1b;
+  color: #fca5a5;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: 1px solid #ef4444;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* NAV */
+.nav {
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav::-webkit-scrollbar { display: none; }
+.nav-btn {
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  color: var(--text2);
+  cursor: pointer;
+  font-size: 13px;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.nav-btn:hover { color: var(--text); }
+.nav-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* MAIN */
+.main { display: flex; }
+.sidebar {
+  width: 220px;
+  min-width: 220px;
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  height: calc(100vh - 105px);
+  position: sticky;
+  top: 105px;
+  overflow-y: auto;
+  padding: 16px 0;
+}
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+.sidebar-section { padding: 0 16px; margin-bottom: 8px; }
+.sidebar-label {
+  font-size: 10px;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 8px 16px 4px;
+  font-weight: 600;
+}
+.sidebar-item {
+  display: block;
+  padding: 6px 16px;
+  color: var(--text2);
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 13px;
+  transition: all 0.15s;
+  text-decoration: none;
+}
+.sidebar-item:hover { background: var(--bg3); color: var(--text); }
+.sidebar-item.active { background: var(--tag-bg); color: var(--accent); }
+.dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 8px; vertical-align: 2px; }
+
+/* CONTENT */
+.content {
+  flex: 1;
+  padding: 32px;
+  overflow-y: auto;
+  max-width: 960px;
+}
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* CHAPTER CARD */
+.chapter-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-num {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+.chapter-meta { flex: 1; }
+.chapter-title { font-size: 20px; font-weight: 700; }
+.chapter-desc { font-size: 13px; color: var(--text2); margin-top: 2px; }
+.chapter-tags { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+.tag {
+  padding: 2px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* SECTIONS */
+.section { margin-bottom: 28px; }
+.section-title {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text3);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* PHILOSOPHY BOX */
+.philosophy {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  border: 1px solid #4338ca;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+}
+.philosophy-core {
+  font-size: 15px;
+  font-weight: 600;
+  color: #a5b4fc;
+  margin-bottom: 8px;
+}
+.philosophy p { font-size: 13px; color: var(--text2); line-height: 1.7; }
+
+/* HOTSPOT GRID */
+.hotspot-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+.hotspot-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  position: relative;
+}
+.hotspot-card.high { border-left: 3px solid var(--accent4); }
+.hotspot-card.med { border-left: 3px solid var(--accent3); }
+.hotspot-card.low { border-left: 3px solid var(--accent2); }
+.hotspot-rank {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 10px;
+  color: var(--text3);
+  font-weight: 700;
+}
+.hotspot-keyword {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.hotspot-row { display: flex; gap: 6px; margin-top: 5px; font-size: 12px; flex-wrap: wrap; }
+.hotspot-label {
+  color: var(--text3);
+  min-width: 45px;
+  font-weight: 600;
+}
+.hotspot-val { color: var(--text2); flex: 1; }
+.warn {
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.3);
+  border-radius: 4px;
+  padding: 3px 8px;
+  color: #fca5a5;
+  font-size: 11px;
+  margin-top: 5px;
+}
+
+/* INDEX TABLE */
+.idx-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.idx-table th {
+  background: var(--bg3);
+  padding: 8px 12px;
+  text-align: left;
+  color: var(--text2);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid var(--border);
+}
+.idx-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.idx-table tr:hover td { background: var(--bg3); }
+.idx-keyword { font-weight: 700; color: var(--accent); }
+.idx-locate { color: var(--accent2); font-size: 12px; }
+.idx-formula { color: var(--accent3); font-size: 12px; font-family: monospace; }
+.idx-core { color: var(--text2); font-size: 12px; }
+
+/* FORMULA CARDS */
+.formula-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px; }
+.formula-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+}
+.formula-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent3);
+  margin-bottom: 10px;
+}
+.formula-body {
+  background: var(--bg3);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  color: #86efac;
+  margin-bottom: 10px;
+  overflow-x: auto;
+}
+.formula-meta { font-size: 12px; }
+.formula-meta-row { display: flex; gap: 6px; margin-top: 4px; }
+.fm-label { color: var(--text3); min-width: 55px; font-weight: 600; }
+.fm-val { color: var(--text2); }
+
+/* FLOW DIAGRAM */
+.flow-steps { display: flex; align-items: center; gap: 0; flex-wrap: wrap; }
+.flow-step {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+.flow-arrow {
+  color: var(--accent);
+  font-size: 18px;
+  padding: 0 6px;
+}
+
+/* SUMMARY CARD */
+.summary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-top: 12px; }
+.summary-block {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px;
+}
+.summary-block-title { font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.summary-list { list-style: none; }
+.summary-list li { font-size: 12px; color: var(--text2); padding: 2px 0; }
+.summary-list li::before { content: '›'; color: var(--accent); margin-right: 6px; }
+
+/* MAP TAB */
+.map-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+.map-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.map-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+.map-card.c1::before { background: var(--accent2); }
+.map-card.c2::before { background: var(--accent); }
+.map-card.c3::before { background: var(--accent3); }
+.map-card.c4::before { background: var(--accent4); }
+.map-card.c5::before { background: var(--accent5); }
+.map-card.c6::before { background: #ec4899; }
+.map-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.map-chapter { font-size: 11px; color: var(--text3); margin-bottom: 4px; font-weight: 600; }
+.map-name { font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+.map-bars { display: flex; gap: 6px; margin-bottom: 10px; }
+.bar-item { flex: 1; text-align: center; }
+.bar-label { font-size: 10px; color: var(--text3); margin-bottom: 3px; }
+.bar-value {
+  height: 4px;
+  border-radius: 2px;
+  margin-bottom: 2px;
+}
+.bar-text { font-size: 10px; font-weight: 700; }
+.map-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+.map-tag { font-size: 10px; padding: 1px 6px; border-radius: 3px; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .header { padding: 16px; flex-direction: column; gap: 10px; align-items: flex-start; }
+  .sidebar { display: none; }
+  .content { padding: 16px; }
+}
+
+/* SCROLL */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+/* TIMER WIDGET */
+.timer-bar {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.timer-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+.timer-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.timer-num { font-size: 18px; font-weight: 900; }
+.timer-unit { color: var(--text3); }
+
+/* QUICK ANSWER */
+.qa-box {
+  background: var(--bg2);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  border: 1px solid var(--border);
+}
+.qa-q {
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+.qa-q:hover { background: var(--bg3); }
+.qa-a {
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s;
+  font-size: 13px;
+  color: var(--text2);
+  border-top: 0 solid var(--border);
+}
+.qa-a.open {
+  max-height: 400px;
+  padding: 12px 14px;
+  border-top-width: 1px;
+}
+.qa-icon { transition: transform 0.3s; }
+.qa-icon.open { transform: rotate(180deg); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <div class="header-title">⚗ 化工设计 · 开卷考试速查手册</div>
+    <div class="header-sub">龚彦文 · 2024/2 · 覆盖第1-4章 · 开卷检索引擎版</div>
+  </div>
+  <div class="exam-badge">📖 开卷专用</div>
+</div>
+
+<div class="nav">
+  <button class="nav-btn active" onclick="switchTab('map')">🗺 考试地图</button>
+  <button class="nav-btn" onclick="switchTab('ch1')">第一章</button>
+  <button class="nav-btn" onclick="switchTab('ch2')">第二章</button>
+  <button class="nav-btn" onclick="switchTab('ch3')">第三章</button>
+  <button class="nav-btn" onclick="switchTab('ch4')">第四章</button>
+  <button class="nav-btn" onclick="switchTab('idx')">⚡ 索引总表</button>
+  <button class="nav-btn" onclick="switchTab('formula')">📐 公式库</button>
+</div>
+
+<div class="main">
+<div class="sidebar">
+  <div class="sidebar-label">考试地图</div>
+  <a class="sidebar-item" onclick="switchTab('map')">📊 全书概览</a>
+  <div class="sidebar-label">各章速查</div>
+  <a class="sidebar-item" onclick="switchTab('ch1')"><span class="dot" style="background:#10b981"></span>第一章 内容与程序</a>
+  <a class="sidebar-item" onclick="switchTab('ch2')"><span class="dot" style="background:#3b82f6"></span>第二章 工艺流程设计</a>
+  <a class="sidebar-item" onclick="switchTab('ch3')"><span class="dot" style="background:#f59e0b"></span>第三章 设备工艺设计</a>
+  <a class="sidebar-item" onclick="switchTab('ch4')"><span class="dot" style="background:#ef4444"></span>第四章 车间布置设计</a>
+  <div class="sidebar-label">快速工具</div>
+  <a class="sidebar-item" onclick="switchTab('idx')">⚡ 题型索引总表</a>
+  <a class="sidebar-item" onclick="switchTab('formula')">📐 公式速查</a>
+</div>
+
+<div class="content">
+
+<!-- ============ MAP TAB ============ -->
+<div id="tab-map" class="tab-panel active">
+  <div class="timer-bar">
+    <div class="timer-item"><div class="timer-dot" style="background:#10b981"></div><span class="timer-num">5</span><span class="timer-unit">秒</span><span style="color:var(--text2)">判断章节</span></div>
+    <div class="timer-item"><div class="timer-dot" style="background:#3b82f6"></div><span class="timer-num">10</span><span class="timer-unit">秒</span><span style="color:var(--text2)">找到公式</span></div>
+    <div class="timer-item"><div class="timer-dot" style="background:#f59e0b"></div><span class="timer-num">15</span><span class="timer-unit">秒</span><span style="color:var(--text2)">确定逻辑</span></div>
+    <div class="timer-item"><div class="timer-dot" style="background:#ef4444"></div><span class="timer-num">30</span><span class="timer-unit">秒</span><span style="color:var(--text2)">组织答案</span></div>
+  </div>
+
+  <div class="section-title">全书章节地图</div>
+  <div class="map-grid">
+    <div class="map-card c1" onclick="switchTab('ch1')">
+      <div class="map-chapter">第一章</div>
+      <div class="map-name">化工设计的内容与程序</div>
+      <div class="map-bars">
+        <div class="bar-item">
+          <div class="bar-label">计算量</div>
+          <div class="bar-value" style="background:#374151; width:100%"><div style="background:#10b981;height:100%;width:20%"></div></div>
+          <div class="bar-text" style="color:#10b981">低</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label">简答量</div>
+          <div class="bar-value" style="background:#374151; width:100%"><div style="background:#f59e0b;height:100%;width:90%"></div></div>
+          <div class="bar-text" style="color:#f59e0b">高</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label">索引难度</div>
+          <div class="bar-value" style="background:#374151; width:100%"><div style="background:#3b82f6;height:100%;width:30%"></div></div>
+          <div class="bar-text" style="color:#3b82f6">易</div>
+        </div>
+      </div>
+      <div class="map-tags">
+        <span class="map-tag" style="background:rgba(16,185,129,0.15);color:#34d399">简答</span>
+        <span class="map-tag" style="background:rgba(16,185,129,0.15);color:#34d399">概念</span>
+        <span class="map-tag" style="background:rgba(16,185,129,0.15);color:#34d399">流程背记</span>
+      </div>
+    </div>
+    <div class="map-card c2" onclick="switchTab('ch2')">
+      <div class="map-chapter">第二章</div>
+      <div class="map-name">工艺流程设计</div>
+      <div class="map-bars">
+        <div class="bar-item">
+          <div class="bar-label">计算量</div>
+          <div class="bar-value" style="background:#374151; width:100%"><div style="background:#10b981;height:100%;width:75%"></div></div>
+          <div class="bar-text" style="color:#10b981">高</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label">简答量</div>
+          <div class="bar-value" style="background:#374151; width:100%"><div style="background:#f59e0b;height:100%;width:70%"></div></div>
+          <div class="bar-text" style="color:#f59e0b">中</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label">索引难度</div>
+          <div class="bar-value" style="background:#374151; width:100%"><div style="background:#3b82f6;height:100%;width:70%"></div></div>
+          <div class="bar-text" style="color:#3b82f6">中</div>
+        </div>
+      </div>
+      <div class="map-tags">
+        <span class="map-tag" style="background:rgba(59,130,246,0.15);color:#60a5fa">物料衡算</span>
+        <span class="map-tag" style="background:rgba(59,130,246,0.15);color:#60a5fa">热量衡算</span>
+        <span class="map-tag" style="background:rgba(59,130,246,0.15);color:#60a5fa">PID图</span>
+        <span class="map-tag" style="background:rgba(59,130,246,0.15);color:#60a5fa">★★★核心</span>
+      </div>
+    </div>
+    <div class="map-card c3" onclick="switchTab('ch3')">
+      <div class="map-chapter">第三章</div>
+      <div class="map-name">设备的工艺设计</div>
+      <div class="map-bars">
+        <div class="bar-item">
+          <div class="bar-label">计算量</div>
+          <div class="bar-value" style="background:#374151; width:100%"><div style="background:#10b981;height:100%;width:90%"></div></div>
+          <div class="bar-text" style="color:#10b981">极高</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label">简答量</div>
+          <div class="bar-value" style="background:#374151; width:100%"><div style="background:#f59e0b;height:100%;width:50%"></div></div>
+          <div class="bar-text" style="color:#f59e0b">中</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label">索引难度</div>
+          <div class="bar-value" style="background:#374151; width:100%"><div style="background:#3b82f6;height:100%;width:80%"></div></div>
+          <div class="bar-text" style="color:#3b82f6">高</div>
+        </div>
+      </div>
+      <div class="map-tags">
+        <span class="map-tag" style="background:rgba(245,158,11,0.15);color:#fbbf24">换热器</span>
+        <span class="map-tag" style="background:rgba(245,158,11,0.15);color:#fbbf24">设备选型</span>
+        <span class="map-tag" style="background:rgba(245,158,11,0.15);color:#fbbf24">校核</span>
+        <span class="map-tag" style="background:rgba(245,158,11,0.15);color:#fbbf24">★★★最难</span>
+      </div>
+    </div>
+    <div class="map-card c4" onclick="switchTab('ch4')">
+      <div class="map-chapter">第四章</div>
+      <div class="map-name">车间布置设计</div>
+      <div class="map-bars">
+        <div class="bar-item">
+          <div class="bar-label">计算量</div>
+          <div class="bar-value" style="background:#374151; width:100%"><div style="background:#10b981;height:100%;width:20%"></div></div>
+          <div class="bar-text" style="color:#10b981">低</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label">简答量</div>
+          <div class="bar-value" style="background:#374151; width:100%"><div style="background:#f59e0b;height:100%;width:80%"></div></div>
+          <div class="bar-text" style="color:#f59e0b">高</div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label">索引难度</div>
+          <div class="bar-value" style="background:#374151; width:100%"><div style="background:#3b82f6;height:100%;width:40%"></div></div>
+          <div class="bar-text" style="color:#3b82f6">易</div>
+        </div>
+      </div>
+      <div class="map-tags">
+        <span class="map-tag" style="background:rgba(239,68,68,0.15);color:#f87171">净距规范</span>
+        <span class="map-tag" style="background:rgba(239,68,68,0.15);color:#f87171">布置原则</span>
+        <span class="map-tag" style="background:rgba(239,68,68,0.15);color:#f87171">数值记忆</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:28px">⚡ 考前60秒总口诀</div>
+  <div style="background:var(--bg2);border:1px solid #4338ca;border-radius:8px;padding:20px;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">
+      <div style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:6px;padding:12px;">
+        <div style="color:#34d399;font-weight:700;font-size:13px;margin-bottom:6px">第一章·背顺序</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.8">建议书→可行研究→任务书→初步设计→施工图</div>
+      </div>
+      <div style="background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.2);border-radius:6px;padding:12px;">
+        <div style="color:#60a5fa;font-weight:700;font-size:13px;margin-bottom:6px">第二章·核心三件</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.8">路线选择原则 + 物料/热量衡算 + PID图画法</div>
+      </div>
+      <div style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);border-radius:6px;padding:12px;">
+        <div style="color:#fbbf24;font-weight:700;font-size:13px;margin-bottom:6px">第三章·计算为主</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.8">物料衡算→热量衡算→换热器选型→校核</div>
+      </div>
+      <div style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:6px;padding:12px;">
+        <div style="color:#f87171;font-weight:700;font-size:13px;margin-bottom:6px">第四章·记数值</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.8">泵间距≥0.7m, 泵-墙≥1.2m, 人行≥1.0m</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CH1 ============ -->
+<div id="tab-ch1" class="tab-panel">
+  <div class="chapter-header">
+    <div class="chapter-num" style="background:rgba(16,185,129,0.15);color:#34d399">1</div>
+    <div class="chapter-meta">
+      <div class="chapter-title">化工设计的内容与程序</div>
+      <div class="chapter-desc">解决"什么是化工设计、怎样开展设计"的问题</div>
+      <div class="chapter-tags">
+        <span class="tag" style="background:rgba(16,185,129,0.15);color:#34d399">偏简答</span>
+        <span class="tag" style="background:rgba(245,158,11,0.15);color:#fbbf24">顺序背记</span>
+        <span class="tag" style="background:rgba(59,130,246,0.15);color:#60a5fa">开卷好翻</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">💡 这章考试本质</div>
+    <div class="philosophy">
+      <div class="philosophy-core">工程问题：一个化工厂从无到有，需要经历哪些阶段？各阶段做什么？</div>
+      <p>核心矛盾：不同阶段深度不同、责任方不同、文件格式不同。考试爱问"第X阶段做什么"或"某文件包含哪些内容"。记住：<strong style="color:#a5b4fc">顺序 > 内容细节</strong>。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 高频考点</div>
+    <div class="hotspot-grid">
+      <div class="hotspot-card high">
+        <div class="hotspot-rank">高频1</div>
+        <div class="hotspot-keyword">设计分类</div>
+        <div class="hotspot-row"><span class="hotspot-label">出题方式</span><span class="hotspot-val">按项目性质/开发过程/设计范围分类，各有哪些</span></div>
+        <div class="hotspot-row"><span class="hotspot-label">答题方向</span><span class="hotspot-val">①新产品/技术改造/扩建 ②概念设计→中试→工程设计 ③装置设计/总图设计</span></div>
+        <div class="warn">⚠ 三种分类维度不要混</div>
+      </div>
+      <div class="hotspot-card high">
+        <div class="hotspot-rank">高频2</div>
+        <div class="hotspot-keyword">设计工作程序</div>
+        <div class="hotspot-row"><span class="hotspot-label">出题方式</span><span class="hotspot-val">按顺序排列/判断哪步在前</span></div>
+        <div class="hotspot-row"><span class="hotspot-label">答题方向</span><span class="hotspot-val">项目建议书→可行研究→任务书→初设→施工图→设计总结</span></div>
+        <div class="warn">⚠ 可行性研究在初设之前！</div>
+      </div>
+      <div class="hotspot-card high">
+        <div class="hotspot-rank">高频3</div>
+        <div class="hotspot-keyword">可行性研究报告</div>
+        <div class="hotspot-row"><span class="hotspot-label">出题方式</span><span class="hotspot-val">包括哪些内容/与项目建议书的区别</span></div>
+        <div class="hotspot-row"><span class="hotspot-label">答题方向</span><span class="hotspot-val">总论、市场预测、资源评价、建设规模、场址、环评、投资估算、经济评价等21项</span></div>
+        <div class="warn">⚠ 必须由有资质的设计/咨询机构编制</div>
+      </div>
+      <div class="hotspot-card med">
+        <div class="hotspot-rank">高频4</div>
+        <div class="hotspot-keyword">工艺设计程序内容</div>
+        <div class="hotspot-row"><span class="hotspot-label">出题方式</span><span class="hotspot-val">工艺设计分哪几步</span></div>
+        <div class="hotspot-row"><span class="hotspot-label">答题方向</span><span class="hotspot-val">工艺路线选择→物料衡算→热量衡算→设备选型→车间布置→管道→自控</span></div>
+      </div>
+      <div class="hotspot-card low">
+        <div class="hotspot-rank">高频5</div>
+        <div class="hotspot-keyword">工程伦理/安全环保</div>
+        <div class="hotspot-row"><span class="hotspot-label">出题方式</span><span class="hotspot-val">化工设计中的安全/环保考虑</span></div>
+        <div class="hotspot-row"><span class="hotspot-label">答题方向</span><span class="hotspot-val">三废处理达标排放、HSE、选址远离居民区、防火防爆分区</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">📍 开卷定位索引</div>
+    <table class="idx-table">
+      <tr><th>题目关键词</th><th>翻到哪里</th><th>关键内容</th></tr>
+      <tr><td class="idx-keyword">设计分类</td><td class="idx-locate">第一节</td><td class="idx-core">三维分类：性质/开发过程/范围</td></tr>
+      <tr><td class="idx-keyword">设计工作程序</td><td class="idx-locate">第二节</td><td class="idx-core">流程图+各步时间要求</td></tr>
+      <tr><td class="idx-keyword">项目建议书</td><td class="idx-locate">第三节-一</td><td class="idx-core">13章节内容，15-20工作日</td></tr>
+      <tr><td class="idx-keyword">可行性研究</td><td class="idx-locate">第三节-二</td><td class="idx-core">21项内容，必须有资质机构</td></tr>
+      <tr><td class="idx-keyword">任务书/设计委托</td><td class="idx-locate">第三节-三</td><td class="idx-core">甲方→乙方，确定设计范围</td></tr>
+      <tr><td class="idx-keyword">初步设计/施工图</td><td class="idx-locate">第三节 设计阶段</td><td class="idx-core">两阶段设计，深度要求不同</td></tr>
+      <tr><td class="idx-keyword">工艺设计步骤</td><td class="idx-locate">第三节-六</td><td class="idx-core">7步设计程序</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">⚡ 第一章一页速查</div>
+    <div class="summary-grid">
+      <div class="summary-block">
+        <div class="summary-block-title">设计分类（3种维度）</div>
+        <ul class="summary-list">
+          <li>按性质：新产品/改造/扩建</li>
+          <li>按开发：概念→中试→工程</li>
+          <li>按范围：装置/车间/总图</li>
+        </ul>
+      </div>
+      <div class="summary-block">
+        <div class="summary-block-title">工作程序（6步记顺序）</div>
+        <ul class="summary-list">
+          <li>① 项目建议书</li>
+          <li>② 可行性研究报告</li>
+          <li>③ 设计任务书</li>
+          <li>④ 初步设计</li>
+          <li>⑤ 施工图设计</li>
+          <li>⑥ 设计总结</li>
+        </ul>
+      </div>
+      <div class="summary-block">
+        <div class="summary-block-title">工艺设计7步</div>
+        <ul class="summary-list">
+          <li>工艺路线选择</li>
+          <li>物料衡算</li>
+          <li>热量衡算</li>
+          <li>设备选型计算</li>
+          <li>车间布置</li>
+          <li>管道设计</li>
+          <li>自控设计</li>
+        </ul>
+      </div>
+      <div class="summary-block">
+        <div class="summary-block-title">易错点</div>
+        <ul class="summary-list">
+          <li>可行研究在任务书之前</li>
+          <li>可研必须有资质机构做</li>
+          <li>概念设计≠初步设计</li>
+          <li>项目建议书≠可行研究</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CH2 ============ -->
+<div id="tab-ch2" class="tab-panel">
+  <div class="chapter-header">
+    <div class="chapter-num" style="background:rgba(59,130,246,0.15);color:#60a5fa">2</div>
+    <div class="chapter-meta">
+      <div class="chapter-title">工艺流程设计 ★★★ 核心章</div>
+      <div class="chapter-desc">包含物料衡算、热量衡算（异丙苯案例）和PID图绘制</div>
+      <div class="chapter-tags">
+        <span class="tag" style="background:rgba(239,68,68,0.2);color:#f87171">计算重点</span>
+        <span class="tag" style="background:rgba(59,130,246,0.15);color:#60a5fa">PID图识读</span>
+        <span class="tag" style="background:rgba(245,158,11,0.15);color:#fbbf24">★★★必掌握</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">💡 这章考试本质</div>
+    <div class="philosophy">
+      <div class="philosophy-core">核心问题：给定产量/原料，如何计算各流股的流量？如何画出描述流程的图？</div>
+      <p>本章是整个化工设计的"中枢"，后续设备设计、布置设计都以本章的衡算结果为输入。考试最爱考：①工艺路线选择原则（简答）②物料衡算计算（大题）③PID图认识（识图/问答）④管道标注规则。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 高频考点</div>
+    <div class="hotspot-grid">
+      <div class="hotspot-card high">
+        <div class="hotspot-rank">高频1</div>
+        <div class="hotspot-keyword">物料衡算（大题）</div>
+        <div class="hotspot-row"><span class="hotspot-label">出题方式</span><span class="hotspot-val">给反应方程+转化率+产量，求各物料流量</span></div>
+        <div class="hotspot-row"><span class="hotspot-label">答题方向</span><span class="hotspot-val">以产量为基准→找限制反应物→按mol计算→列总物料衡算表</span></div>
+        <div class="warn">⚠ 有循环物流时，要看回收率！不能漏</div>
+      </div>
+      <div class="hotspot-card high">
+        <div class="hotspot-rank">高频2</div>
+        <div class="hotspot-keyword">工艺路线选择原则</div>
+        <div class="hotspot-row"><span class="hotspot-label">出题方式</span><span class="hotspot-val">工艺路线选择应遵循哪些原则</span></div>
+        <div class="hotspot-row"><span class="hotspot-label">答题方向</span><span class="hotspot-val">①先进性（技术先进+经济合理）②可靠性（成熟技术）③适用性（结合国情）</span></div>
+      </div>
+      <div class="hotspot-card high">
+        <div class="hotspot-rank">高频3</div>
+        <div class="hotspot-keyword">PID图识读与绘制</div>
+        <div class="hotspot-row"><span class="hotspot-label">出题方式</span><span class="hotspot-val">识别PID图中的设备/阀门/仪表符号，或说明管道标注含义</span></div>
+        <div class="hotspot-row"><span class="hotspot-label">答题方向</span><span class="hotspot-val">管道标注：物料代号-管道序号-公称直径-压力等级-材质-隔热</span></div>
+        <div class="warn">⚠ PG=工艺气体 PL=工艺液体 N=氮气 A=空气</div>
+      </div>
+      <div class="hotspot-card med">
+        <div class="hotspot-rank">高频4</div>
+        <div class="hotspot-keyword">热量衡算</div>
+        <div class="hotspot-row"><span class="hotspot-label">出题方式</span><span class="hotspot-val">计算反应器出口温度/换热量</span></div>
+        <div class="hotspot-row"><span class="hotspot-label">答题方向</span><span class="hotspot-val">Q = ΔHrxn × n + ΣmCpΔT，先查反应热，再算显热</span></div>
+      </div>
+      <div class="hotspot-card med">
+        <div class="hotspot-rank">高频5</div>
+        <div class="hotspot-keyword">工艺流程设计原则/任务</div>
+        <div class="hotspot-row"><span class="hotspot-label">出题方式</span><span class="hotspot-val">工艺流程设计应该确定哪些内容</span></div>
+        <div class="hotspot-row"><span class="hotspot-label">答题方向</span><span class="hotspot-val">确定流程组成、单元操作、操作条件、控制方案、物流/能量利用、三废处理、安全措施</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">📍 开卷定位索引</div>
+    <table class="idx-table">
+      <tr><th>题目关键词</th><th>翻到哪里</th><th>公式/图表</th><th>解题核心</th></tr>
+      <tr><td class="idx-keyword">工艺路线选择</td><td class="idx-locate">第一节</td><td class="idx-formula">氯乙烯案例表格</td><td class="idx-core">三原则+四步骤</td></tr>
+      <tr><td class="idx-keyword">物料衡算</td><td class="idx-locate">第二节 物料衡算部分</td><td class="idx-formula">异丙苯案例计算</td><td class="idx-core">先确定产量基准→算消耗量</td></tr>
+      <tr><td class="idx-keyword">热量衡算</td><td class="idx-locate">第二节 能量衡算部分</td><td class="idx-formula">Q=ΔHrxn·n + ΣmCpΔT</td><td class="idx-core">物料衡算完成后才做</td></tr>
+      <tr><td class="idx-keyword">换热网络</td><td class="idx-locate">第二节 能量衡算部分</td><td class="idx-formula">夹点分析图</td><td class="idx-core">冷热物流配对，减少外部公用工程</td></tr>
+      <tr><td class="idx-keyword">PID图符号</td><td class="idx-locate">第三节 工艺流程图</td><td class="idx-formula">设备代号表(T/P/R/E/V等)</td><td class="idx-core">看代号首字母</td></tr>
+      <tr><td class="idx-keyword">管道标注</td><td class="idx-locate">第三节 管道标注</td><td class="idx-formula">PG 13 10-300 N1A-H</td><td class="idx-core">6段代码，从左到右</td></tr>
+      <tr><td class="idx-keyword">物料代号</td><td class="idx-locate">表3-2 常见介质代号</td><td class="idx-formula">A=空气 PG=工艺气 N=氮</td><td class="idx-core">英文首字母原则</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">📐 核心公式</div>
+    <div class="formula-grid">
+      <div class="formula-card">
+        <div class="formula-name">物料衡算基本方程</div>
+        <div class="formula-body">输入 = 输出 + 累积 + 反应消耗</div>
+        <div class="formula-meta">
+          <div class="formula-meta-row"><span class="fm-label">稳态时</span><span class="fm-val">累积=0，简化为 输入=输出+消耗</span></div>
+          <div class="formula-meta-row"><span class="fm-label">计算基准</span><span class="fm-val">选小时产量，用mol计（有反应时）</span></div>
+          <div class="formula-meta-row"><span class="fm-label">常见陷阱</span><span class="fm-val">循环物流要单独列方程！</span></div>
+        </div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-name">反应器物料衡算（异丙苯类型）</div>
+        <div class="formula-body">产品量 = f(转化率, 选择性, 循环量)</div>
+        <div class="formula-meta">
+          <div class="formula-meta-row"><span class="fm-label">步骤</span><span class="fm-val">①定产量 ②算丙烯消耗 ③算苯消耗 ④算循环量</span></div>
+          <div class="formula-meta-row"><span class="fm-label">看到题目</span><span class="fm-val">有"产量+转化率"就用这个</span></div>
+        </div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-name">热量衡算总式</div>
+        <div class="formula-body">Q = ΔHrxn × n + ΣmᵢCpᵢΔTᵢ</div>
+        <div class="formula-meta">
+          <div class="formula-meta-row"><span class="fm-label">变量</span><span class="fm-val">ΔHrxn=反应热(kJ/mol), n=反应量(mol), Cp=比热</span></div>
+          <div class="formula-meta-row"><span class="fm-label">何时用</span><span class="fm-val">算换热器热负荷、反应器出口温度</span></div>
+          <div class="formula-meta-row"><span class="fm-label">陷阱</span><span class="fm-val">放热反应ΔHrxn<0，注意符号！</span></div>
+        </div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-name">管道标注格式</div>
+        <div class="formula-body">物料代号 管段序号 工段号-管径 压力等级 材质-隔热</div>
+        <div class="formula-meta">
+          <div class="formula-meta-row"><span class="fm-label">例子</span><span class="fm-val">PG 13 10-300 N1A-H</span></div>
+          <div class="formula-meta-row"><span class="fm-label">压力代号</span><span class="fm-val">L=1MPa M=1.6 N=2.5 P=4.0 Q=6.4</span></div>
+          <div class="formula-meta-row"><span class="fm-label">材质代号</span><span class="fm-val">A=铸铁 B=碳钢 E=不锈钢 G=非金属</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🔄 物料衡算设计步骤</div>
+    <div class="flow-steps">
+      <div class="flow-step" style="border-color:#60a5fa">确定产量及基准</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">画流程框图</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="border-color:#f59e0b">找限制原料</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">逐设备衡算</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="border-color:#34d399">列总衡算表</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">⚡ 第二章一页速查</div>
+    <div class="summary-grid">
+      <div class="summary-block">
+        <div class="summary-block-title">路线选择3原则</div>
+        <ul class="summary-list">
+          <li>先进性（技术+经济）</li>
+          <li>可靠性（成熟工艺）</li>
+          <li>适用性（国情）</li>
+        </ul>
+      </div>
+      <div class="summary-block">
+        <div class="summary-block-title">流程设计4部分</div>
+        <ul class="summary-list">
+          <li>原料预处理</li>
+          <li>反应过程（核心）</li>
+          <li>产物后处理（分离）</li>
+          <li>三废处理</li>
+        </ul>
+      </div>
+      <div class="summary-block">
+        <div class="summary-block-title">设备代号</div>
+        <ul class="summary-list">
+          <li>T=塔 R=反应器</li>
+          <li>E=换热器 P=泵</li>
+          <li>V=容器/槽/罐</li>
+          <li>C=压缩机</li>
+        </ul>
+      </div>
+      <div class="summary-block">
+        <div class="summary-block-title">物料代号常考</div>
+        <ul class="summary-list">
+          <li>PG=工艺气体</li>
+          <li>PL=工艺液体</li>
+          <li>A=空气 N=氮气</li>
+          <li>CWS/CWR=循环冷却水</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CH3 ============ -->
+<div id="tab-ch3" class="tab-panel">
+  <div class="chapter-header">
+    <div class="chapter-num" style="background:rgba(245,158,11,0.15);color:#fbbf24">3</div>
+    <div class="chapter-meta">
+      <div class="chapter-title">设备的工艺设计 ★★★ 最难章</div>
+      <div class="chapter-desc">换热器设计、设备选型、夹点分析——计算量最大</div>
+      <div class="chapter-tags">
+        <span class="tag" style="background:rgba(239,68,68,0.2);color:#f87171">计算最多</span>
+        <span class="tag" style="background:rgba(245,158,11,0.15);color:#fbbf24">换热器为主</span>
+        <span class="tag" style="background:rgba(139,92,246,0.15);color:#a78bfa">需预先做索引</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">💡 这章考试本质</div>
+    <div class="philosophy">
+      <div class="philosophy-core">核心问题：已知物流的温度、流量、热负荷，如何选型并校核换热器？</div>
+      <p>本章以异丙苯工艺为贯穿案例。设计逻辑：<strong style="color:#fbbf24">物料衡算结果→列出各流股参数→换热网络分析→逐台换热器选型→用标准型号→校核</strong>。考试最爱考换热器选型步骤和校核判断。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 高频考点</div>
+    <div class="hotspot-grid">
+      <div class="hotspot-card high">
+        <div class="hotspot-rank">高频1</div>
+        <div class="hotspot-keyword">换热器选型步骤</div>
+        <div class="hotspot-row"><span class="hotspot-label">出题方式</span><span class="hotspot-val">说明换热器选型的步骤/如何确定换热器型号</span></div>
+        <div class="hotspot-row"><span class="hotspot-label">答题方向</span><span class="hotspot-val">①列出各流股热负荷 ②换热网络分析（夹点） ③初选型号 ④校核（面积是否足够）</span></div>
+        <div class="warn">⚠ 校核时计算面积要留10-20%余量</div>
+      </div>
+      <div class="hotspot-card high">
+        <div class="hotspot-rank">高频2</div>
+        <div class="hotspot-keyword">热量衡算（反应器出口温度）</div>
+        <div class="hotspot-row"><span class="hotspot-label">出题方式</span><span class="hotspot-val">计算烃化反应器出口温度（作业题类型）</span></div>
+        <div class="hotspot-row"><span class="hotspot-label">答题方向</span><span class="hotspot-val">反应放热=物料升温热，Q反应 = ΣmCp(T出-T入)</span></div>
+      </div>
+      <div class="hotspot-card med">
+        <div class="hotspot-rank">高频3</div>
+        <div class="hotspot-keyword">换热器类型选择</div>
+        <div class="hotspot-row"><span class="hotspot-label">出题方式</span><span class="hotspot-val">什么条件下选固定管板/浮头/U型管换热器</span></div>
+        <div class="hotspot-row"><span class="hotspot-label">答题方向</span><span class="hotspot-val">固定管板：温差小、壳程介质无需清洗；浮头：温差大、需清洗壳侧；U型管：高温高压</span></div>
+      </div>
+      <div class="hotspot-card med">
+        <div class="hotspot-rank">高频4</div>
+        <div class="hotspot-keyword">夹点分析概念</div>
+        <div class="hotspot-row"><span class="hotspot-label">出题方式</span><span class="hotspot-val">什么是夹点？夹点分析目的？</span></div>
+        <div class="hotspot-row"><span class="hotspot-label">答题方向</span><span class="hotspot-val">夹点=冷热曲线最近接触点，目的是减少外部热源/冷源需求，节能</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">📍 开卷定位索引</div>
+    <table class="idx-table">
+      <tr><th>题目关键词</th><th>翻到哪里</th><th>关键内容</th></tr>
+      <tr><td class="idx-keyword">换热器选型</td><td class="idx-locate">设备工艺设计-换热器部分</td><td class="idx-core">标准型号表，选型步骤</td></tr>
+      <tr><td class="idx-keyword">热量衡算计算</td><td class="idx-locate">第二章能量衡算部分（贯穿）</td><td class="idx-core">Q=ΔHrxn·n + ΣmCpΔT</td></tr>
+      <tr><td class="idx-keyword">物料衡算表</td><td class="idx-locate">烃化反应器物料衡算表</td><td class="idx-core">各流股kmol/h数值</td></tr>
+      <tr><td class="idx-keyword">换热器型号</td><td class="idx-locate">换热器选型结果表</td><td class="idx-core">型号格式，换热面积</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">📐 核心公式</div>
+    <div class="formula-grid">
+      <div class="formula-card">
+        <div class="formula-name">换热器传热基本方程</div>
+        <div class="formula-body">Q = K × A × ΔTm</div>
+        <div class="formula-meta">
+          <div class="formula-meta-row"><span class="fm-label">Q</span><span class="fm-val">热负荷 (W 或 kW)</span></div>
+          <div class="formula-meta-row"><span class="fm-label">K</span><span class="fm-val">总传热系数 (W/m²·K)</span></div>
+          <div class="formula-meta-row"><span class="fm-label">A</span><span class="fm-val">传热面积 (m²)，所求量</span></div>
+          <div class="formula-meta-row"><span class="fm-label">ΔTm</span><span class="fm-val">对数平均温差 (K)</span></div>
+          <div class="formula-meta-row"><span class="fm-label">陷阱</span><span class="fm-val">逆流 ΔTm > 并流，优先逆流</span></div>
+        </div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-name">对数平均温差</div>
+        <div class="formula-body">ΔTm = (ΔT₁ - ΔT₂) / ln(ΔT₁/ΔT₂)</div>
+        <div class="formula-meta">
+          <div class="formula-meta-row"><span class="fm-label">逆流时</span><span class="fm-val">ΔT₁=热流体进-冷流体出，ΔT₂=热流体出-冷流体进</span></div>
+          <div class="formula-meta-row"><span class="fm-label">特殊</span><span class="fm-val">ΔT₁=ΔT₂时，ΔTm = ΔT₁</span></div>
+        </div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-name">热量衡算（单相）</div>
+        <div class="formula-body">Q = m × Cp × ΔT</div>
+        <div class="formula-meta">
+          <div class="formula-meta-row"><span class="fm-label">m</span><span class="fm-val">质量流量 (kg/s 或 kg/h)</span></div>
+          <div class="formula-meta-row"><span class="fm-label">Cp</span><span class="fm-val">比热容 (kJ/kg·K)</span></div>
+          <div class="formula-meta-row"><span class="fm-label">何时用</span><span class="fm-val">计算加热/冷却所需热量</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🔄 设备工艺设计步骤</div>
+    <div class="flow-steps">
+      <div class="flow-step" style="border-color:#60a5fa">完成物料衡算</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="border-color:#f59e0b">列各流股参数</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">换热网络分析</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="border-color:#a78bfa">换热器初选</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="border-color:#34d399">校核（面积余量）</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">⚡ 第三章一页速查</div>
+    <div class="summary-grid">
+      <div class="summary-block">
+        <div class="summary-block-title">换热器选型步骤</div>
+        <ul class="summary-list">
+          <li>① 确定热负荷Q</li>
+          <li>② 确定流体走管程/壳程</li>
+          <li>③ 计算ΔTm（逆流优先）</li>
+          <li>④ 估算面积A=Q/(KΔTm)</li>
+          <li>⑤ 查标准型号，取面积≥A</li>
+          <li>⑥ 校核（K值验证）</li>
+        </ul>
+      </div>
+      <div class="summary-block">
+        <div class="summary-block-title">关键公式</div>
+        <ul class="summary-list">
+          <li>Q = KAΔTm（核心）</li>
+          <li>Q = mCpΔT（单相）</li>
+          <li>ΔTm = 对数平均温差</li>
+          <li>A需留10-20%余量</li>
+        </ul>
+      </div>
+      <div class="summary-block">
+        <div class="summary-block-title">夹点分析要点</div>
+        <ul class="summary-list">
+          <li>夹点=冷热曲线最近点</li>
+          <li>夹点以上只用热公用工程</li>
+          <li>夹点以下只用冷公用工程</li>
+          <li>目的：节能，减少外部能耗</li>
+        </ul>
+      </div>
+      <div class="summary-block">
+        <div class="summary-block-title">易错点</div>
+        <ul class="summary-list">
+          <li>放热反应Q<0，注意符号</li>
+          <li>校核面积必须留余量</li>
+          <li>逆流ΔTm > 并流（更经济）</li>
+          <li>循环物流影响衡算结果</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CH4 ============ -->
+<div id="tab-ch4" class="tab-panel">
+  <div class="chapter-header">
+    <div class="chapter-num" style="background:rgba(239,68,68,0.15);color:#f87171">4</div>
+    <div class="chapter-meta">
+      <div class="chapter-title">车间布置设计</div>
+      <div class="chapter-desc">设备平面/立面布置，净距规范，设备布置图绘制</div>
+      <div class="chapter-tags">
+        <span class="tag" style="background:rgba(16,185,129,0.15);color:#34d399">数值记忆</span>
+        <span class="tag" style="background:rgba(245,158,11,0.15);color:#fbbf24">原则简答</span>
+        <span class="tag" style="background:rgba(59,130,246,0.15);color:#60a5fa">图纸识读</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">💡 这章考试本质</div>
+    <div class="philosophy">
+      <div class="philosophy-core">核心问题：把设备从流程图搬到实际厂房，要遵守哪些规范？</div>
+      <p>本章偏规范型，考试爱问：①布置原则（简答）②净距数值（填空/判断）③典型设备布置方案（判断对错）④设备布置图的标注规则。重点记忆具体的净距数值！</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🎯 高频考点</div>
+    <div class="hotspot-grid">
+      <div class="hotspot-card high">
+        <div class="hotspot-rank">高频1</div>
+        <div class="hotspot-keyword">设备净距规范（必背数值）</div>
+        <div class="hotspot-row"><span class="hotspot-label">出题方式</span><span class="hotspot-val">填写/判断具体净距数值</span></div>
+        <div class="hotspot-row"><span class="hotspot-label">答题方向</span><span class="hotspot-val">泵-泵≥0.7m; 泵-墙≥1.2m; 单人通道≥1.0m; 双人操作≥1.2m</span></div>
+        <div class="warn">⚠ 这些数字必须背！开卷翻到表格位置</div>
+      </div>
+      <div class="hotspot-card high">
+        <div class="hotspot-rank">高频2</div>
+        <div class="hotspot-keyword">车间布置原则</div>
+        <div class="hotspot-row"><span class="hotspot-label">出题方式</span><span class="hotspot-val">车间布置设计应遵循哪些原则</span></div>
+        <div class="hotspot-row"><span class="hotspot-label">答题方向</span><span class="hotspot-val">①流程顺畅 ②主风向（有害/可燃→下风向） ③操作检修方便 ④安全（防火防爆）⑤经济</span></div>
+      </div>
+      <div class="hotspot-card high">
+        <div class="hotspot-rank">高频3</div>
+        <div class="hotspot-keyword">设备布置图标注</div>
+        <div class="hotspot-row"><span class="hotspot-label">出题方式</span><span class="hotspot-val">EL/POS EL/TOS EL的含义</span></div>
+        <div class="hotspot-row"><span class="hotspot-label">答题方向</span><span class="hotspot-val">EL=中心线标高；POS EL=支承点标高；TOS EL=架顶标高；基准EL100.000</span></div>
+      </div>
+      <div class="hotspot-card med">
+        <div class="hotspot-rank">高频4</div>
+        <div class="hotspot-keyword">柱网间距</div>
+        <div class="hotspot-row"><span class="hotspot-label">出题方式</span><span class="hotspot-val">甲乙类/丙丁戊类生产柱网间距</span></div>
+        <div class="hotspot-row"><span class="hotspot-label">答题方向</span><span class="hotspot-val">甲乙类=框架结构，6m（可7.5m）；丙丁戊类=混合结构，4/5/6m</span></div>
+      </div>
+      <div class="hotspot-card med">
+        <div class="hotspot-rank">高频5</div>
+        <div class="hotspot-keyword">安装方位标</div>
+        <div class="hotspot-row"><span class="hotspot-label">出题方式</span><span class="hotspot-val">方位标0°指向哪里/如何确定</span></div>
+        <div class="hotspot-row"><span class="hotspot-label">答题方向</span><span class="hotspot-val">取靠近真实北向的建筑轴线为0°，全项目统一，图上方向针朝上或朝左</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">📍 开卷定位索引 · 净距数值速查</div>
+    <table class="idx-table">
+      <tr><th>情况</th><th>最小净距</th><th>在课件位置</th></tr>
+      <tr><td class="idx-keyword">泵与泵之间</td><td class="idx-formula" style="color:#f87171;font-size:14px;font-weight:700">≥ 0.7 m</td><td class="idx-locate">第二节设备布置-设备间距表</td></tr>
+      <tr><td class="idx-keyword">泵与墙之间</td><td class="idx-formula" style="color:#f87171;font-size:14px;font-weight:700">≥ 1.2 m</td><td class="idx-locate">第二节设备布置-设备间距表</td></tr>
+      <tr><td class="idx-keyword">单人通行</td><td class="idx-formula" style="color:#f59e0b;font-size:14px;font-weight:700">≥ 1.0 m</td><td class="idx-locate">第二节设备布置-设备间距表</td></tr>
+      <tr><td class="idx-keyword">一人操作+有人通过</td><td class="idx-formula" style="color:#f59e0b;font-size:14px;font-weight:700">≥ 1.2 m</td><td class="idx-locate">第二节设备布置-设备间距表</td></tr>
+      <tr><td class="idx-keyword">控制室/开关室与炉子</td><td class="idx-formula" style="color:#f87171;font-size:14px;font-weight:700">≥ 15 m</td><td class="idx-locate">第二节设备布置-设备间距表</td></tr>
+      <tr><td class="idx-keyword">可燃气体设备与炉子</td><td class="idx-formula" style="color:#f87171;font-size:14px;font-weight:700">≥ 8 m</td><td class="idx-locate">第二节设备布置-设备间距表</td></tr>
+      <tr><td class="idx-keyword">工艺设备与道路</td><td class="idx-formula" style="color:#34d399;font-size:14px;font-weight:700">≥ 1.0 m</td><td class="idx-locate">第二节设备布置-设备间距表</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">📍 标注规则速查</div>
+    <table class="idx-table">
+      <tr><th>标注符号</th><th>含义</th><th>适用设备</th></tr>
+      <tr><td class="idx-keyword">φ EL 或 ¢EL</td><td class="idx-core">中心线标高</td><td class="idx-core">卧式换热器、卧式槽罐</td></tr>
+      <tr><td class="idx-keyword">POS EL</td><td class="idx-core">支承点/基础顶面标高</td><td class="idx-core">立式设备、塔、反应器、泵底盘</td></tr>
+      <tr><td class="idx-keyword">TOS EL</td><td class="idx-core">架顶标高</td><td class="idx-core">管架等</td></tr>
+      <tr><td class="idx-keyword">EL 100.000</td><td class="idx-core">基准（±0）首层地面</td><td class="idx-core">全厂基准</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">⚡ 第四章一页速查</div>
+    <div class="summary-grid">
+      <div class="summary-block">
+        <div class="summary-block-title">布置原则（5个）</div>
+        <ul class="summary-list">
+          <li>流程顺畅（管线最短）</li>
+          <li>有害物→下风向</li>
+          <li>操作/检修方便</li>
+          <li>安全防火防爆</li>
+          <li>经济（节约用地）</li>
+        </ul>
+      </div>
+      <div class="summary-block">
+        <div class="summary-block-title">净距核心数值</div>
+        <ul class="summary-list">
+          <li>泵-泵 ≥0.7m</li>
+          <li>泵-墙 ≥1.2m</li>
+          <li>单人通道 ≥1.0m</li>
+          <li>炉子-控制室 ≥15m</li>
+          <li>炉子-可燃气 ≥8m</li>
+        </ul>
+      </div>
+      <div class="summary-block">
+        <div class="summary-block-title">柱网间距</div>
+        <ul class="summary-list">
+          <li>甲乙类：框架，6m</li>
+          <li>丙丁戊：混合，4/5/6m</li>
+          <li>跨度常用6m</li>
+        </ul>
+      </div>
+      <div class="summary-block">
+        <div class="summary-block-title">标高符号</div>
+        <ul class="summary-list">
+          <li>EL=中心线标高</li>
+          <li>POS EL=支承点标高</li>
+          <li>基准=EL100.000（首层地面）</li>
+          <li>立式设备用POS EL</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ INDEX TAB ============ -->
+<div id="tab-idx" class="tab-panel">
+  <div class="section-title" style="margin-bottom:16px">⚡ 题型-章节-解题套路 总索引</div>
+  <p style="color:var(--text2);font-size:13px;margin-bottom:16px">看到题目关键词→对应章节→翻到哪里→套路是什么</p>
+  <table class="idx-table">
+    <tr><th>题目类型/关键词</th><th>章节</th><th>翻到哪里</th><th>解题套路</th></tr>
+    <tr><td class="idx-keyword">设计种类/分类</td><td>第一章</td><td class="idx-locate">第一节</td><td class="idx-core">三维度：性质/开发过程/范围</td></tr>
+    <tr><td class="idx-keyword">设计工作程序/顺序</td><td>第一章</td><td class="idx-locate">第二节</td><td class="idx-core">建议书→可研→任务书→初设→施工图</td></tr>
+    <tr><td class="idx-keyword">可行性研究报告内容</td><td>第一章</td><td class="idx-locate">第三节-二</td><td class="idx-core">21项内容，有资质机构编制</td></tr>
+    <tr><td class="idx-keyword">初步设计/施工图区别</td><td>第一章</td><td class="idx-locate">第三节 设计阶段</td><td class="idx-core">深度不同，初设定方案，施图可施工</td></tr>
+    <tr><td class="idx-keyword">工艺路线选择原则</td><td>第二章</td><td class="idx-locate">第一节</td><td class="idx-core">先进/可靠/适用，三原则</td></tr>
+    <tr><td class="idx-keyword">工艺流程设计任务</td><td>第二章</td><td class="idx-locate">第二节</td><td class="idx-core">7个"确定"：组成/单元/条件/控制/物流/三废/安全</td></tr>
+    <tr><td class="idx-keyword">物料衡算（计算题）</td><td>第二章</td><td class="idx-locate">第二节 物料衡算</td><td class="idx-core">输入=输出+消耗；以产量为基准</td></tr>
+    <tr><td class="idx-keyword">热量衡算（计算题）</td><td>第二/三章</td><td class="idx-locate">第二节 能量衡算</td><td class="idx-core">Q=ΔHrxn·n + mCpΔT</td></tr>
+    <tr><td class="idx-keyword">PID图符号/管道标注</td><td>第二章</td><td class="idx-locate">第三节</td><td class="idx-core">管道6段标注格式，设备代号表</td></tr>
+    <tr><td class="idx-keyword">物料代号（介质符号）</td><td>第二章</td><td class="idx-locate">表3-2</td><td class="idx-core">英文首字母，PG/PL/A/N/CWS等</td></tr>
+    <tr><td class="idx-keyword">压力等级代号</td><td>第二章</td><td class="idx-locate">表3-4 管道标准压力等级</td><td class="idx-core">L=1MPa, M=1.6, N=2.5, P=4.0</td></tr>
+    <tr><td class="idx-keyword">换热器设计/选型</td><td>第三章</td><td class="idx-locate">设备设计-换热器部分</td><td class="idx-core">Q=KAΔTm，先算Q，再算A，查型号</td></tr>
+    <tr><td class="idx-keyword">夹点分析</td><td>第三章</td><td class="idx-locate">换热网络分析部分</td><td class="idx-core">夹点=冷热曲线最近点，节能核心</td></tr>
+    <tr><td class="idx-keyword">车间布置原则</td><td>第四章</td><td class="idx-locate">车间布置设计概述</td><td class="idx-core">流程顺/风向/安全/检修/经济</td></tr>
+    <tr><td class="idx-keyword">设备间距/净距数值</td><td>第四章</td><td class="idx-locate">第二节 设备间距表</td><td class="idx-core">翻表！泵-泵≥0.7，泵-墙≥1.2</td></tr>
+    <tr><td class="idx-keyword">柱网间距</td><td>第四章</td><td class="idx-locate">第一节 柱网间距</td><td class="idx-core">甲乙=框架6m，丙丁戊=混合4/5/6m</td></tr>
+    <tr><td class="idx-keyword">标高符号EL/POS EL</td><td>第四章</td><td class="idx-locate">第四节 设备标高</td><td class="idx-core">EL=中心线，POS EL=支承点，基准EL100.000</td></tr>
+    <tr><td class="idx-keyword">管口方位图</td><td>第四章</td><td class="idx-locate">第四节 管口方位图</td><td class="idx-core">A4图纸，0°朝北，方位角标注</td></tr>
+    <tr><td class="idx-keyword">安装方位标/方位基准</td><td>第四章</td><td class="idx-locate">第四节 安装方位标</td><td class="idx-core">靠近真实北向轴线为0°</td></tr>
+  </table>
+</div>
+
+<!-- ============ FORMULA TAB ============ -->
+<div id="tab-formula" class="tab-panel">
+  <div class="section-title" style="margin-bottom:16px">📐 考试公式总库</div>
+  <div class="formula-grid">
+    <div class="formula-card">
+      <div class="formula-name">① 物料衡算基本方程</div>
+      <div class="formula-body">输入量 = 输出量 + 消耗量 + 积累量</div>
+      <div class="formula-meta">
+        <div class="formula-meta-row"><span class="fm-label">稳定态</span><span class="fm-val">积累=0，简化：输入=输出+消耗</span></div>
+        <div class="formula-meta-row"><span class="fm-label">何时用</span><span class="fm-val">所有物料计算</span></div>
+        <div class="formula-meta-row"><span class="fm-label">陷阱</span><span class="fm-val">有循环物流须单独对每台设备列方程</span></div>
+      </div>
+    </div>
+    <div class="formula-card">
+      <div class="formula-name">② 热量衡算总式（有反应）</div>
+      <div class="formula-body">Q = ΔHrxn × n + Σmᵢ×Cpᵢ×ΔTᵢ</div>
+      <div class="formula-meta">
+        <div class="formula-meta-row"><span class="fm-label">ΔHrxn</span><span class="fm-val">标准反应热 (kJ/mol)，放热为负</span></div>
+        <div class="formula-meta-row"><span class="fm-label">n</span><span class="fm-val">反应量 (mol/h 或 mol)</span></div>
+        <div class="formula-meta-row"><span class="fm-label">陷阱</span><span class="fm-val">放热Q<0，求出口T时注意符号方向</span></div>
+      </div>
+    </div>
+    <div class="formula-card">
+      <div class="formula-name">③ 单相显热</div>
+      <div class="formula-body">Q = m × Cp × ΔT</div>
+      <div class="formula-meta">
+        <div class="formula-meta-row"><span class="fm-label">何时用</span><span class="fm-val">无相变的加热/冷却</span></div>
+        <div class="formula-meta-row"><span class="fm-label">注意</span><span class="fm-val">单位统一（kg/h 配 kJ/kg·K）</span></div>
+      </div>
+    </div>
+    <div class="formula-card">
+      <div class="formula-name">④ 换热器传热方程</div>
+      <div class="formula-body">Q = K × A × ΔTm</div>
+      <div class="formula-meta">
+        <div class="formula-meta-row"><span class="fm-label">A</span><span class="fm-val">传热面积 m²（需留10-20%余量）</span></div>
+        <div class="formula-meta-row"><span class="fm-label">K</span><span class="fm-val">总传热系数 W/(m²·K)，查手册</span></div>
+        <div class="formula-meta-row"><span class="fm-label">ΔTm</span><span class="fm-val">对数平均温差，逆流更大更经济</span></div>
+      </div>
+    </div>
+    <div class="formula-card">
+      <div class="formula-name">⑤ 对数平均温差（逆流）</div>
+      <div class="formula-body">ΔTm = (ΔT₁ - ΔT₂) / ln(ΔT₁/ΔT₂)</div>
+      <div class="formula-meta">
+        <div class="formula-meta-row"><span class="fm-label">逆流</span><span class="fm-val">ΔT₁=T热入-T冷出, ΔT₂=T热出-T冷入</span></div>
+        <div class="formula-meta-row"><span class="fm-label">并流</span><span class="fm-val">ΔT₁=T热入-T冷入, ΔT₂=T热出-T冷出</span></div>
+        <div class="formula-meta-row"><span class="fm-label">等差时</span><span class="fm-val">ΔT₁=ΔT₂, ΔTm=ΔT₁（直接取）</span></div>
+      </div>
+    </div>
+    <div class="formula-card">
+      <div class="formula-name">⑥ 管道标注格式</div>
+      <div class="formula-body">介质代号 + 管段号 + 工段-管径 + 压力等级 + 材质 + 隔热</div>
+      <div class="formula-meta">
+        <div class="formula-meta-row"><span class="fm-label">示例</span><span class="fm-val">PG 13 10-300 N1A-H</span></div>
+        <div class="formula-meta-row"><span class="fm-label">压力</span><span class="fm-val">L=1.0 M=1.6 N=2.5 P=4.0 Q=6.4 MPa</span></div>
+        <div class="formula-meta-row"><span class="fm-label">材质</span><span class="fm-val">B=碳钢 E=不锈钢 G=非金属</span></div>
+      </div>
+    </div>
+    <div class="formula-card">
+      <div class="formula-name">⑦ 过量系数与转化率</div>
+      <div class="formula-body">过量比 = 实际进料/理论进料；转化率 = 已转化/总进料</div>
+      <div class="formula-meta">
+        <div class="formula-meta-row"><span class="fm-label">异丙苯</span><span class="fm-val">苯/丙烯=4:1(mol)，丙烯转化率99%</span></div>
+        <div class="formula-meta-row"><span class="fm-val">限制原料=丙烯（用量按转化率算）</span></div>
+      </div>
+    </div>
+    <div class="formula-card">
+      <div class="formula-name">⑧ 产量基准计算</div>
+      <div class="formula-body">小时产量 = 年产量 ÷ 年操作时数</div>
+      <div class="formula-meta">
+        <div class="formula-meta-row"><span class="fm-label">异丙苯</span><span class="fm-val">50万t/年 ÷ 8000h = 62.375 t/h</span></div>
+        <div class="formula-meta-row"><span class="fm-val">再换算：kg/h ÷ 分子量 = kmol/h</span></div>
+        <div class="formula-meta-row"><span class="fm-label">陷阱</span><span class="fm-val">注意产品纯度！纯产品量≠总产量</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:28px">🗂 常数速查</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px">
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:12px">
+      <div style="color:var(--accent3);font-size:12px;font-weight:700;margin-bottom:6px">压力等级代号</div>
+      <div style="font-size:11px;color:var(--text2);line-height:1.8;font-family:monospace">L=1.0 | M=1.6 | N=2.5<br>P=4.0 | Q=6.4 | R=10.0<br>S=16.0 | T=20.0 | V=25.0</div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:12px">
+      <div style="color:var(--accent3);font-size:12px;font-weight:700;margin-bottom:6px">管道材质代号</div>
+      <div style="font-size:11px;color:var(--text2);line-height:1.8;font-family:monospace">A=铸铁 | B=碳钢<br>C=低合金钢 | D=合金钢<br>E=不锈钢 | G=非金属</div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:12px">
+      <div style="color:var(--accent3);font-size:12px;font-weight:700;margin-bottom:6px">设备代号（PID图）</div>
+      <div style="font-size:11px;color:var(--text2);line-height:1.8;font-family:monospace">T=塔 | P=泵 | R=反应器<br>E=换热器 | V=容器/罐<br>C=压缩机 | F=工业炉</div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:12px">
+      <div style="color:var(--accent3);font-size:12px;font-weight:700;margin-bottom:6px">隔热代号</div>
+      <div style="font-size:11px;color:var(--text2);line-height:1.8;font-family:monospace">H=保温 | C=保冷<br>P=人身防护 | S=蒸汽伴热<br>E=电伴热 | N=隔声</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end content -->
+</div><!-- end main -->
+
+<script>
+function switchTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  const tabs = ['map','ch1','ch2','ch3','ch4','idx','formula'];
+  const idx = tabs.indexOf(id);
+  if (idx >= 0) document.querySelectorAll('.nav-btn')[idx].classList.add('active');
+  const items = document.querySelectorAll('.sidebar-item');
+  items.forEach(i => i.classList.remove('active'));
+  if (idx >= 0 && items[idx]) items[idx].classList.add('active');
+}
+
+document.querySelectorAll('.qa-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const a = q.nextElementSibling;
+    const icon = q.querySelector('.qa-icon');
+    a.classList.toggle('open');
+    if (icon) icon.classList.toggle('open');
+  });
+});
+</script>
+</body>
+</html>
