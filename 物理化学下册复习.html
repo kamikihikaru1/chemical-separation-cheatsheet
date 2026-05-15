@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>物理化学下册 · 公式速查</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script" async></script>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], tags: 'none' },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] },
+  chtml: { scale: 0.95 }
+};
+</script>
+<style>
+:root {
+  --bg: #0f0e0d;
+  --bg2: #1a1917;
+  --bg3: #242220;
+  --bg4: #2e2c29;
+  --border: #3a3835;
+  --border2: #4a4845;
+  --text: #e8e4df;
+  --text2: #a09890;
+  --text3: #6e6660;
+  --accent: #e8a040;
+  --accent2: #f0c070;
+  --blue: #6090d0;
+  --blue2: #4070b0;
+  --blue-bg: #1a2535;
+  --green: #50a870;
+  --green-bg: #152515;
+  --red: #d06060;
+  --red-bg: #251515;
+  --purple: #9070c0;
+  --purple-bg: #1e1a2e;
+  --teal: #40a090;
+  --teal-bg: #102020;
+  --mono: 'JetBrains Mono', monospace;
+  --serif: 'Noto Serif SC', serif;
+  --radius: 10px;
+  --radius-sm: 6px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* ── NAV ── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(15,14,13,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0;
+}
+.nav-inner {
+  display: flex; align-items: center;
+  padding: 10px 16px;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav-inner::-webkit-scrollbar { display: none; }
+.nav-title {
+  font-size: 13px; font-weight: 700;
+  color: var(--accent);
+  white-space: nowrap;
+  margin-right: 4px;
+  letter-spacing: 0.02em;
+}
+.nav-btn {
+  flex-shrink: 0;
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--text2);
+  font-size: 12px;
+  font-family: var(--serif);
+  cursor: pointer;
+  transition: all .2s;
+  white-space: nowrap;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+.nav-btn.active { background: var(--accent); border-color: var(--accent); color: #0f0e0d; font-weight: 700; }
+
+/* ── HERO ── */
+.hero {
+  padding: 32px 16px 20px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(160deg, #1a1512 0%, var(--bg) 60%);
+}
+.hero h1 {
+  font-size: clamp(22px, 5vw, 32px);
+  font-weight: 700;
+  color: var(--accent2);
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+.hero p { font-size: 13px; color: var(--text3); }
+.tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.tag {
+  font-size: 11px; padding: 3px 10px;
+  border-radius: 20px; font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.tag-red { background: var(--red-bg); color: var(--red); border: 1px solid #401515; }
+.tag-blue { background: var(--blue-bg); color: var(--blue); border: 1px solid #1e304a; }
+.tag-green { background: var(--green-bg); color: var(--green); border: 1px solid #1a4025; }
+.tag-amber { background: #251a05; color: var(--accent); border: 1px solid #402e10; }
+.tag-purple { background: var(--purple-bg); color: var(--purple); border: 1px solid #2e254a; }
+
+/* ── CHAPTER SECTIONS ── */
+.chapter { display: none; padding: 0 0 40px; }
+.chapter.active { display: block; }
+
+.section-block {
+  margin: 0; padding: 0 16px;
+}
+
+/* ── KNOWLEDGE NODE ── */
+.knode {
+  margin: 16px 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg2);
+}
+.knode-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 14px;
+  cursor: pointer;
+  user-select: none;
+  gap: 8px;
+}
+.knode-head:hover { background: var(--bg3); }
+.knode-head-left { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
+.knode-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  flex-shrink: 0;
+}
+.dot-red { background: var(--red); }
+.dot-blue { background: var(--blue); }
+.dot-green { background: var(--green); }
+.dot-amber { background: var(--accent); }
+.dot-purple { background: var(--purple); }
+.knode-title {
+  font-size: 14px; font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+}
+.knode-badge {
+  font-size: 10px; padding: 2px 8px;
+  border-radius: 12px; font-weight: 700;
+  flex-shrink: 0; white-space: nowrap;
+}
+.badge-must { background: var(--red-bg); color: var(--red); border: 1px solid #401515; }
+.badge-star { background: #251a05; color: var(--accent); border: 1px solid #402e10; }
+.badge-imp { background: var(--blue-bg); color: var(--blue); border: 1px solid #1e304a; }
+.knode-arrow {
+  flex-shrink: 0; color: var(--text3);
+  font-size: 18px; transition: transform .25s;
+  line-height: 1;
+}
+.knode-arrow.open { transform: rotate(180deg); }
+.knode-body {
+  display: none;
+  border-top: 1px solid var(--border);
+}
+.knode-body.open { display: block; }
+
+/* ── FORMULA BLOCKS ── */
+.formula-section {
+  padding: 14px;
+  background: var(--bg3);
+  border-bottom: 1px solid var(--border);
+}
+.formula-label {
+  font-size: 11px; letter-spacing: 0.08em; font-weight: 700;
+  color: var(--text3); text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.symbol-table {
+  width: 100%; font-size: 13px; border-collapse: collapse;
+  margin-bottom: 10px;
+}
+.symbol-table th {
+  text-align: left; color: var(--text3); font-weight: 600;
+  font-size: 11px; letter-spacing: 0.05em;
+  padding: 4px 8px 6px;
+  border-bottom: 1px solid var(--border);
+}
+.symbol-table td {
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.5;
+}
+.symbol-table tr:last-child td { border-bottom: none; }
+.symbol-table .sym { font-family: var(--mono); font-size: 12px; color: var(--accent2); }
+.symbol-table .unit { font-family: var(--mono); font-size: 11px; color: var(--text3); }
+.formula-box {
+  background: #0a0908;
+  border: 1px solid var(--border2);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  margin: 6px 0;
+  font-size: 14px;
+  overflow-x: auto;
+}
+.formula-box.blue { border-left-color: var(--blue); }
+.formula-box.green { border-left-color: var(--green); }
+.formula-box.red { border-left-color: var(--red); }
+.formula-box.purple { border-left-color: var(--purple); }
+.formula-name {
+  font-size: 11px; color: var(--text3); font-weight: 600;
+  letter-spacing: 0.06em; margin-bottom: 4px;
+}
+.formula-desc { font-size: 12px; color: var(--text2); margin-top: 5px; }
+
+/* ── TIP BOX ── */
+.tip-box {
+  margin: 10px 0;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.tip-amber { background: #1e1405; border: 1px solid #3a2810; color: #c89040; }
+.tip-blue { background: var(--blue-bg); border: 1px solid #1e304a; color: #7090c0; }
+.tip-green { background: var(--green-bg); border: 1px solid #1a4025; color: #60a878; }
+.tip-red { background: var(--red-bg); border: 1px solid #401515; color: #c07070; }
+
+/* ── EXAMPLE PROBLEM ── */
+.example-section {
+  padding: 0;
+}
+.example {
+  border-top: 1px solid var(--border);
+}
+.example-header {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  background: var(--bg2);
+}
+.example-header:hover { background: var(--bg3); }
+.example-type {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.06em;
+  padding: 2px 8px; border-radius: 10px;
+  flex-shrink: 0;
+}
+.type-choice { background: #1a2530; color: #6090c0; }
+.type-calc { background: #251a05; color: #c08030; }
+.type-fill { background: var(--green-bg); color: var(--green); }
+.example-q { font-size: 13px; color: var(--text2); line-height: 1.5; flex: 1; }
+.example-arr { color: var(--text3); font-size: 16px; transition: transform .2s; flex-shrink: 0; }
+.example-arr.open { transform: rotate(180deg); }
+.example-body {
+  display: none;
+  padding: 14px;
+  background: #0d0c0b;
+  border-top: 1px solid var(--border);
+}
+.example-body.open { display: block; }
+.ex-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--text3); text-transform: uppercase; margin-bottom: 6px;
+}
+.ex-q-box {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  font-size: 13.5px;
+  line-height: 1.7;
+}
+.option-list { list-style: none; margin: 8px 0 12px; }
+.option-list li {
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 13px; color: var(--text2);
+  margin-bottom: 5px;
+  cursor: pointer;
+  transition: all .15s;
+}
+.option-list li:hover { border-color: var(--blue); color: var(--text); }
+.option-list li.correct { background: var(--green-bg); border-color: var(--green); color: var(--green); }
+.option-list li.wrong { background: var(--red-bg); border-color: var(--red); color: var(--red); }
+.answer-box {
+  background: #0e1e14;
+  border: 1px solid #1e4a28;
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  margin: 10px 0;
+}
+.answer-ans { font-size: 13px; color: var(--green); font-weight: 700; margin-bottom: 6px; }
+.answer-exp { font-size: 13px; color: var(--text2); line-height: 1.65; }
+.steps { margin: 8px 0; }
+.step-row {
+  display: flex; gap: 10px; margin-bottom: 7px; align-items: flex-start;
+}
+.step-num {
+  min-width: 22px; height: 22px; border-radius: 50%;
+  background: var(--bg4);
+  border: 1px solid var(--border2);
+  font-size: 11px; font-weight: 700; color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 1px;
+}
+.step-text { font-size: 13px; color: var(--text2); line-height: 1.6; }
+.show-ans-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 8px;
+  padding: 7px 14px;
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--text3);
+  font-size: 12px;
+  font-family: var(--serif);
+  cursor: pointer;
+  transition: all .2s;
+}
+.show-ans-btn:hover { border-color: var(--green); color: var(--green); }
+
+/* ── QUICK TABLE ── */
+.quick-table-wrap { padding: 14px; overflow-x: auto; }
+.quick-table {
+  width: 100%; font-size: 12px; border-collapse: collapse;
+  min-width: 380px;
+}
+.quick-table th {
+  background: var(--bg4); color: var(--text3); font-weight: 700;
+  font-size: 11px; letter-spacing: 0.05em;
+  padding: 7px 10px; text-align: left;
+  border: 1px solid var(--border);
+}
+.quick-table td {
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.55;
+}
+.quick-table tr:nth-child(even) td { background: #131211; }
+.quick-table .mono { font-family: var(--mono); font-size: 11px; color: var(--accent2); }
+.freq-h { background: var(--red-bg) !important; color: var(--red); font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 10px; }
+.freq-m { background: var(--blue-bg) !important; color: var(--blue); font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 10px; }
+
+/* ── CAUTION BOX ── */
+.caution-grid { padding: 14px; display: grid; grid-template-columns: 1fr; gap: 10px; }
+.caution-item {
+  background: #180e0e;
+  border: 1px solid #3a1515;
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+}
+.caution-title { font-size: 12px; font-weight: 700; color: var(--red); margin-bottom: 4px; }
+.caution-text { font-size: 13px; color: var(--text2); line-height: 1.6; }
+.caution-formula {
+  font-family: var(--mono); font-size: 11px;
+  color: var(--accent2); background: #0a0806;
+  border: 1px solid var(--border); border-radius: 4px;
+  padding: 5px 8px; margin-top: 6px;
+  overflow-x: auto; white-space: nowrap;
+}
+
+/* ── DIVIDER ── */
+.ch-divider {
+  display: flex; align-items: center; gap: 10px;
+  padding: 20px 16px 8px;
+}
+.ch-divider-line { flex: 1; height: 1px; background: var(--border); }
+.ch-divider-text {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+  color: var(--text3); white-space: nowrap;
+}
+
+/* ── FLOW STEPS ── */
+.flow-box { padding: 14px; }
+.flow-title { font-size: 12px; font-weight: 700; color: var(--text3); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
+.flow-step {
+  display: flex; gap: 10px; align-items: flex-start;
+  margin-bottom: 8px;
+}
+.flow-num {
+  min-width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--bg4); border: 1px solid var(--border2);
+  font-size: 11px; font-weight: 700; color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.flow-text { font-size: 13px; color: var(--text2); line-height: 1.6; padding-top: 2px; }
+
+/* ── HIGHLIGHT TEXT ── */
+.hl-amber { color: var(--accent); font-weight: 600; }
+.hl-blue { color: var(--blue); font-weight: 600; }
+.hl-green { color: var(--green); font-weight: 600; }
+.hl-red { color: var(--red); font-weight: 600; }
+
+/* ── PROGRESS BAR ── */
+.progress-row {
+  display: flex; gap: 6px; padding: 14px 16px;
+  overflow-x: auto; scrollbar-width: none;
+}
+.progress-row::-webkit-scrollbar { display: none; }
+.prog-item {
+  flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 4px;
+}
+.prog-bar-wrap {
+  width: 36px; height: 70px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  display: flex; align-items: flex-end;
+  overflow: hidden;
+}
+.prog-bar { width: 100%; border-radius: 3px; }
+.prog-label { font-size: 10px; color: var(--text3); text-align: center; max-width: 50px; line-height: 1.3; }
+
+/* ── MathJax override ── */
+.MJX-TEX { color: inherit; }
+
+/* ── RESPONSIVE ── */
+@media (min-width: 600px) {
+  .caution-grid { grid-template-columns: 1fr 1fr; }
+  .section-block { padding: 0 20px; }
+  .hero { padding: 40px 20px 24px; }
+  .nav-inner { padding: 10px 20px; }
+}
+@media (min-width: 900px) {
+  body { font-size: 16px; }
+  .section-block { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+  .hero { padding: 48px 24px 28px; max-width: 760px; margin: 0 auto; }
+  .nav-inner { max-width: 760px; margin: 0 auto; }
+}
+
+/* ── SCROLL-REVEAL ANIMATION ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.knode { animation: fadeUp .3s ease both; }
+.knode:nth-child(1) { animation-delay: .05s; }
+.knode:nth-child(2) { animation-delay: .1s; }
+.knode:nth-child(3) { animation-delay: .15s; }
+.knode:nth-child(4) { animation-delay: .2s; }
+.knode:nth-child(5) { animation-delay: .25s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <span class="nav-title">物化下册</span>
+    <button class="nav-btn active" onclick="showCh('ch7')">⚡ 电化学</button>
+    <button class="nav-btn" onclick="showCh('ch10')">💧 表面化学</button>
+    <button class="nav-btn" onclick="showCh('ch11')">🔬 动力学</button>
+    <button class="nav-btn" onclick="showCh('ch12')">🌀 胶体</button>
+    <button class="nav-btn" onclick="showCh('quick')">📋 速查表</button>
+    <button class="nav-btn" onclick="showCh('trap')">⚠️ 易错</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>物理化学下册<br>公式 · 串联 · 例题</h1>
+  <p>蜂考讲义 p84–134 精华整理 | 含学习通原题解析</p>
+  <div class="tag-row">
+    <span class="tag tag-red">必考</span>
+    <span class="tag tag-amber">★★★★★</span>
+    <span class="tag tag-blue">含例题答案</span>
+    <span class="tag tag-green">LaTeX公式</span>
+    <span class="tag tag-purple">手机友好</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ CH7 ═══════════════════ -->
+<div id="ch7" class="chapter active">
+<div class="section-block">
+
+<!-- 7A: 电导 -->
+<div class="knode">
+  <div class="knode-head" onclick="toggleNode(this)">
+    <div class="knode-head-left">
+      <span class="knode-dot dot-amber"></span>
+      <span class="knode-title">7-A 离子迁移数与电导体系</span>
+    </div>
+    <span class="knode-badge badge-must">必考</span>
+    <span class="knode-arrow">▼</span>
+  </div>
+  <div class="knode-body">
+    <div class="formula-section">
+      <div class="formula-label">符号一览</div>
+      <table class="symbol-table">
+        <tr><th>符号</th><th>含义</th><th>单位</th></tr>
+        <tr><td class="sym">t₊, t₋</td><td>正/负离子迁移数</td><td class="unit">无量纲</td></tr>
+        <tr><td class="sym">G = 1/R</td><td>电导</td><td class="unit">S（西门子）</td></tr>
+        <tr><td class="sym">κ</td><td>电导率</td><td class="unit">S·m⁻¹</td></tr>
+        <tr><td class="sym">Λₘ</td><td>摩尔电导率</td><td class="unit">S·m²·mol⁻¹</td></tr>
+        <tr><td class="sym">K<sub>cell</sub> = l/Aₛ</td><td>电导池系数</td><td class="unit">m⁻¹</td></tr>
+      </table>
+      <div class="formula-label" style="margin-top:12px">核心公式</div>
+      <div class="formula-box">
+        <div class="formula-name">迁移数定义</div>
+        $$t_+ = \frac{V_+}{V_++V_-},\quad t_- = \frac{V_-}{V_++V_-},\quad t_++t_-=1$$
+      </div>
+      <div class="formula-box blue">
+        <div class="formula-name">电导 → 电导率（核心换算）</div>
+        $$\kappa = G \cdot K_{cell} = \frac{1}{R} \cdot \frac{l}{A_s}$$
+        <div class="formula-desc">电阻R已知，乘以电导池系数即得κ</div>
+      </div>
+      <div class="formula-box green">
+        <div class="formula-name">摩尔电导率</div>
+        $$\Lambda_m = \frac{\kappa}{c}\quad(c\text{ 单位：mol·m}^{-3})$$
+      </div>
+      <div class="formula-box">
+        <div class="formula-name">离子独立移动定律（无限稀释）</div>
+        $$\Lambda_m^\infty = \nu_+\lambda_+^\infty + \nu_-\lambda_-^\infty$$
+        <div class="formula-desc">只在无限稀释时严格成立；弱电解质解离度 α = Λₘ/Λₘ∞</div>
+      </div>
+      <div class="formula-box purple">
+        <div class="formula-name">离子强度</div>
+        $$I = \frac{1}{2}\sum_B b_B z_B^2$$
+        <div class="formula-desc">bB：B离子质量摩尔浓度(mol·kg⁻¹)；zB：电荷数</div>
+      </div>
+      <div class="tip-box tip-amber">
+        ⚡ <b>解题链路</b>：已知κ和R → K<sub>cell</sub> = κ×R → 换液后κ' = K<sub>cell</sub>/R' → Λₘ = κ'/c → 若弱电解质：α = Λₘ/Λₘ∞
+      </div>
+      <div class="tip-box tip-red">
+        ⚠️ 浓度增大：<b>κ增大</b>（更多载流子）、<b>Λₘ减小</b>（离子间作用增强）——无论强弱电解质均如此！
+      </div>
+    </div>
+    <!-- Example 7-E-003 -->
+    <div class="example-section">
+      <div class="example">
+        <div class="example-header" onclick="toggleEx(this)">
+          <span class="example-type type-calc">计算题</span>
+          <span class="example-q">求电导池系数 → CaCl₂ 的摩尔电导率</span>
+          <span class="example-arr">▼</span>
+        </div>
+        <div class="example-body">
+          <div class="ex-label">题目（下册题库 7.5 / 讲义同类型）</div>
+          <div class="ex-q-box">
+            25°C 时，$0.02\,\mathrm{mol\cdot dm^{-3}}$ KCl 溶液的电导率为 $\kappa_1 = 0.2768\,\mathrm{S\cdot m^{-1}}$，放入某电导池后测得电阻 $R_1 = 453\,\Omega$。同一电导池中装入 $0.555\,\mathrm{g\cdot dm^{-3}}$ 的 $\mathrm{CaCl_2}$ 溶液，测得电阻 $R_2 = 1050\,\Omega$。计算：<br>
+            (1) 电导池系数 $K_{cell}$；　(2) $\mathrm{CaCl_2}$ 的电导率 $\kappa_2$；　(3) $\mathrm{CaCl_2}$ 的摩尔电导率 $\Lambda_m$
+          </div>
+          <div class="steps">
+            <div class="step-row"><div class="step-num">①</div><div class="step-text">由 KCl 数据：$$K_{cell} = \kappa_1 \times R_1 = 0.2768 \times 453 = \mathbf{125.4\,\mathrm{m^{-1}}}$$</div></div>
+            <div class="step-row"><div class="step-num">②</div><div class="step-text">同一电导池换 CaCl₂：$$\kappa_2 = \frac{K_{cell}}{R_2} = \frac{125.4}{1050} = \mathbf{0.1194\,\mathrm{S\cdot m^{-1}}}$$</div></div>
+            <div class="step-row"><div class="step-num">③</div><div class="step-text">换算浓度（M=111 g/mol）：$$c = \frac{0.555}{111}\,\mathrm{mol\cdot dm^{-3}} = 0.005\,\mathrm{mol\cdot dm^{-3}} = 5\,\mathrm{mol\cdot m^{-3}}$$</div></div>
+            <div class="step-row"><div class="step-num">④</div><div class="step-text">$$\Lambda_m = \frac{\kappa_2}{c} = \frac{0.1194}{5} = \mathbf{0.02388\,\mathrm{S\cdot m^2\cdot mol^{-1}}}$$</div></div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-ans">✓ 答：K<sub>cell</sub> = 125.4 m⁻¹，κ₂ = 0.1194 S·m⁻¹，Λₘ = 0.02388 S·m²·mol⁻¹</div>
+            <div class="answer-exp">注意浓度单位换算：1 mol·dm⁻³ = 1000 mol·m⁻³；c 以 mol·m⁻³ 代入 Λₘ = κ/c</div>
+          </div>
+        </div>
+      </div>
+      <div class="example">
+        <div class="example-header" onclick="toggleEx(this)">
+          <span class="example-type type-choice">选择题</span>
+          <span class="example-q">离子独立移动定律适用于哪种溶液？</span>
+          <span class="example-arr">▼</span>
+        </div>
+        <div class="example-body">
+          <div class="ex-q-box">离子独立移动定律适用于（　　）<br>A. 强电解质溶液　　B. 弱电解质溶液<br>C. 无限稀释电解质溶液　　D. 所有电解质溶液</div>
+          <ul class="option-list">
+            <li onclick="chooseOpt(this,'wrong')">A. 强电解质溶液</li>
+            <li onclick="chooseOpt(this,'wrong')">B. 弱电解质溶液</li>
+            <li onclick="chooseOpt(this,'correct')">C. 无限稀释电解质溶液</li>
+            <li onclick="chooseOpt(this,'wrong')">D. 所有电解质溶液</li>
+          </ul>
+          <div class="answer-box">
+            <div class="answer-ans">✓ 答案：C</div>
+            <div class="answer-exp">只有在无限稀释时，离子间距足够大，相互作用可忽略，各离子独立迁移。故无论强弱电解质，均只在无限稀释时严格成立。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 7B: 能斯特方程 -->
+<div class="knode">
+  <div class="knode-head" onclick="toggleNode(this)">
+    <div class="knode-head-left">
+      <span class="knode-dot dot-red"></span>
+      <span class="knode-title">7-B 电极电势与能斯特方程</span>
+    </div>
+    <span class="knode-badge badge-must">必考</span>
+    <span class="knode-arrow">▼</span>
+  </div>
+  <div class="knode-body">
+    <div class="formula-section">
+      <div class="formula-label">符号一览</div>
+      <table class="symbol-table">
+        <tr><th>符号</th><th>含义</th></tr>
+        <tr><td class="sym">φ⊖</td><td>标准电极电势（vs 标准氢电极）</td></tr>
+        <tr><td class="sym">E = φ右 − φ左</td><td>电动势 = 阴极势 − 阳极势；E > 0 → 自发</td></tr>
+        <tr><td class="sym">z</td><td>转移电子数</td></tr>
+        <tr><td class="sym">F = 96500 C·mol⁻¹</td><td>法拉第常数</td></tr>
+        <tr><td class="sym">a</td><td>活度（纯固/纯液 = 1，气体 = p/p⊖）</td></tr>
+      </table>
+      <div class="formula-label" style="margin-top:12px">核心公式</div>
+      <div class="formula-box red">
+        <div class="formula-name">能斯特方程（电极）</div>
+        $$E(\text{电极}) = E^\circ(\text{电极}) - \frac{RT}{zF}\ln\frac{\{a(R)\}^{\nu_R}}{\{a(O)\}^{\nu_O}}$$
+        <div class="formula-desc">O = 氧化态；R = 还原态；25°C 时 RT/F ≈ 0.02569 V</div>
+      </div>
+      <div class="formula-box">
+        <div class="formula-name">能斯特方程（电池）</div>
+        $$E = E^\circ - \frac{RT}{zF}\ln Q_a, \quad E^\circ = \varphi^\circ_{\text{右}} - \varphi^\circ_{\text{左}}$$
+      </div>
+      <div class="formula-box green">
+        <div class="formula-name">原电池热力学四公式</div>
+        $$\Delta_r G_m = -zFE$$
+        $$\Delta_r S_m = zF\!\left(\frac{\partial E}{\partial T}\right)_{\!p}$$
+        $$\Delta_r H_m = -zFE + zFT\!\left(\frac{\partial E}{\partial T}\right)_{\!p}$$
+        $$Q_r = T\Delta_r S_m = zFT\!\left(\frac{\partial E}{\partial T}\right)_{\!p}$$
+      </div>
+      <div class="formula-box blue">
+        <div class="formula-name">标准电动势与平衡常数</div>
+        $$\ln K^\circ = \frac{zFE^\circ}{RT}$$
+      </div>
+      <div class="tip-box tip-amber">
+        🔑 <b>利用电池求 Ksp</b>：设计电池使溶解平衡为电池总反应 → 平衡时 E = 0 → 代入能斯特方程求 Ksp
+      </div>
+    </div>
+    <!-- Example 7B -->
+    <div class="example-section">
+      <div class="example">
+        <div class="example-header" onclick="toggleEx(this)">
+          <span class="example-type type-calc">计算题</span>
+          <span class="example-q">热力学四量完整计算（讲义题11型）</span>
+          <span class="example-arr">▼</span>
+        </div>
+        <div class="example-body">
+          <div class="ex-q-box">
+            298.15K，电池 $\mathrm{Fe(s)|Fe^{2+}||Fe^{2+},Fe^{3+}|Pt}$。<br>
+            已知 $E^\circ(\mathrm{Fe^{3+}|Fe^{2+}})=0.771\,\mathrm{V}$，$E^\circ(\mathrm{Fe^{2+}|Fe})=-0.440\,\mathrm{V}$，$F=96500\,\mathrm{C\cdot mol^{-1}}$，$(\partial E/\partial T)_p = 1.14\times10^{-3}\,\mathrm{V\cdot K^{-1}}$。<br>
+            (1) 写电极反应；(2) 求 $E^\circ$；(3) 求 $\Delta_r G_m^\circ$，$\Delta_r H_m^\circ$，$\Delta_r S_m^\circ$
+          </div>
+          <div class="steps">
+            <div class="step-row"><div class="step-num">①</div><div class="step-text">阳极（氧化）：$\mathrm{Fe - 2e^- \to Fe^{2+}}$；阴极（还原）：$\mathrm{2Fe^{3+}+2e^- \to 2Fe^{2+}}$；总反应：$\mathrm{2Fe^{3+}+Fe\to 3Fe^{2+}}$，$z=2$</div></div>
+            <div class="step-row"><div class="step-num">②</div><div class="step-text">$$E^\circ = 0.771 - (-0.440) = \mathbf{1.211\,\mathrm{V}}$$</div></div>
+            <div class="step-row"><div class="step-num">③</div><div class="step-text">$$\Delta_r G_m^\circ = -zFE^\circ = -2\times96500\times1.211 = \mathbf{-233.7\,\mathrm{kJ\cdot mol^{-1}}}$$</div></div>
+            <div class="step-row"><div class="step-num">④</div><div class="step-text">$$\Delta_r S_m^\circ = zF\!\left(\frac{\partial E}{\partial T}\right)_{\!p} = 2\times96500\times1.14\times10^{-3} = \mathbf{220.0\,\mathrm{J\cdot mol^{-1}\cdot K^{-1}}}$$</div></div>
+            <div class="step-row"><div class="step-num">⑤</div><div class="step-text">$$\Delta_r H_m^\circ = \Delta_r G_m^\circ + T\Delta_r S_m^\circ = -233.7 + 298.15\times0.220 = \mathbf{-168.1\,\mathrm{kJ\cdot mol^{-1}}}$$</div></div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-ans">✓ E⊖ = 1.211 V，ΔrGm⊖ = −233.7 kJ·mol⁻¹，ΔrSm⊖ = 220.0 J·mol⁻¹·K⁻¹，ΔrHm⊖ = −168.1 kJ·mol⁻¹</div>
+          </div>
+        </div>
+      </div>
+      <div class="example">
+        <div class="example-header" onclick="toggleEx(this)">
+          <span class="example-type type-choice">选择题</span>
+          <span class="example-q">可逆放电时与环境交换的热等于？（讲义题10）</span>
+          <span class="example-arr">▼</span>
+        </div>
+        <div class="example-body">
+          <div class="ex-q-box">电池在恒温恒压下可逆放电时，与环境交换的热等于（　　）<br>A. 0　　B. ΔH　　C. TΔS　　D. −zFE</div>
+          <ul class="option-list">
+            <li onclick="chooseOpt(this,'wrong')">A. 0</li>
+            <li onclick="chooseOpt(this,'wrong')">B. ΔH</li>
+            <li onclick="chooseOpt(this,'correct')">C. TΔS</li>
+            <li onclick="chooseOpt(this,'wrong')">D. −zFE</li>
+          </ul>
+          <div class="answer-box">
+            <div class="answer-ans">✓ 答案：C</div>
+            <div class="answer-exp">可逆过程中交换的热 $Q_r = T\Delta_r S_m = zFT(\partial E/\partial T)_p$，而 ΔH 是恒压不做电功时的热，两者不同！</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 7C: 极化 -->
+<div class="knode">
+  <div class="knode-head" onclick="toggleNode(this)">
+    <div class="knode-head-left">
+      <span class="knode-dot dot-blue"></span>
+      <span class="knode-title">7-C 电极极化与超电势</span>
+    </div>
+    <span class="knode-badge badge-imp">理解</span>
+    <span class="knode-arrow">▼</span>
+  </div>
+  <div class="knode-body">
+    <div class="formula-section">
+      <div class="tip-box tip-blue" style="margin-bottom:10px">
+        极化方向口诀：<b>阳极极化电势更正（↑），阴极极化电势更负（↓）</b>——无论原电池还是电解池！
+      </div>
+      <table class="symbol-table">
+        <tr><th></th><th>原电池</th><th>电解池</th></tr>
+        <tr><td>阳极</td><td>负极，极化后势更正</td><td>正极，极化后势更正</td></tr>
+        <tr><td>阴极</td><td>正极，极化后势更负</td><td>负极，极化后势更负</td></tr>
+      </table>
+      <div class="formula-box blue" style="margin-top:10px">
+        <div class="formula-name">阴极析出电势（含超电势）</div>
+        $$E_{\text{析出}}(\text{阴极}) = \varphi^\circ - \eta \quad (\eta > 0)$$
+        <div class="formula-desc">析出顺序：电极电势越高（正）者越先析出</div>
+      </div>
+    </div>
+    <div class="example-section">
+      <div class="example">
+        <div class="example-header" onclick="toggleEx(this)">
+          <span class="example-type type-choice">选择题</span>
+          <span class="example-q">极化规律：电流密度增加时电势如何变化？（讲义题8）</span>
+          <span class="example-arr">▼</span>
+        </div>
+        <div class="example-body">
+          <div class="ex-q-box">当有电流通过电极时，电极极化遵循的规律是（　　）<br>A. 原电池中正极增大，负极减少；电解池中阳极增大，阴极减少<br>B. 原电池中正极减少，负极增大；电解池中阳极增大，阴极减少<br>C. 阴极极化电势增加，阳极极化电势减少<br>D. 原电池中正极减少，负极增大；电解池中阳极增大，阴极减少</div>
+          <ul class="option-list">
+            <li onclick="chooseOpt(this,'wrong')">A</li>
+            <li onclick="chooseOpt(this,'wrong')">B</li>
+            <li onclick="chooseOpt(this,'wrong')">C</li>
+            <li onclick="chooseOpt(this,'correct')">D</li>
+          </ul>
+          <div class="answer-box">
+            <div class="answer-ans">✓ 答案：D</div>
+            <div class="answer-exp">极化使<b>阳极更正，阴极更负</b>。原电池：阳极=负极（势升高变"较正"），阴极=正极（势降低变"较负"）。电解池：阳极=正极（势升高），阴极=负极（势降低）。选D描述一致。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /section-block -->
+</div><!-- /ch7 -->
+
+<!-- ═══════════════════ CH10 ═══════════════════ -->
+<div id="ch10" class="chapter">
+<div class="section-block">
+
+<!-- 10A: 附加压力 -->
+<div class="knode">
+  <div class="knode-head" onclick="toggleNode(this)">
+    <div class="knode-head-left">
+      <span class="knode-dot dot-amber"></span>
+      <span class="knode-title">10-A 表面张力与弯曲液面附加压力</span>
+    </div>
+    <span class="knode-badge badge-must">必考</span>
+    <span class="knode-arrow">▼</span>
+  </div>
+  <div class="knode-body">
+    <div class="formula-section">
+      <table class="symbol-table">
+        <tr><th>符号</th><th>含义</th><th>单位</th></tr>
+        <tr><td class="sym">γ（或σ）</td><td>表面张力（引起表面收缩的切向力）</td><td class="unit">N·m⁻¹ = J·m⁻²</td></tr>
+        <tr><td class="sym">ΔG<sup>S</sup> = γΔAₛ</td><td>表面吉布斯能变</td><td class="unit">J</td></tr>
+        <tr><td class="sym">ΔP</td><td>附加压力（指向曲率中心）</td><td class="unit">Pa</td></tr>
+        <tr><td class="sym">r</td><td>曲率半径</td><td class="unit">m</td></tr>
+        <tr><td class="sym">θ</td><td>接触角</td><td class="unit">°</td></tr>
+      </table>
+      <div class="formula-label" style="margin-top:12px">附加压力公式</div>
+      <div class="formula-box">
+        <div class="formula-name">液滴 / 液体内小气泡（一个气液界面）</div>
+        $$\Delta P = \frac{2\gamma}{r}$$
+      </div>
+      <div class="formula-box red">
+        <div class="formula-name">空气中肥皂泡（两个气液界面）</div>
+        $$\Delta P = \frac{4\gamma}{r}$$
+      </div>
+      <div class="formula-box blue">
+        <div class="formula-name">毛细管上升/下降高度</div>
+        $$h = \frac{2\gamma\cos\theta}{r\rho g}$$
+        <div class="formula-desc">θ &lt; 90°：润湿，液面上升（h>0）；θ &gt; 90°：不润湿，液面下降（h&lt;0）</div>
+      </div>
+      <div class="tip-box tip-red">
+        ⚠️ <b>液滴 vs 肥皂泡最容易混淆</b>：肥皂泡有内外两个气液界面，故ΔP=4γ/r。液滴只有一个，ΔP=2γ/r
+      </div>
+      <div class="tip-box tip-amber">
+        📌 影响γ的因素：<b>温度↑ → γ↓</b>；极性越强 → γ越大；汞>水>有机物
+      </div>
+    </div>
+    <div class="example-section">
+      <div class="example">
+        <div class="example-header" onclick="toggleEx(this)">
+          <span class="example-type type-calc">计算题</span>
+          <span class="example-q">球形液滴附加压力（讲义题4型）</span>
+          <span class="example-arr">▼</span>
+        </div>
+        <div class="example-body">
+          <div class="ex-q-box">空气中有一直径 $d=2\,\mathrm{mm}$ 的球形液滴，表面张力 $\gamma = 0.06\,\mathrm{J\cdot m^{-2}}$，求液体附加压力。</div>
+          <div class="steps">
+            <div class="step-row"><div class="step-num">①</div><div class="step-text">球形液滴（一个气液界面）：$r = d/2 = 1\times10^{-3}\,\mathrm{m}$</div></div>
+            <div class="step-row"><div class="step-num">②</div><div class="step-text">$$\Delta P = \frac{2\gamma}{r} = \frac{2\times0.06}{1\times10^{-3}} = \mathbf{120\,\mathrm{Pa}}$$</div></div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-ans">✓ ΔP = 120 Pa（选 B）</div>
+          </div>
+        </div>
+      </div>
+      <div class="example">
+        <div class="example-header" onclick="toggleEx(this)">
+          <span class="example-type type-choice">选择题</span>
+          <span class="example-q">水在373.15K沸腾时，气泡内蒸气压大小</span>
+          <span class="example-arr">▼</span>
+        </div>
+        <div class="example-body">
+          <div class="ex-q-box">水在373.15K沸腾时，所产生气泡内的饱和蒸气压（　　）<br>A. 大于 101.325 kPa　　B. 等于 101.325 kPa　　C. 小于 101.325 kPa　　D. 无法确定</div>
+          <ul class="option-list">
+            <li onclick="chooseOpt(this,'wrong')">A. 大于 101.325 kPa</li>
+            <li onclick="chooseOpt(this,'wrong')">B. 等于 101.325 kPa</li>
+            <li onclick="chooseOpt(this,'correct')">C. 小于 101.325 kPa</li>
+            <li onclick="chooseOpt(this,'wrong')">D. 无法确定</li>
+          </ul>
+          <div class="answer-box">
+            <div class="answer-ans">✓ 答案：C</div>
+            <div class="answer-exp">液体内气泡形成的是<b>凹液面</b>（从液体角度看是气泡，气泡壁对液体形成凹面），凹液面蒸气压 $p_r < p_{平}$。由 Kelvin 公式，凹液面（半径取负）蒸气压低于平液面，故小于 101.325 kPa。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 10B: Kelvin方程 -->
+<div class="knode">
+  <div class="knode-head" onclick="toggleNode(this)">
+    <div class="knode-head-left">
+      <span class="knode-dot dot-blue"></span>
+      <span class="knode-title">10-B 微小液滴饱和蒸气压（Kelvin公式）</span>
+    </div>
+    <span class="knode-badge badge-must">必考</span>
+    <span class="knode-arrow">▼</span>
+  </div>
+  <div class="knode-body">
+    <div class="formula-section">
+      <div class="formula-box">
+        <div class="formula-name">Kelvin公式（凸液面，液滴）</div>
+        $$RT\ln\frac{p_r}{p} = \frac{2\gamma M}{\rho r} = \frac{2\gamma V_m}{r} \quad (p_r > p)$$
+        <div class="formula-desc">r越小，pr/p越大 → 小液滴比平液面更易蒸发</div>
+      </div>
+      <div class="formula-box blue">
+        <div class="formula-name">Kelvin公式（凹液面，毛细管中）</div>
+        $$RT\ln\frac{p_r}{p} = -\frac{2\gamma V_m}{r} \quad (p_r < p)$$
+        <div class="formula-desc">凹液面蒸气压低 → 水蒸气在多孔材料孔隙中优先凝结（毛细管凝结）</div>
+      </div>
+      <div class="tip-box tip-amber">
+        📌 <b>凸液面 p_r > p（液滴）；凹液面 p_r &lt; p（毛细管）</b>。两颗水珠放在密闭容器：小液滴蒸气压大，蒸发快，最终小的蒸发掉大的长大！
+      </div>
+    </div>
+    <div class="example-section">
+      <div class="example">
+        <div class="example-header" onclick="toggleEx(this)">
+          <span class="example-type type-calc">计算题</span>
+          <span class="example-q">求半径10⁻⁸ m水珠的饱和蒸气压（讲义题8）</span>
+          <span class="example-arr">▼</span>
+        </div>
+        <div class="example-body">
+          <div class="ex-q-box">
+            已知 20°C 水的表面张力 $\gamma=0.0728\,\mathrm{N\cdot m^{-1}}$，平面水饱和蒸气压 $p=2.34\times10^3\,\mathrm{Pa}$，水的密度 $\rho=998\,\mathrm{kg\cdot m^{-3}}$，$M=18\times10^{-3}\,\mathrm{kg\cdot mol^{-1}}$，$R=8.314\,\mathrm{J\cdot mol^{-1}\cdot K^{-1}}$，$T=293\,\mathrm{K}$。<br>求半径 $r=10^{-8}\,\mathrm{m}$ 的水珠的饱和蒸气压 $p_r$。
+          </div>
+          <div class="steps">
+            <div class="step-row"><div class="step-num">①</div><div class="step-text">代入 Kelvin 公式：$$\ln\frac{p_r}{p} = \frac{2\gamma M}{\rho r RT} = \frac{2\times0.0728\times18\times10^{-3}}{998\times10^{-8}\times8.314\times293}$$</div></div>
+            <div class="step-row"><div class="step-num">②</div><div class="step-text">计算分子：$2\times0.0728\times18\times10^{-3} = 2.621\times10^{-3}$<br>计算分母：$998\times10^{-8}\times8.314\times293 = 2.427\times10^{-2}$<br>$$\ln\frac{p_r}{p} = \frac{2.621\times10^{-3}}{2.427\times10^{-2}} \approx 0.1080$$</div></div>
+            <div class="step-row"><div class="step-num">③</div><div class="step-text">$$p_r = p \cdot e^{0.1080} = 2.34\times10^3 \times 1.114 \approx \mathbf{2.61\times10^3\,\mathrm{Pa}}$$</div></div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-ans">✓ p_r ≈ 2.61×10³ Pa &gt; 2.34×10³ Pa（液滴比平液面蒸气压更大）</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 10C: 吸附 -->
+<div class="knode">
+  <div class="knode-head" onclick="toggleNode(this)">
+    <div class="knode-head-left">
+      <span class="knode-dot dot-green"></span>
+      <span class="knode-title">10-C Langmuir吸附等温式</span>
+    </div>
+    <span class="knode-badge badge-star">★★★★★</span>
+    <span class="knode-arrow">▼</span>
+  </div>
+  <div class="knode-body">
+    <div class="formula-section">
+      <div class="formula-box green">
+        <div class="formula-name">Langmuir等温式</div>
+        $$\theta = \frac{bp}{1+bp},\quad V^a = V_m^a\cdot\frac{bp}{1+bp}$$
+        <div class="formula-desc">θ：覆盖率；b：吸附系数（kPa⁻¹）；Vₘᵃ：饱和吸附量</div>
+      </div>
+      <div class="formula-box">
+        <div class="formula-name">线性化（作图求参数）</div>
+        $$\frac{p}{V^a} = \frac{p}{V_m^a} + \frac{1}{bV_m^a}$$
+        <div class="formula-desc">以 p/Vᵃ 对 p 作图：斜率 = 1/Vₘᵃ，截距 = 1/(bVₘᵃ)</div>
+      </div>
+      <div class="formula-box blue">
+        <div class="formula-name">Gibbs吸附等温式（溶液）</div>
+        $$\Gamma = -\frac{c}{RT}\cdot\frac{d\gamma}{dc}$$
+        <div class="formula-desc">dγ/dc &lt; 0（正吸附，表面活性剂）；dγ/dc &gt; 0（负吸附，无机盐）</div>
+      </div>
+      <div class="formula-box">
+        <div class="formula-name">饱和吸附量与分子截面积</div>
+        $$a_m = \frac{1}{\Gamma_m L}\quad(L=6.022\times10^{23}\,\mathrm{mol^{-1}})$$
+      </div>
+      <div class="tip-box tip-green">
+        ✅ <b>Langmuir 四个假设</b>：①表面均匀 ②单分子层 ③分子间无相互作用 ④动态平衡
+      </div>
+    </div>
+    <div class="example-section">
+      <div class="example">
+        <div class="example-header" onclick="toggleEx(this)">
+          <span class="example-type type-calc">计算题</span>
+          <span class="example-q">两组数据求朗缪尔常数 b 和 Vₘᵃ（讲义题2型）</span>
+          <span class="example-arr">▼</span>
+        </div>
+        <div class="example-body">
+          <div class="ex-q-box">
+            298K 时，$\mathrm{CHCl_3}$ 在活性炭上的吸附遵循 Langmuir 等温式。<br>
+            当 $p_1=5.2\,\mathrm{kPa}$ 时，$V_1^a=0.0692\,\mathrm{m^3/kg}$；<br>
+            当 $p_2=13.5\,\mathrm{kPa}$ 时，$V_2^a=0.0826\,\mathrm{m^3/kg}$。<br>
+            求 (1) 吸附系数 $b$；(2) 饱和吸附量 $V_m^a$。
+          </div>
+          <div class="steps">
+            <div class="step-row"><div class="step-num">①</div><div class="step-text">列两个方程：$$V_1^a = V_m^a\frac{bp_1}{1+bp_1},\quad V_2^a = V_m^a\frac{bp_2}{1+bp_2}$$</div></div>
+            <div class="step-row"><div class="step-num">②</div><div class="step-text">两式相除消去 $V_m^a$：$$\frac{V_1^a}{V_2^a} = \frac{bp_1(1+bp_2)}{bp_2(1+bp_1)}$$代入数据：$\frac{0.0692}{0.0826} = \frac{5.2(1+13.5b)}{13.5(1+5.2b)}$，解得 $b\approx\mathbf{0.537\,\mathrm{kPa^{-1}}}$</div></div>
+            <div class="step-row"><div class="step-num">③</div><div class="step-text">代回第一式求 $V_m^a$：$$V_m^a = \frac{V_1^a(1+bp_1)}{bp_1} = \frac{0.0692\times(1+0.537\times5.2)}{0.537\times5.2} \approx \mathbf{0.094\,\mathrm{m^3/kg}}$$</div></div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-ans">✓ b ≈ 0.537 kPa⁻¹，Vₘᵃ ≈ 0.094 m³/kg</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div><!-- /ch10 -->
+
+<!-- ═══════════════════ CH11 ═══════════════════ -->
+<div id="ch11" class="chapter">
+<div class="section-block">
+
+<!-- 11A: 各级反应 -->
+<div class="knode">
+  <div class="knode-head" onclick="toggleNode(this)">
+    <div class="knode-head-left">
+      <span class="knode-dot dot-amber"></span>
+      <span class="knode-title">11-A 各级反应速率方程汇总</span>
+    </div>
+    <span class="knode-badge badge-must">必考</span>
+    <span class="knode-arrow">▼</span>
+  </div>
+  <div class="knode-body">
+    <div class="quick-table-wrap">
+      <table class="quick-table">
+        <tr>
+          <th>级数</th><th>积分速率方程</th><th>半衰期 t½</th><th>线性化</th>
+        </tr>
+        <tr>
+          <td>0级</td>
+          <td class="mono">$c_{A,0}-c_A = kt$</td>
+          <td class="mono">$c_{A,0}/(2k)$</td>
+          <td>cA vs t</td>
+        </tr>
+        <tr>
+          <td>1级</td>
+          <td class="mono">$\ln(c_{A,0}/c_A)=kt$</td>
+          <td class="mono">$\ln2/k$</td>
+          <td>ln cA vs t</td>
+        </tr>
+        <tr>
+          <td>2级</td>
+          <td class="mono">$1/c_A - 1/c_{A,0}=kt$</td>
+          <td class="mono">$1/(kc_{A,0})$</td>
+          <td>1/cA vs t</td>
+        </tr>
+        <tr>
+          <td>n级</td>
+          <td class="mono">$\frac{1}{n-1}\!\left(\frac{1}{c_A^{n-1}}-\frac{1}{c_{A,0}^{n-1}}\right)=kt$</td>
+          <td class="mono">$\frac{2^{n-1}-1}{(n-1)kc_{A,0}^{n-1}}$</td>
+          <td>—</td>
+        </tr>
+      </table>
+    </div>
+    <div class="formula-section" style="border-top:1px solid var(--border)">
+      <div class="tip-box tip-amber">
+        🔑 <b>判断级数三法</b>：<br>
+        ① t½ 与 c₀ 的关系：0级正比、1级无关、2级反比<br>
+        ② 速率常数 k 单位：n级 → (mol·m⁻³)^(1−n)·s⁻¹<br>
+        ③ 作图线性化：看哪种坐标呈直线
+      </div>
+    </div>
+    <div class="example-section">
+      <div class="example">
+        <div class="example-header" onclick="toggleEx(this)">
+          <span class="example-type type-choice">选择题</span>
+          <span class="example-q">A→P 一级反应，消耗3/4 vs 消耗1/2 所需时间之比</span>
+          <span class="example-arr">▼</span>
+        </div>
+        <div class="example-body">
+          <div class="ex-q-box">$A\to P$ 为一级反应，$A$ 反应掉 $\frac{3}{4}$ 所需时间为反应掉 $\frac{1}{2}$ 所需时间的（　　）<br>A. 2倍　　B. 3/2倍　　C. 3倍　　D. 不能确定</div>
+          <ul class="option-list">
+            <li onclick="chooseOpt(this,'correct')">A. 2倍</li>
+            <li onclick="chooseOpt(this,'wrong')">B. 3/2倍</li>
+            <li onclick="chooseOpt(this,'wrong')">C. 3倍</li>
+            <li onclick="chooseOpt(this,'wrong')">D. 不能确定</li>
+          </ul>
+          <div class="answer-box">
+            <div class="answer-ans">✓ 答案：A（2倍）</div>
+            <div class="answer-exp">一级反应：$t = \frac{\ln(c_0/c)}{k}$。反应掉1/2时：$t_{1/2}=\ln2/k$；反应掉3/4时（剩1/4）：$t=\ln4/k=2\ln2/k=2t_{1/2}$。故正好是2倍。</div>
+          </div>
+        </div>
+      </div>
+      <div class="example">
+        <div class="example-header" onclick="toggleEx(this)">
+          <span class="example-type type-calc">计算题</span>
+          <span class="example-q">二级反应：消耗1/3后再消耗1/3 还需多久？</span>
+          <span class="example-arr">▼</span>
+        </div>
+        <div class="example-body">
+          <div class="ex-q-box">某二级反应，反应物消耗 $\frac{1}{3}$ 需时间 $10\,\mathrm{min}$，若再消耗 $\frac{1}{3}$，还需时间（　　）<br>A. 10 min　　B. 20 min　　C. 30 min　　D. 40 min</div>
+          <ul class="option-list">
+            <li onclick="chooseOpt(this,'wrong')">A. 10 min</li>
+            <li onclick="chooseOpt(this,'wrong')">B. 20 min</li>
+            <li onclick="chooseOpt(this,'correct')">C. 30 min</li>
+            <li onclick="chooseOpt(this,'wrong')">D. 40 min</li>
+          </ul>
+          <div class="answer-box">
+            <div class="answer-ans">✓ 答案：C（30 min）</div>
+            <div class="answer-exp">
+              二级反应：$\frac{1}{c_A} - \frac{1}{c_{A,0}} = kt$<br>
+              消耗1/3后剩 $c_A = \frac{2}{3}c_0$：$kt_1 = \frac{1}{2c_0/3} - \frac{1}{c_0} = \frac{3}{2c_0} - \frac{1}{c_0} = \frac{1}{2c_0}$<br>
+              再消耗1/3后剩 $c_A = \frac{1}{3}c_0$：$kt_2 = \frac{3}{c_0} - \frac{1}{c_0} = \frac{2}{c_0}$<br>
+              故 $\Delta t = t_2 - t_1 = \frac{1}{k}\left(\frac{2}{c_0}-\frac{1}{2c_0}\right) = \frac{3}{2kc_0} = 3t_1 = 30\,\mathrm{min}$
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 11B: 平行对行 -->
+<div class="knode">
+  <div class="knode-head" onclick="toggleNode(this)">
+    <div class="knode-head-left">
+      <span class="knode-dot dot-red"></span>
+      <span class="knode-title">11-B 平行反应与对行反应</span>
+    </div>
+    <span class="knode-badge badge-star">★★★★★</span>
+    <span class="knode-arrow">▼</span>
+  </div>
+  <div class="knode-body">
+    <div class="formula-section">
+      <div class="formula-box">
+        <div class="formula-name">平行反应（A→B 和 A→C，均一级）</div>
+        $$c_A = c_{A,0}\cdot e^{-(k_1+k_2)t}$$
+        $$\frac{c_B}{c_C} = \frac{k_1}{k_2}\quad(\text{任意时刻成立！})$$
+      </div>
+      <div class="formula-box blue">
+        <div class="formula-name">对行反应（A⇌B，1-1级）</div>
+        $$\ln\frac{c_{A,0}-c_{A,e}}{c_A - c_{A,e}} = (k_1+k_{-1})t$$
+        $$K^\circ = \frac{c_{B,e}}{c_{A,e}} = \frac{k_1}{k_{-1}}\quad(\text{平衡常数})$$
+        <div class="formula-desc">cA,e：平衡浓度；对行反应趋向平衡而非完全反应</div>
+      </div>
+    </div>
+    <div class="example-section">
+      <div class="example">
+        <div class="example-header" onclick="toggleEx(this)">
+          <span class="example-type type-calc">计算题</span>
+          <span class="example-q">平行反应：A反应掉90%时产物B的量（讲义题1型）</span>
+          <span class="example-arr">▼</span>
+        </div>
+        <div class="example-body">
+          <div class="ex-q-box">
+            平行反应 $A\xrightarrow{k_1}B$，$A\xrightarrow{k_2}C$，1089K 时 $k_1=3.74\,\mathrm{s^{-1}}$，$k_2=4.65\,\mathrm{s^{-1}}$。<br>
+            (1) 计算 A 反应掉 90% 的时间；(2) 1 mol A 转化率 95% 时，产物 B 的量是多少？
+          </div>
+          <div class="steps">
+            <div class="step-row"><div class="step-num">①</div><div class="step-text">平行反应 A 的消耗遵循：$c_A = c_{A,0}\cdot e^{-(k_1+k_2)t}$，$k_1+k_2 = 8.39\,\mathrm{s^{-1}}$<br>消耗90%，即 $c_A = 0.1c_{A,0}$：$$t = \frac{\ln(1/0.1)}{k_1+k_2} = \frac{\ln10}{8.39} \approx \mathbf{0.274\,\mathrm{s}}$$</div></div>
+            <div class="step-row"><div class="step-num">②</div><div class="step-text">任意时刻 $\frac{c_B}{c_C}=\frac{k_1}{k_2}=\frac{3.74}{4.65}=0.804$，且 $c_B+c_C = 0.95\,\mathrm{mol}$<br>$$c_B = \frac{k_1}{k_1+k_2}\times0.95 = \frac{3.74}{8.39}\times0.95 \approx \mathbf{0.424\,\mathrm{mol}}$$</div></div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-ans">✓ t ≈ 0.274 s；n(B) ≈ 0.424 mol</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 11C: Arrhenius & 稳态 -->
+<div class="knode">
+  <div class="knode-head" onclick="toggleNode(this)">
+    <div class="knode-head-left">
+      <span class="knode-dot dot-purple"></span>
+      <span class="knode-title">11-C Arrhenius方程与稳态近似法</span>
+    </div>
+    <span class="knode-badge badge-star">★★★★★</span>
+    <span class="knode-arrow">▼</span>
+  </div>
+  <div class="knode-body">
+    <div class="formula-section">
+      <div class="formula-box purple">
+        <div class="formula-name">Arrhenius方程（两温度形式）</div>
+        $$\ln\frac{k_1}{k_2} = -\frac{E_a}{R}\left(\frac{1}{T_1}-\frac{1}{T_2}\right)$$
+        <div class="formula-desc">已知两温度下k → 求活化能Eₐ；已知Eₐ和一个k → 求另一温度下k</div>
+      </div>
+      <div class="formula-box">
+        <div class="formula-name">表观活化能（复合反应）</div>
+        $$\ln k \sim \ln k_1 + \ln k_2 + \cdots \Rightarrow E_a = E_1 + E_2 + \cdots$$
+        <div class="formula-desc">若 k = k₁k₂(k₃/k₄)^{1/2}，则 Eₐ = E₁ + E₂ + ½(E₃−E₄)</div>
+      </div>
+      <div class="formula-label" style="margin-top:12px">稳态近似法（必掌握步骤）</div>
+      <div class="flow-box" style="padding:0">
+        <div class="flow-step"><div class="flow-num">①</div><div class="flow-text">对每个<b>活性中间物</b>（自由基、中间体）令 $\mathrm{d}[B]/\mathrm{d}t = 0$</div></div>
+        <div class="flow-step"><div class="flow-num">②</div><div class="flow-text">列方程求出中间物浓度 [B] 的表达式</div></div>
+        <div class="flow-step"><div class="flow-num">③</div><div class="flow-text">代入目标产物生成速率方程</div></div>
+        <div class="flow-step"><div class="flow-num">④</div><div class="flow-text">整理为 $v = k_{表观}[反应物]^n$，读出表观活化能</div></div>
+      </div>
+      <div class="tip-box tip-amber" style="margin-top:10px">
+        📌 适用条件：中间物快速消耗，即 $k_2 \gg k_1$（中间物一生成立刻被消耗）
+      </div>
+    </div>
+    <div class="example-section">
+      <div class="example">
+        <div class="example-header" onclick="toggleEx(this)">
+          <span class="example-type type-calc">计算题</span>
+          <span class="example-q">已知半衰期无关c₀，求活化能（讲义题3型）</span>
+          <span class="example-arr">▼</span>
+        </div>
+        <div class="example-body">
+          <div class="ex-q-box">
+            298K 时某气体分解反应 $aA\to\text{产物}$，半衰期 $t_{1/2}=5.7\,\mathrm{h}$，与 $c_0$ 无关。温度升高 10K，$k$ 变为原来的 3 倍。求活化能 $E_a$。
+          </div>
+          <div class="steps">
+            <div class="step-row"><div class="step-num">①</div><div class="step-text">半衰期与c₀无关 → <b>一级反应</b>；$k_1 = \ln2/t_{1/2} = \ln2/5.7\,\mathrm{h^{-1}}$</div></div>
+            <div class="step-row"><div class="step-num">②</div><div class="step-text">$T_1=298\,\mathrm{K}$，$T_2=308\,\mathrm{K}$，$k_2=3k_1$：$$\ln\frac{k_2}{k_1} = -\frac{E_a}{R}\!\left(\frac{1}{T_2}-\frac{1}{T_1}\right)$$</div></div>
+            <div class="step-row"><div class="step-num">③</div><div class="step-text">$$\ln3 = -\frac{E_a}{8.314}\!\left(\frac{1}{308}-\frac{1}{298}\right) = \frac{E_a}{8.314}\times\frac{10}{298\times308}$$<br>$$E_a = \frac{\ln3\times8.314\times298\times308}{10} \approx \mathbf{83.8\,\mathrm{kJ\cdot mol^{-1}}}$$</div></div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-ans">✓ Eₐ ≈ 83.8 kJ·mol⁻¹</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div><!-- /ch11 -->
+
+<!-- ═══════════════════ CH12 ═══════════════════ -->
+<div id="ch12" class="chapter">
+<div class="section-block">
+
+<div class="knode">
+  <div class="knode-head" onclick="toggleNode(this)">
+    <div class="knode-head-left">
+      <span class="knode-dot dot-blue"></span>
+      <span class="knode-title">12-A 胶体系统分类与特征</span>
+    </div>
+    <span class="knode-badge badge-imp">理解</span>
+    <span class="knode-arrow">▼</span>
+  </div>
+  <div class="knode-body">
+    <div class="quick-table-wrap">
+      <table class="quick-table">
+        <tr><th>类型</th><th>粒径/nm</th><th>热力学</th><th>能透过半透膜？</th><th>举例</th></tr>
+        <tr><td>真溶液</td><td>&lt;1</td><td>稳定</td><td>✓</td><td>NaCl水溶液</td></tr>
+        <tr><td>溶胶</td><td>1–1000</td><td>不稳定</td><td>✗</td><td>Fe(OH)₃溶胶</td></tr>
+        <tr><td>高分子溶液</td><td>1–1000</td><td>稳定</td><td>✗</td><td>聚乙烯醇</td></tr>
+        <tr><td>缔合胶体</td><td>1–1000</td><td>稳定</td><td>✗</td><td>c>cmc的表活剂</td></tr>
+      </table>
+    </div>
+    <div class="formula-section">
+      <div class="tip-box tip-blue">
+        📌 <b>丁达尔效应</b>：光散射，本质：λ(光) &gt; 粒子直径；散射强度 ∝ 1/λ⁴（波长四次方成反比）
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="knode">
+  <div class="knode-head" onclick="toggleNode(this)">
+    <div class="knode-head-left">
+      <span class="knode-dot dot-amber"></span>
+      <span class="knode-title">12-B 胶团结构书写</span>
+    </div>
+    <span class="knode-badge badge-star">★★★</span>
+    <span class="knode-arrow">▼</span>
+  </div>
+  <div class="knode-body">
+    <div class="formula-section">
+      <div class="flow-box" style="padding:0 0 8px">
+        <div class="flow-step"><div class="flow-num">①</div><div class="flow-text">胶核由沉淀物组成（如 AgI、As₂S₃、Fe(OH)₃）</div></div>
+        <div class="flow-step"><div class="flow-num">②</div><div class="flow-text"><b>过量试剂</b>的离子吸附在胶核表面 → 电位离子（决定胶粒电荷符号）</div></div>
+        <div class="flow-step"><div class="flow-num">③</div><div class="flow-text">反号离子一部分在紧密层（Stern层），剩余在扩散层</div></div>
+        <div class="flow-step"><div class="flow-num">④</div><div class="flow-text">胶团整体电中性；胶粒（胶核+紧密层）带电</div></div>
+      </div>
+      <div class="formula-box">
+        <div class="formula-name">AgNO₃过量制AgI（胶粒带正电）</div>
+        $$\left\{[AgI]_m \cdot nAg^+ \cdot (n-x)NO_3^-\right\}^{x+} \cdot xNO_3^-$$
+      </div>
+      <div class="formula-box blue">
+        <div class="formula-name">KI过量制AgI（胶粒带负电）</div>
+        $$\left\{[AgI]_m \cdot nI^- \cdot (n-x)K^+\right\}^{x-} \cdot xK^+$$
+      </div>
+    </div>
+    <div class="example-section">
+      <div class="example">
+        <div class="example-header" onclick="toggleEx(this)">
+          <span class="example-type type-fill">填空题</span>
+          <span class="example-q">H₂S过量制As₂S₃溶胶，胶团结构是？（讲义题3）</span>
+          <span class="example-arr">▼</span>
+        </div>
+        <div class="example-body">
+          <div class="ex-q-box">在稀的硫酸溶液中通入 $\mathrm{H_2S}$ 制备 $\mathrm{As_2S_3}$ 溶胶，$\mathrm{H_2S}$ 适当过量。已知 $\mathrm{H_2S}$ 可一级电离成 $\mathrm{H^+}$ 和 $\mathrm{HS^-}$，则胶团结构为____。</div>
+          <div class="answer-box">
+            <div class="answer-ans">✓ 答案：D</div>
+            <div class="answer-exp">
+              H₂S 过量 → HS⁻ 过量（一级电离产物）→ <b>HS⁻ 为电位离子</b>，吸附在 As₂S₃ 胶核表面，使胶粒带负电。H⁺ 为反号离子。<br><br>
+              胶团结构：$$\left\{[As_2S_3]_m \cdot nHS^- \cdot (n-x)H^+\right\}^{x-} \cdot xH^+$$
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="knode">
+  <div class="knode-head" onclick="toggleNode(this)">
+    <div class="knode-head-left">
+      <span class="knode-dot dot-red"></span>
+      <span class="knode-title">12-C 胶体聚沉规律</span>
+    </div>
+    <span class="knode-badge badge-star">★★★</span>
+    <span class="knode-arrow">▼</span>
+  </div>
+  <div class="knode-body">
+    <div class="formula-section">
+      <div class="tip-box tip-red" style="margin-bottom:10px">
+        ⚠️ <b>聚沉离子</b>：与胶粒电性<b>相反</b>的离子起聚沉作用！
+      </div>
+      <table class="symbol-table">
+        <tr><th>规律</th><th>内容</th></tr>
+        <tr><td>价数规律</td><td>聚沉能力 ∝ z⁶（Schulze-Hardy规则）。一价:二价:三价 ≈ 1:64:729</td></tr>
+        <tr><td>聚沉值</td><td>使溶胶聚沉所需最小浓度；聚沉值<b>越小</b>→聚沉能力<b>越强</b></td></tr>
+        <tr><td>同价正离子</td><td>离子半径越小，聚沉能力越弱：Li⁺ &lt; Na⁺ &lt; K⁺ &lt; Cs⁺</td></tr>
+        <tr><td>同价负离子</td><td>离子半径越小，聚沉能力越强：F⁻ &gt; Cl⁻ &gt; Br⁻ &gt; I⁻</td></tr>
+      </table>
+    </div>
+    <div class="example-section">
+      <div class="example">
+        <div class="example-header" onclick="toggleEx(this)">
+          <span class="example-type type-choice">选择题</span>
+          <span class="example-q">KI与AgNO₃等体积混合制AgI溶胶，哪种电解质聚沉能力最强？</span>
+          <span class="example-arr">▼</span>
+        </div>
+        <div class="example-body">
+          <div class="ex-q-box">
+            将 $0.5\,\mathrm{mol\cdot dm^{-3}}$ KI 溶液与 $0.1\,\mathrm{mol\cdot dm^{-3}}$ AgNO₃ 溶液等体积混合制备 AgI 溶胶，分别加入以下电解质时，聚沉能力最强的是（　　）<br>
+            A. $K_3[Fe(CN)_6]$　　B. NaNO₃　　C. MgSO₄　　D. FeCl₃
+          </div>
+          <ul class="option-list">
+            <li onclick="chooseOpt(this,'wrong')">A. K₃[Fe(CN)₆]</li>
+            <li onclick="chooseOpt(this,'wrong')">B. NaNO₃</li>
+            <li onclick="chooseOpt(this,'wrong')">C. MgSO₄</li>
+            <li onclick="chooseOpt(this,'correct')">D. FeCl₃</li>
+          </ul>
+          <div class="answer-box">
+            <div class="answer-ans">✓ 答案：D</div>
+            <div class="answer-exp">KI过量（0.5&gt;0.1 mol），故胶粒<b>带负电</b>。聚沉需要正离子。FeCl₃提供三价Fe³⁺，聚沉能力 ∝ z⁶，三价远强于一价（Na⁺）和二价（Mg²⁺），且K₃[Fe(CN)₆]提供三价负离子[Fe(CN)₆]³⁻，反而抑制正电荷聚沉。故选D。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div><!-- /ch12 -->
+
+<!-- ═══════════════════ QUICK TABLE ═══════════════════ -->
+<div id="quick" class="chapter">
+<div class="section-block">
+  <div class="knode">
+    <div class="knode-head" style="cursor:default">
+      <div class="knode-head-left">
+        <span class="knode-dot dot-amber"></span>
+        <span class="knode-title">全章公式速查（考前必看）</span>
+      </div>
+    </div>
+    <div class="knode-body" style="display:block">
+      <div class="quick-table-wrap">
+        <table class="quick-table">
+          <tr><th>章节</th><th>核心公式</th><th>考频</th></tr>
+          <tr><td>迁移数</td><td class="mono">$t_\pm = V_\pm/(V_++V_-)$，$t_++t_-=1$</td><td><span class="freq-h">高</span></td></tr>
+          <tr><td>电导率</td><td class="mono">$\kappa = K_{cell}/R$，$\Lambda_m = \kappa/c$</td><td><span class="freq-h">高</span></td></tr>
+          <tr><td>无限稀释</td><td class="mono">$\Lambda_m^\infty = \nu_+\lambda_+^\infty+\nu_-\lambda_-^\infty$</td><td><span class="freq-h">高</span></td></tr>
+          <tr><td>离子强度</td><td class="mono">$I = \frac{1}{2}\Sigma b_B z_B^2$</td><td><span class="freq-m">中</span></td></tr>
+          <tr><td>能斯特</td><td class="mono">$E = E^\circ - \frac{RT}{zF}\ln Q_a$</td><td><span class="freq-h">高</span></td></tr>
+          <tr><td>热力学</td><td class="mono">$\Delta G=-zFE$，$\Delta S=zF(\partial E/\partial T)_p$</td><td><span class="freq-h">高</span></td></tr>
+          <tr><td>附加压力</td><td class="mono">液滴：$\Delta P=2\gamma/r$；泡：$4\gamma/r$</td><td><span class="freq-h">高</span></td></tr>
+          <tr><td>毛细管</td><td class="mono">$h = 2\gamma\cos\theta/(r\rho g)$</td><td><span class="freq-m">中</span></td></tr>
+          <tr><td>Kelvin（凸）</td><td class="mono">$RT\ln(p_r/p)=2\gamma V_m/r$ （$p_r>p$）</td><td><span class="freq-h">高</span></td></tr>
+          <tr><td>Kelvin（凹）</td><td class="mono">$RT\ln(p_r/p)=-2\gamma V_m/r$ （$p_r &lt; p$）</td><td><span class="freq-h">高</span></td></tr>
+          <tr><td>Langmuir</td><td class="mono">$\theta=bp/(1+bp)$，$p/V^a$ vs $p$ 直线</td><td><span class="freq-h">高</span></td></tr>
+          <tr><td>Gibbs吸附</td><td class="mono">$\Gamma=-\frac{c}{RT}\frac{d\gamma}{dc}$</td><td><span class="freq-h">高</span></td></tr>
+          <tr><td>一级反应</td><td class="mono">$\ln c_A = \ln c_0 - kt$，$t_{1/2}=\ln2/k$</td><td><span class="freq-h">高</span></td></tr>
+          <tr><td>二级反应</td><td class="mono">$1/c_A - 1/c_0 = kt$，$t_{1/2}=1/(kc_0)$</td><td><span class="freq-h">高</span></td></tr>
+          <tr><td>Arrhenius</td><td class="mono">$\ln(k_1/k_2)=-(E_a/R)(1/T_1-1/T_2)$</td><td><span class="freq-h">高</span></td></tr>
+          <tr><td>平行反应</td><td class="mono">$c_B/c_C = k_1/k_2$（任意时刻）</td><td><span class="freq-h">高</span></td></tr>
+          <tr><td>对行反应</td><td class="mono">$\ln\frac{c_0-c_e}{c-c_e}=(k_1+k_{-1})t$</td><td><span class="freq-h">高</span></td></tr>
+          <tr><td>胶团电性</td><td class="mono">过量试剂离子 → 电位离子，决定胶粒电荷</td><td><span class="freq-m">中</span></td></tr>
+          <tr><td>聚沉规律</td><td class="mono">聚沉能力 $\propto z^6$；胶粒与聚沉离子异号</td><td><span class="freq-m">中</span></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════ TRAP ═══════════════════ -->
+<div id="trap" class="chapter">
+<div class="section-block">
+  <div class="knode">
+    <div class="knode-head" style="cursor:default">
+      <div class="knode-head-left">
+        <span class="knode-dot dot-red"></span>
+        <span class="knode-title">高频易错点 & 解题流程串联</span>
+      </div>
+    </div>
+    <div class="knode-body" style="display:block">
+      <div class="caution-grid">
+        <div class="caution-item">
+          <div class="caution-title">⚠ κ vs Λₘ 方向</div>
+          <div class="caution-text">浓度↑时：<b>κ增大</b>（更多离子载流）、<b>Λₘ减小</b>（离子间作用增强）——强弱电解质均如此！</div>
+        </div>
+        <div class="caution-item">
+          <div class="caution-title">⚠ 液滴 vs 肥皂泡</div>
+          <div class="caution-text">液滴/液内气泡：<b>ΔP = 2γ/r</b>（一个界面）<br>空气中肥皂泡：<b>ΔP = 4γ/r</b>（两个界面）</div>
+        </div>
+        <div class="caution-item">
+          <div class="caution-title">⚠ Kelvin正负号</div>
+          <div class="caution-text">凸液面（液滴）：$+\frac{2\gamma V_m}{r}$，$p_r > p$<br>凹液面（毛细管）：$-\frac{2\gamma V_m}{r}$，$p_r < p$</div>
+        </div>
+        <div class="caution-item">
+          <div class="caution-title">⚠ E是强度量</div>
+          <div class="caution-text">电动势 E 不随化学计量系数变化！但 ΔrGm = −zFE 随 z 变化（z随方程倍数变化）</div>
+        </div>
+        <div class="caution-item">
+          <div class="caution-title">⚠ 质量作用定律</div>
+          <div class="caution-text">只适用于<b>基元反应</b>！对总包反应写速率方程必须由实验确定，不能直接用化学计量系数</div>
+        </div>
+        <div class="caution-item">
+          <div class="caution-title">⚠ 半衰期判断级数</div>
+          <div class="caution-text">0级：$t_{1/2}\propto c_0$<br>1级：$t_{1/2}$ 与 $c_0$ 无关<br>2级：$t_{1/2}\propto 1/c_0$</div>
+        </div>
+        <div class="caution-item">
+          <div class="caution-title">⚠ 可逆热≠反应热</div>
+          <div class="caution-text">可逆放电热 $Q_r = T\Delta S$（部分）；恒压反应热 $Q_p = \Delta H$（全部）。|Qr| &lt; |Qp|！</div>
+        </div>
+        <div class="caution-item">
+          <div class="caution-title">⚠ 胶团书写</div>
+          <div class="caution-text">过量试剂离子=电位离子（紧贴胶核）；胶粒带电，胶团整体电中性</div>
+        </div>
+        <div class="caution-item">
+          <div class="caution-title">⚠ 能斯特活度</div>
+          <div class="caution-text">纯固体、纯液体活度 = 1（不写入Q）；气体 a = p/p⊖；溶液 a = γ±·b/b⊖</div>
+        </div>
+        <div class="caution-item">
+          <div class="caution-title">⚠ 聚沉离子选择</div>
+          <div class="caution-text">与<b>胶粒电性相反</b>的离子起聚沉作用！先判断胶粒带正还是负电，再选价数最高的反号离子</div>
+        </div>
+      </div>
+
+      <div class="ch-divider"><div class="ch-divider-line"></div><div class="ch-divider-text">解题流程串联</div><div class="ch-divider-line"></div></div>
+
+      <div style="padding:0 14px 14px">
+        <div class="formula-section" style="border-radius:var(--radius-sm); border:1px solid var(--border); margin-bottom:10px">
+          <div class="formula-label">电导/迁移数大题流程</div>
+          <div class="flow-step"><div class="flow-num">①</div><div class="flow-text">已知已知溶液κ₁和R₁ → $K_{cell} = \kappa_1 \times R_1$</div></div>
+          <div class="flow-step"><div class="flow-num">②</div><div class="flow-text">同一电导池换溶液 → $\kappa_2 = K_{cell}/R_2$</div></div>
+          <div class="flow-step"><div class="flow-num">③</div><div class="flow-text">$\Lambda_m = \kappa_2/c$（c用 mol·m⁻³！）</div></div>
+          <div class="flow-step"><div class="flow-num">④</div><div class="flow-text">若弱电解质：$\alpha = \Lambda_m/\Lambda_m^\infty$，$K^\circ = c\alpha^2/(1-\alpha)$</div></div>
+        </div>
+        <div class="formula-section" style="border-radius:var(--radius-sm); border:1px solid var(--border); margin-bottom:10px">
+          <div class="formula-label">能斯特/设计电池/求Ksp流程</div>
+          <div class="flow-step"><div class="flow-num">①</div><div class="flow-text">写阳极（氧化）和阴极（还原）半反应</div></div>
+          <div class="flow-step"><div class="flow-num">②</div><div class="flow-text">$E^\circ = \varphi^\circ(\text{阴}) - \varphi^\circ(\text{阳})$，代入热力学公式</div></div>
+          <div class="flow-step"><div class="flow-num">③</div><div class="flow-text">写能斯特方程，代入已知活度/浓度</div></div>
+          <div class="flow-step"><div class="flow-num">④</div><div class="flow-text">求 Ksp 时：令 $E=0$（平衡）→ 解方程求 $K_{sp}$</div></div>
+        </div>
+        <div class="formula-section" style="border-radius:var(--radius-sm); border:1px solid var(--border); margin-bottom:10px">
+          <div class="formula-label">Langmuir 大题流程</div>
+          <div class="flow-step"><div class="flow-num">①</div><div class="flow-text">两组(p, Vᵃ)数据列方程组</div></div>
+          <div class="flow-step"><div class="flow-num">②</div><div class="flow-text">联立消去 $V_m^a$ 求 $b$</div></div>
+          <div class="flow-step"><div class="flow-num">③</div><div class="flow-text">代回求 $V_m^a$，验证</div></div>
+          <div class="flow-step"><div class="flow-num">④</div><div class="flow-text">反求某θ对应的压力：$p = \theta/[b(1-\theta)]$</div></div>
+        </div>
+        <div class="formula-section" style="border-radius:var(--radius-sm); border:1px solid var(--border)">
+          <div class="formula-label">稳态近似大题流程</div>
+          <div class="flow-step"><div class="flow-num">①</div><div class="flow-text">对每个中间物 B 令 $d[B]/dt = 0$，列方程</div></div>
+          <div class="flow-step"><div class="flow-num">②</div><div class="flow-text">联立消去所有中间物浓度</div></div>
+          <div class="flow-step"><div class="flow-num">③</div><div class="flow-text">代入目标产物速率，整理成 $v = k_{表观}[\cdot]^n$</div></div>
+          <div class="flow-step"><div class="flow-num">④</div><div class="flow-text">$\ln k_{表观} \sim \ln k_1 + \ln k_2 + \cdots$ → 表观 $E_a$</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+function showCh(id){
+  document.querySelectorAll('.chapter').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(window.MathJax) MathJax.typesetPromise && MathJax.typesetPromise();
+}
+function toggleNode(head){
+  const body = head.nextElementSibling;
+  const arrow = head.querySelector('.knode-arrow');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  arrow.classList.toggle('open', !isOpen);
+  if(!isOpen && window.MathJax) MathJax.typesetPromise && MathJax.typesetPromise([body]);
+}
+function toggleEx(header){
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('.example-arr');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  arrow.classList.toggle('open', !isOpen);
+  if(!isOpen && window.MathJax) MathJax.typesetPromise && MathJax.typesetPromise([body]);
+}
+function chooseOpt(el, type){
+  const list = el.parentElement;
+  list.querySelectorAll('li').forEach(li=>{
+    li.classList.remove('correct','wrong');
+    li.style.pointerEvents='none';
+  });
+  el.classList.add(type);
+}
+// Auto-open first node in each chapter
+document.querySelectorAll('.chapter').forEach(ch=>{
+  const first = ch.querySelector('.knode-body');
+  const arrow = ch.querySelector('.knode-arrow');
+  if(first){ first.classList.add('open'); }
+  if(arrow){ arrow.classList.add('open'); }
+});
+// Open first example in active chapter
+document.querySelectorAll('.example-body').forEach((b,i)=>{
+  if(i===0){ b.classList.add('open'); b.previousElementSibling.querySelector('.example-arr').classList.add('open'); }
+});
+</script>
+</body>
+</html>
