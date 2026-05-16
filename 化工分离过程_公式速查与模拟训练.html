@@ -138,13 +138,18 @@ body{
   border-left:3px solid var(--c1);
   border-radius:4px;
   padding:10px 14px;
-  font-family:'JetBrains Mono',monospace;
   font-size:13px;
   color:var(--c1);
   line-height:1.9;
-  white-space:pre-wrap;
-  word-break:break-all;
+  text-align:center;
+  overflow-x:auto;
 }
+.fml mjx-container { color: var(--c1) !important; }
+.fml.orange mjx-container { color: var(--c2) !important; }
+.fml.green mjx-container { color: var(--c3) !important; }
+.fml.purple mjx-container { color: var(--c4) !important; }
+.fml.red mjx-container { color: var(--red) !important; }
+.fml.gold mjx-container { color: var(--gold) !important; }
 .fml.orange{border-left-color:var(--c2);color:var(--c2);}
 .fml.green{border-left-color:var(--c3);color:var(--c3);}
 .fml.purple{border-left-color:var(--c4);color:var(--c4);}
@@ -501,8 +506,8 @@ strong{color:var(--text);}
 <script>
 MathJax = {
   tex: {
-    inlineMath: [['\\(','\\)']],
-    displayMath: [['\\[','\\]']],
+    inlineMath: [['\(','\)']],
+    displayMath: [['\[','\]']],
     tags: 'none'
   },
   options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] },
@@ -577,11 +582,11 @@ MathJax = {
         <div class="cheat-rhs">汽化率定义</div>
       </div>
       <div class="cheat-row">
-        <div class="cheat-lhs">Σz_i(K_i-1)/[1+ψ(K_i-1)]=0</div>
+        <div class="cheat-lhs">\(\displaystyle\sum_i\frac{z_i(K_i-1)}{1+\psi(K_i-1)}=0\)</div>
         <div class="cheat-rhs">R-R方程</div>
       </div>
       <div class="cheat-row">
-        <div class="cheat-lhs">x_i = z_i/[1+ψ(K_i-1)]</div>
+        <div class="cheat-lhs">\(x_i=\dfrac{z_i}{1+\psi(K_i-1)}\)</div>
         <div class="cheat-rhs">液相组成</div>
       </div>
       <div class="cheat-row">
@@ -638,7 +643,7 @@ MathJax = {
       <div class="cheat-ch">第四章 · 吸收</div>
       <div class="cheat-title">亨利定律 · 传质 · Kremser</div>
       <div class="cheat-row">
-        <div class="cheat-lhs">y = m·x</div>
+        <div class="cheat-lhs">\(y = mx\)</div>
         <div class="cheat-rhs">亨利定律</div>
       </div>
       <div class="cheat-row">
@@ -710,11 +715,11 @@ MathJax = {
       <div style="border-top:1px solid var(--border);margin:8px 0;padding-top:8px;font-size:11px;color:var(--text3);">超临界流体</div>
       <div class="cheat-row">
         <div class="cheat-lhs">萃取条件</div>
-        <div class="cheat-rhs" style="color:var(--c3);">加压降温 ↑ρ</div>
+        <div class="cheat-rhs" style="color:var(--c3);">加压降温 \(\uparrow\rho\)</div>
       </div>
       <div class="cheat-row">
         <div class="cheat-lhs">分离条件</div>
-        <div class="cheat-rhs" style="color:var(--c2);">减压降温 ↓ρ</div>
+        <div class="cheat-rhs" style="color:var(--c2);">减压降温 \(\downarrow\rho\)</div>
       </div>
     </div>
 
@@ -727,7 +732,7 @@ MathJax = {
         <div class="cheat-rhs">Langmuir</div>
       </div>
       <div class="cheat-row">
-        <div class="cheat-lhs">q = K·P^n</div>
+        <div class="cheat-lhs">\(q = KP^n\;(n<1)\)</div>
         <div class="cheat-rhs">Freundlich</div>
       </div>
       <div style="font-size:11px;color:var(--text3);margin:6px 0 3px;">线性化</div>
@@ -1193,17 +1198,16 @@ MathJax = {
           <div class="fcol-label">标准形式</div>
           <div class="fml">\[f(\psi)=\sum_i\frac{z_i(K_i-1)}{1+\psi(K_i-1)}=0\]</div>
           <div class="fcol-label" style="margin-top:10px;">求组成</div>
-          <div class="fml green">xᵢ = zᵢ / [1 + ψ(Kᵢ-1)]
-yᵢ = Kᵢ · xᵢ</div>
+          <div class="fml green">\[ x_i = \frac{z_i}{1+\psi(K_i-1)}, \qquad y_i = K_i x_i \]</div>
         </div>
         <div>
           <div class="info-grid" style="margin-top:0;">
             <div class="info-item"><div class="info-key">推导来源</div><div class="info-val">物料衡算(Fzᵢ=Vyᵢ+Lxᵢ) + 相平衡(yᵢ=Kᵢxᵢ) + ψ=V/F联立消去xᵢ,yᵢ</div></div>
-            <div class="info-item"><div class="info-key">单调性</div><div class="info-val">f(ψ)对ψ严格<strong>单调递减</strong>，两相区内只有唯一根</div></div>
+            <div class="info-item"><div class="info-key">单调性</div><div class="info-val">f(\(\psi\))对ψ严格<strong>单调递减</strong>，两相区内只有唯一根</div></div>
             <div class="info-item"><div class="info-key">根区间</div><div class="info-val">0 &lt; ψ &lt; 1（两相区）；避开分母极点 ψ=-1/(Kᵢ-1)</div></div>
-            <div class="info-item"><div class="info-key">迭代方法</div><div class="info-val">Newton法：ψ_new=ψ_old-f(ψ)/f'(ψ)；初值ψ₀=0.5</div></div>
+            <div class="info-item"><div class="info-key">迭代方法</div><div class="info-val">Newton法：ψ_new=ψ_old-f(\(\psi\))/f'(\(\psi\))；初值ψ₀=0.5</div></div>
             <div class="info-item"><div class="info-key">绝热闪蒸</div><div class="info-val">外层迭代T，内层用R-R求ψ；热量衡算 Q=VHᵥ+LHₗ-FHF=0 校验T</div></div>
-            <div class="info-item"><div class="info-key">易错点</div><div class="info-val">f(ψ)值受T影响（Kᵢ是T的函数）；等温闪蒸T固定所以Kᵢ固定</div></div>
+            <div class="info-item"><div class="info-key">易错点</div><div class="info-val">f(\(\psi\))值受T影响（Kᵢ是T的函数）；等温闪蒸T固定所以Kᵢ固定</div></div>
           </div>
         </div>
       </div>
@@ -1397,11 +1401,11 @@ const questions = [
     formula: "\(K_i=P_i^s/P\)（低压理想物系）"
   },
   {
-    q: "闪蒸方程 f(ψ) = Σzᵢ(Kᵢ-1)/[1+ψ(Kᵢ-1)] = 0，对ψ而言是一个（）函数",
+    q: "闪蒸方程 f(\(\psi\)) = Σzᵢ(Kᵢ-1)/[1+ψ(Kᵢ-1)] = 0，对ψ而言是一个（）函数",
     opts: ["单调递增", "单调递减", "先增后减", "先减后增"],
     ans: 1,
     ch: "第二章 · 闪蒸",
-    explain: "<strong>分析：</strong>对f(ψ)求导：\(\partial f/\partial\psi=-\sum z_i(K_i-1)^2/[1+\psi(K_i-1)]^2<0\)（分子为负，分母为正）。<br>因此 f(ψ) 对 ψ 严格单调递减，这保证了两相区内根的唯一性。",
+    explain: "<strong>分析：</strong>对f(\(\psi\))求导：\(\partial f/\partial\psi=-\sum z_i(K_i-1)^2/[1+\psi(K_i-1)]^2<0\)（分子为负，分母为正）。<br>因此 f(\(\psi\)) 对 ψ 严格单调递减，这保证了两相区内根的唯一性。",
     formula: "\(\partial f/\partial\psi=-\sum z_i(K_i-1)^2/[1+\psi(K_i-1)]^2<0\)"
   },
   {
@@ -1409,7 +1413,7 @@ const questions = [
     opts: ["ΣKᵢzᵢ > 1 且 Σzᵢ/Kᵢ > 1", "ΣKᵢzᵢ > 1 且 Σzᵢ/Kᵢ < 1", "ΣKᵢzᵢ < 1 且 Σzᵢ/Kᵢ > 1", "ΣKᵢzᵢ < 1 且 Σzᵢ/Kᵢ < 1"],
     ans: 3,
     ch: "第二章 · 闪蒸判据",
-    explain: "<strong>分析：</strong>三个区间：<br>全液相（过冷）：ΣKᵢzᵢ &lt; 1 且 Σzᵢ/Kᵢ &lt; 1 → 选D<br>气液两相：两者都 &gt; 1<br>全气相（过热）：Σzᵢ/Kᵢ &lt; 1<br>过冷液体=全液相，选D。",
+    explain: "<strong>分析：</strong>三个区间：<br>全液相（过冷）：\(\sum K_iz_i < 1\) 且 \(\sum z_i/K_i < 1\) → 选D<br>气液两相：两者都 &gt; 1<br>全气相（过热）：\(\sum z_i/K_i < 1\)<br>过冷液体=全液相，选D。",
     formula: "过冷液体判据：\(\sum K_iz_i<1\)（双小）"
   },
   {

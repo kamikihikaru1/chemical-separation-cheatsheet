@@ -7,8 +7,8 @@
 <script>
 MathJax = {
   tex: {
-    inlineMath: [['\\(','\\)']],
-    displayMath: [['\\[','\\]']],
+    inlineMath: [['\(','\)']],
+    displayMath: [['\[','\]']],
     tags: 'none'
   },
   options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] },
@@ -213,11 +213,12 @@ MathJax = {
     border-radius: 6px;
     padding: 14px 18px;
     margin: 12px 0;
-    font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
     color: var(--accent);
     line-height: 2;
+    text-align: center;
   }
+  .formula-box mjx-container { color: var(--accent) !important; }
 
   .formula-box .formula-name {
     font-family: 'Noto Sans SC', sans-serif;
@@ -862,7 +863,7 @@ MathJax = {
 
   <div class="alert alert-warn">
     <div class="alert-icon">⚠️</div>
-    <div class="alert-content"><strong>老师重点强调：</strong>K值公式的选择取决于体系压力。记住三种情况：低压理想→K = Pˢ/P；中压非理想液相→K = γPˢ/P；高压完整式含Poynting因子。</div>
+    <div class="alert-content"><strong>老师重点强调：</strong>K值公式的选择取决于体系压力。记住三种情况：低压理想→\(K=P^s/P\)；中压非理想液相→\(K=\gamma P^s/P\)；高压完整式含Poynting因子。</div>
   </div>
 
   <div class="formula-detail">
@@ -909,7 +910,7 @@ MathJax = {
     </div>
     <div class="fd-body">
       <div class="formula-box">
-        α_ij = K_i / K_j = (y_i/x_i) / (y_j/x_j)
+        \[ \alpha_{ij} = \frac{K_i}{K_j} = \frac{y_i/x_i}{y_j/x_j} \]
       </div>
       <div class="formula-box" style="border-left-color:var(--accent3);">
         <div class="formula-name">低压理想物系简化</div>
@@ -992,7 +993,7 @@ MathJax = {
       <li><strong>组分衡算：</strong>F·zᵢ = V·yᵢ + L·xᵢ</li>
       <li><strong>相平衡：</strong>yᵢ = Kᵢ·xᵢ</li>
     </ul>
-    <p>定义汽化率 <strong>ψ = V/F</strong>，联立三式消去yᵢ和xᵢ，推导得到：</p>
+    <p>定义汽化率 <strong>\(\psi = V/F\)</strong>，联立三式消去\(y_i\)和\(x_i\)，推导得到：</p>
   </div>
 
   <div class="formula-detail">
@@ -1059,7 +1060,7 @@ MathJax = {
     </table>
     <div class="alert alert-tip" style="margin-top:12px;">
       <div class="alert-icon">✅</div>
-      <div class="alert-content"><strong>绝热闪蒸迭代顺序：</strong>假设T → 求各Kᵢ → 用R-R求ψ和组成 → 计算焓变 → 检验热量衡算(Q=0?) → 更新T → 重复直到收敛</div>
+      <div class="alert-content"><strong>绝热闪蒸迭代顺序：</strong>假设\(T\) → 求各\(K_i\) → 用R-R求\(\psi\)和组成 → 计算焓变 → 检验热量衡算(Q=0?) → 更新T → 重复直到收敛</div>
     </div>
   </div>
 </div>
@@ -1195,7 +1196,7 @@ MathJax = {
       </div>
       <div class="fd-row">
         <div class="fd-key">变量意义</div>
-        <div class="fd-val">x_D,LK = 塔顶LK摩尔分率；x_D,HK = 塔顶HK摩尔分率；x_B,HK = 塔底HK摩尔分率；x_B,LK = 塔底LK摩尔分率；ᾱ = 平均相对挥发度（LK对HK）= √(α_顶 × α_釜)</div>
+        <div class="fd-val">x_D,LK = 塔顶LK摩尔分率；x_D,HK = 塔顶HK摩尔分率；x_B,HK = 塔底HK摩尔分率；x_B,LK = 塔底LK摩尔分率；\(\bar{\alpha}\) = 平均相对挥发度（LK对HK）= \(\sqrt{\alpha_\text{顶} \times \alpha_\text{釜}}\)</div>
       </div>
       <div class="fd-row">
         <div class="fd-key">使用条件</div>
@@ -1345,8 +1346,8 @@ MathJax = {
       <li class="step-item">
         <div class="step-num">5</div>
         <div class="step-content">
-          <strong>Underwood → θ → Rmin</strong><br>
-          注意q值（进料热状况）；θ在αHK和αLK之间
+          <strong>Underwood → \(\theta\) → \(R_\text{min}\)</strong><br>
+          注意q值（进料热状况）；\(\theta\)在\(\alpha_\text{HK}\)和\(\alpha_\text{LK}\)之间
         </div>
       </li>
       <li class="step-item">
@@ -1377,7 +1378,7 @@ MathJax = {
       <tr><th>情况</th><th>速算技巧</th></tr>
       <tr>
         <td>题目给α，没给T</td>
-        <td>直接用Fenske，ᾱ就是题目给的α（或上下平均）</td>
+        <td>直接用Fenske，\(\bar{\alpha}\)就是题目给的\(\alpha\)（或上下平均）</td>
       </tr>
       <tr>
         <td>泡点进料(q=1)</td>
@@ -1512,7 +1513,7 @@ MathJax = {
       </div>
       <div class="fd-row">
         <div class="fd-key">控制步骤</div>
-        <div class="fd-val">气体难溶（m大）→ 1/Ky ≈ m/kx → 液膜控制；气体易溶（m小）→ 1/Ky ≈ 1/ky → 气膜控制</div>
+        <div class="fd-val">气体难溶（m大）→ \(1/K_y \approx m/k_x\) → 液膜控制；气体易溶（m小）→ \(1/K_y \approx 1/k_y\) → 气膜控制</div>
       </div>
     </div>
   </div>
@@ -1671,7 +1672,7 @@ MathJax = {
     <div class="card-title"><div class="icon icon-orange">⚡</div> 为什么严格计算必须迭代？</div>
     <p>因为K值是T、P、组成的函数，而这些变量本身又是求解目标。形成强耦合循环：</p>
     <div class="formula-box" style="text-align:center;color:var(--accent2);">
-      假设T → 求Kᵢ → 求xᵢ,yᵢ → 求Hᵢ → 更新T → 重复
+      \(\text{假设}T \;\to\; \text{求}K_i \;\to\; \text{求}x_i,y_i \;\to\; \text{求}H_i \;\to\; \text{更新}T \;\to\; \text{重复}\)
     </div>
     <p>这就是为什么简捷法（FUG）虽然有误差，却是工程设计的第一步——给严格计算提供初值。</p>
   </div>
