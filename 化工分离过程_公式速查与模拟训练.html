@@ -503,18 +503,21 @@ strong{color:var(--text);}
   .tab{padding:6px 10px;font-size:11px;}
 }
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
 <script>
-MathJax = {
-  tex: {
-    inlineMath: [['\(','\)']],
-    displayMath: [['\[','\]']],
-    tags: 'none'
-  },
-  options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] },
-  startup: { typeset: true }
-};
+document.addEventListener("DOMContentLoaded", function() {
+  renderMathInElement(document.body, {
+    delimiters: [
+      {left: "$$", right: "$$", display: true},
+      {left: "$",  right: "$",  display: false}
+    ],
+    throwOnError: false,
+    errorColor: "#ff6b6b"
+  });
+});
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-chtml.min.js"></script>
 </head>
 <body>
 <div class="wrap">
@@ -548,27 +551,27 @@ MathJax = {
       <div class="cheat-ch">第二章 · 相平衡基础</div>
       <div class="cheat-title">K值 & 泡露点</div>
       <div class="cheat-row">
-        <div class="cheat-lhs">\(K_i = y_i/x_i\)</div>
+        <div class="cheat-lhs">$K_i = y_i/x_i$</div>
         <div class="cheat-rhs">定义，通用</div>
       </div>
       <div class="cheat-row">
-        <div class="cheat-lhs">\(K_i = P_i^s/P\)</div>
+        <div class="cheat-lhs">$K_i = P_i^s/P$</div>
         <div class="cheat-rhs">低压理想</div>
       </div>
       <div class="cheat-row">
-        <div class="cheat-lhs">\(K_i = \gamma_i P_i^s/P\)</div>
+        <div class="cheat-lhs">$K_i = \gamma_i P_i^s/P$</div>
         <div class="cheat-rhs">中压，液非理想</div>
       </div>
       <div class="cheat-row">
-        <div class="cheat-lhs">\(\alpha_{ij} = K_i/K_j\)</div>
+        <div class="cheat-lhs">$\alpha_{ij} = K_i/K_j$</div>
         <div class="cheat-rhs">相对挥发度</div>
       </div>
       <div class="cheat-row">
-        <div class="cheat-lhs">\(\sum_i K_i x_i = 1\)</div>
+        <div class="cheat-lhs">$\sum_i K_i x_i = 1$</div>
         <div class="cheat-rhs">泡点方程</div>
       </div>
       <div class="cheat-row">
-        <div class="cheat-lhs">\(\sum_i y_i/K_i = 1\)</div>
+        <div class="cheat-lhs">$\sum_i y_i/K_i = 1$</div>
         <div class="cheat-rhs">露点方程</div>
       </div>
     </div>
@@ -578,32 +581,32 @@ MathJax = {
       <div class="cheat-ch">第二章 · 闪蒸</div>
       <div class="cheat-title">Rachford-Rice & 判据</div>
       <div class="cheat-row">
-        <div class="cheat-lhs">\(\psi = V/F\)</div>
+        <div class="cheat-lhs">$\psi = V/F$</div>
         <div class="cheat-rhs">汽化率定义</div>
       </div>
       <div class="cheat-row">
-        <div class="cheat-lhs">\(\displaystyle\sum_i\frac{z_i(K_i-1)}{1+\psi(K_i-1)}=0\)</div>
+        <div class="cheat-lhs">$\displaystyle\sum_i\frac{z_i(K_i-1)}{1+\psi(K_i-1)}=0$</div>
         <div class="cheat-rhs">R-R方程</div>
       </div>
       <div class="cheat-row">
-        <div class="cheat-lhs">\(x_i=\dfrac{z_i}{1+\psi(K_i-1)}\)</div>
+        <div class="cheat-lhs">$x_i=\dfrac{z_i}{1+\psi(K_i-1)}$</div>
         <div class="cheat-rhs">液相组成</div>
       </div>
       <div class="cheat-row">
-        <div class="cheat-lhs">\(y_i = K_i x_i\)</div>
+        <div class="cheat-lhs">$y_i = K_i x_i$</div>
         <div class="cheat-rhs">气相组成</div>
       </div>
       <div style="border-top:1px solid var(--border);margin:8px 0;padding-top:8px;font-size:11px;color:var(--text3);">两相判据</div>
       <div class="cheat-row">
-        <div class="cheat-lhs" style="color:var(--c3);">\(\sum K_iz_i{>}1\) 且 \(\sum z_i/K_i{>}1\)</div>
+        <div class="cheat-lhs" style="color:var(--c3);">$\sum K_iz_i{>}1$ 且 $\sum z_i/K_i{>}1$</div>
         <div class="cheat-rhs">两相区 ✓</div>
       </div>
       <div class="cheat-row">
-        <div class="cheat-lhs" style="color:var(--red);">\(\sum K_iz_i{<}1\)</div>
+        <div class="cheat-lhs" style="color:var(--red);">$\sum K_iz_i{<}1$</div>
         <div class="cheat-rhs">全液相</div>
       </div>
       <div class="cheat-row">
-        <div class="cheat-lhs" style="color:var(--red);">\(\sum z_i/K_i{<}1\)</div>
+        <div class="cheat-lhs" style="color:var(--red);">$\sum z_i/K_i{<}1$</div>
         <div class="cheat-rhs">全气相</div>
       </div>
     </div>
@@ -615,25 +618,25 @@ MathJax = {
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;">
         <div>
           <div style="font-size:10px;color:var(--text3);font-weight:700;margin-bottom:6px;">F · Fenske（全回流）</div>
-          <div class="cheat-row"><div class="cheat-lhs" style="font-size:11px;">\(N_{\min}=\frac{\ln(A\cdot B)}{\ln\bar{\alpha}}\)</div></div>
-          <div style="font-size:11px;color:var(--text3);">\(A=\frac{x_{D,\text{LK}}}{x_{D,\text{HK}}},\;B=\frac{x_{B,\text{HK}}}{x_{B,\text{LK}}},\;\bar{\alpha}=\sqrt{\alpha_{\text{顶}}\cdot\alpha_{\text{釜}}}\)</div>
+          <div class="cheat-row"><div class="cheat-lhs" style="font-size:11px;">$N_{\min}=\frac{\ln(A\cdot B)}{\ln\bar{\alpha}}$</div></div>
+          <div style="font-size:11px;color:var(--text3);">$A=\frac{x_{D,\text{LK}}}{x_{D,\text{HK}}},\;B=\frac{x_{B,\text{HK}}}{x_{B,\text{LK}}},\;\bar{\alpha}=\sqrt{\alpha_{\text{顶}}\cdot\alpha_{\text{釜}}}$</div>
         </div>
         <div>
           <div style="font-size:10px;color:var(--text3);font-weight:700;margin-bottom:6px;">U · Underwood（最小回流）</div>
-          <div style="font-size:11px;color:var(--c2);">第①式：\(\displaystyle\sum_i\frac{\alpha_iz_i}{\alpha_i-\theta}=1-q\)</div>
-          <div style="font-size:11px;color:var(--text3);margin:3px 0;">→ 求\(\theta\)，满足\(\alpha_{\text{HK}}<\theta<\alpha_{\text{LK}}\)</div>
-          <div style="font-size:11px;color:var(--c2);">第②式：\(\displaystyle\sum_i\frac{\alpha_ix_{i,D}}{\alpha_i-\theta}=R_{\min}+1\)</div>
+          <div style="font-size:11px;color:var(--c2);">第①式：$\displaystyle\sum_i\frac{\alpha_iz_i}{\alpha_i-\theta}=1-q$</div>
+          <div style="font-size:11px;color:var(--text3);margin:3px 0;">→ 求$\theta$，满足$\alpha_{\text{HK}}<\theta<\alpha_{\text{LK}}$</div>
+          <div style="font-size:11px;color:var(--c2);">第②式：$\displaystyle\sum_i\frac{\alpha_ix_{i,D}}{\alpha_i-\theta}=R_{\min}+1$</div>
         </div>
         <div>
           <div style="font-size:10px;color:var(--text3);font-weight:700;margin-bottom:6px;">G · Gilliland（实际板数）</div>
-          <div class="cheat-row"><div class="cheat-lhs" style="font-size:11px;">\(X=\frac{R-R_{\min}}{R+1}\)</div></div>
-          <div class="cheat-row"><div class="cheat-lhs" style="font-size:11px;">\(Y=\frac{N-N_{\min}}{N+1}\)</div></div>
-          <div style="font-size:11px;color:var(--text3);">\(Y\approx0.75(1-X^{0.566})\)（Molokanov近似）</div>
+          <div class="cheat-row"><div class="cheat-lhs" style="font-size:11px;">$X=\frac{R-R_{\min}}{R+1}$</div></div>
+          <div class="cheat-row"><div class="cheat-lhs" style="font-size:11px;">$Y=\frac{N-N_{\min}}{N+1}$</div></div>
+          <div style="font-size:11px;color:var(--text3);">$Y\approx0.75(1-X^{0.566})$（Molokanov近似）</div>
         </div>
         <div>
           <div style="font-size:10px;color:var(--text3);font-weight:700;margin-bottom:6px;">Kirkbride（进料位置）</div>
-          <div style="font-size:11px;color:var(--c4);">\(\log\frac{N_{\text{精}}}{N_{\text{提}}}=0.206\log[\cdots]\)</div>
-          <div style="font-size:10px;color:var(--text3);margin-top:4px;">\(\frac{x_{\text{HK},F}}{x_{\text{LK},F}}\cdot\frac{B}{D}\cdot\!\left(\frac{x_{\text{LK},B}}{x_{\text{HK},D}}\right)^{\!2}\)</div>
+          <div style="font-size:11px;color:var(--c4);">$\log\dfrac{N_{\text{精}}}{N_{\text{提}}}=0.206\log[\cdots]$</div>
+          <div style="font-size:10px;color:var(--text3);margin-top:4px;">$\frac{x_{\text{HK},F}}{x_{\text{LK},F}}\cdot\frac{B}{D}\cdot\!\left(\frac{x_{\text{LK},B}}{x_{\text{HK},D}}\right)^{\!2}$</div>
         </div>
       </div>
     </div>
@@ -643,24 +646,24 @@ MathJax = {
       <div class="cheat-ch">第四章 · 吸收</div>
       <div class="cheat-title">亨利定律 · 传质 · Kremser</div>
       <div class="cheat-row">
-        <div class="cheat-lhs">\(y = mx\)</div>
+        <div class="cheat-lhs">$y = mx$</div>
         <div class="cheat-rhs">亨利定律</div>
       </div>
       <div class="cheat-row">
-        <div class="cheat-lhs">\(A = L/(mV)\)</div>
+        <div class="cheat-lhs">$A = L/(mV)$</div>
         <div class="cheat-rhs">吸收因子</div>
       </div>
       <div class="cheat-row">
-        <div class="cheat-lhs">\(S = mV/L = 1/A\)</div>
+        <div class="cheat-lhs">$S = mV/L = 1/A$</div>
         <div class="cheat-rhs">气提因子</div>
       </div>
       <div class="cheat-row">
-        <div class="cheat-lhs">\(1/K_y = 1/k_y + m/k_x\)</div>
+        <div class="cheat-lhs">$1/K_y = 1/k_y + m/k_x$</div>
         <div class="cheat-rhs">总传质系数</div>
       </div>
       <div style="font-size:11px;color:var(--c3);margin:6px 0 3px;">Kremser方程</div>
       <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--c3);line-height:1.8;">
-        \[N=\frac{\ln\!\left[\dfrac{y_1-mx_0}{y_{N+1}-mx_0}\left(1-\tfrac{1}{A}\right)+\tfrac{1}{A}\right]}{\ln A}\]
+        $$N = \dfrac{\ln\!\Big[\dfrac{y_1-mx_0}{y_{N+1}-mx_0}\Big(1-\dfrac{1}{A}\Big)+\dfrac{1}{A}\Big]}{\ln A}$$
       </div>
     </div>
 
@@ -687,11 +690,11 @@ MathJax = {
       <div style="border-top:1px solid var(--border);margin:8px 0;padding-top:8px;">
         <div class="cheat-row">
           <div class="cheat-lhs">每级方程数</div>
-          <div class="cheat-rhs" style="color:var(--red);font-weight:700;">\(2c+3\)</div>
+          <div class="cheat-rhs" style="color:var(--red);font-weight:700;">$2c+3$</div>
         </div>
         <div class="cheat-row">
           <div class="cheat-lhs">N级总方程</div>
-          <div class="cheat-rhs" style="color:var(--red);font-weight:700;">\(N(2c+3)\)</div>
+          <div class="cheat-rhs" style="color:var(--red);font-weight:700;">$N(2c+3)$</div>
         </div>
       </div>
     </div>
@@ -701,11 +704,11 @@ MathJax = {
       <div class="cheat-ch">第六章 · 液液萃取</div>
       <div class="cheat-title">分配系数 · 选择性 · 超临界</div>
       <div class="cheat-row">
-        <div class="cheat-lhs">\(K_A = y_A/x_A\)</div>
+        <div class="cheat-lhs">$K_A = y_A/x_A$</div>
         <div class="cheat-rhs">分配系数</div>
       </div>
       <div class="cheat-row">
-        <div class="cheat-lhs">\(\beta = K_A/K_B\)</div>
+        <div class="cheat-lhs">$\beta = K_A/K_B$</div>
         <div class="cheat-rhs">选择性系数</div>
       </div>
       <div class="cheat-row">
@@ -715,11 +718,11 @@ MathJax = {
       <div style="border-top:1px solid var(--border);margin:8px 0;padding-top:8px;font-size:11px;color:var(--text3);">超临界流体</div>
       <div class="cheat-row">
         <div class="cheat-lhs">萃取条件</div>
-        <div class="cheat-rhs" style="color:var(--c3);">加压降温 \(\uparrow\rho\)</div>
+        <div class="cheat-rhs" style="color:var(--c3);">加压降温 $\uparrow\rho$</div>
       </div>
       <div class="cheat-row">
         <div class="cheat-lhs">分离条件</div>
-        <div class="cheat-rhs" style="color:var(--c2);">减压降温 \(\downarrow\rho\)</div>
+        <div class="cheat-rhs" style="color:var(--c2);">减压降温 $\downarrow\rho$</div>
       </div>
     </div>
 
@@ -728,11 +731,11 @@ MathJax = {
       <div class="cheat-ch">第七章 · 吸附</div>
       <div class="cheat-title">Langmuir · Freundlich</div>
       <div class="cheat-row">
-        <div class="cheat-lhs">\(q = q_m bP/(1+bP)\)</div>
+        <div class="cheat-lhs">$q = q_m bP/(1+bP)$</div>
         <div class="cheat-rhs">Langmuir</div>
       </div>
       <div class="cheat-row">
-        <div class="cheat-lhs">\(q = KP^n\;(n<1)\)</div>
+        <div class="cheat-lhs">$q = KP^n\;(n<1)$</div>
         <div class="cheat-rhs">Freundlich</div>
       </div>
       <div style="font-size:11px;color:var(--text3);margin:6px 0 3px;">线性化</div>
@@ -751,15 +754,15 @@ MathJax = {
       <div class="cheat-ch">第八章 · 膜分离</div>
       <div class="cheat-title">RO推动力 · 膜通量</div>
       <div class="cheat-row">
-        <div class="cheat-lhs">\(\text{净推动力} = \Delta P - \Delta\pi\)</div>
+        <div class="cheat-lhs">$\text{净推动力} = \Delta P - \Delta\pi$</div>
         <div class="cheat-rhs">RO核心</div>
       </div>
       <div class="cheat-row">
-        <div class="cheat-lhs">\(J = Q/A\)</div>
+        <div class="cheat-lhs">$J = Q/A$</div>
         <div class="cheat-rhs">膜通量</div>
       </div>
       <div class="cheat-row">
-        <div class="cheat-lhs">\(\alpha_{ij} = P_i/P_j\)</div>
+        <div class="cheat-lhs">$\alpha_{ij} = P_i/P_j$</div>
         <div class="cheat-rhs">气体分离因子</div>
       </div>
       <div style="border-top:1px solid var(--border);margin:8px 0;padding-top:8px;font-size:11px;color:var(--text3);">膜性能指标</div>
@@ -774,19 +777,19 @@ MathJax = {
       <div class="cheat-ch">第一章 · 设计变量</div>
       <div class="cheat-title">自由度分析</div>
       <div class="cheat-row">
-        <div class="cheat-lhs">\(N_i = N_v - N_c\)</div>
+        <div class="cheat-lhs">$N_i = N_v - N_c$</div>
         <div class="cheat-rhs">设计变量数</div>
       </div>
       <div class="cheat-row">
-        <div class="cheat-lhs">\(N_a = N_i - N_x\)</div>
+        <div class="cheat-lhs">$N_a = N_i - N_x$</div>
         <div class="cheat-rhs">可调设计变量</div>
       </div>
       <div style="font-size:11px;color:var(--text3);margin:6px 0 3px;">常见装置可调变量数</div>
-      <div class="cheat-row"><div class="cheat-lhs">普通精馏塔</div><div class="cheat-rhs" style="color:var(--red);">\(5\) 个</div></div>
-      <div class="cheat-row"><div class="cheat-lhs">吸收塔</div><div class="cheat-rhs" style="color:var(--red);">\(1\) 个</div></div>
-      <div class="cheat-row"><div class="cheat-lhs">绝热闪蒸</div><div class="cheat-rhs" style="color:var(--red);">\(1\) 个</div></div>
+      <div class="cheat-row"><div class="cheat-lhs">普通精馏塔</div><div class="cheat-rhs" style="color:var(--red);">$5$ 个</div></div>
+      <div class="cheat-row"><div class="cheat-lhs">吸收塔</div><div class="cheat-rhs" style="color:var(--red);">$1$ 个</div></div>
+      <div class="cheat-row"><div class="cheat-lhs">绝热闪蒸</div><div class="cheat-rhs" style="color:var(--red);">$1$ 个</div></div>
       <div style="font-size:11px;color:var(--text3);margin:6px 0 3px;">描述c组分两相物流</div>
-      <div class="cheat-row"><div class="cheat-lhs">独立变量数</div><div class="cheat-rhs" style="color:var(--red);">\(2c+1\) 个</div></div>
+      <div class="cheat-row"><div class="cheat-lhs">独立变量数</div><div class="cheat-rhs" style="color:var(--red);">$2c+1$ 个</div></div>
     </div>
 
   </div>
@@ -809,13 +812,13 @@ MathJax = {
       <div style="display:block;">
         <table class="ttable" style="margin:0;">
           <tr><th>题目看到这些词</th><th>→ 触发公式</th><th>判断逻辑</th></tr>
-          <tr><td class="kw">理想物系、低压</td><td class="fr">\(K_i=P_i^s/P\)</td><td class="lg">γ≈1，φ≈1，直接拉乌尔定律</td></tr>
+          <tr><td class="kw">理想物系、低压</td><td class="fr">$K_i=P_i^s/P$</td><td class="lg">γ≈1，φ≈1，直接拉乌尔定律</td></tr>
           <tr><td class="kw">非理想、活度系数</td><td class="fr">K_i = γ_i · P_i^s / P</td><td class="lg">液相非理想，气相仍理想</td></tr>
           <tr><td class="kw">高压、逸度系数</td><td class="fr">K_i = γ_iP_i^sφ_i^s·exp[...] / (φ_iP)</td><td class="lg">高压下气相也非理想</td></tr>
-          <tr><td class="kw">已知液相x，求T或P</td><td class="fr">泡点：\(\sum_i K_i x_i = 1\)</td><td class="lg">液→气转变，求开始沸腾条件</td></tr>
-          <tr><td class="kw">已知气相y，求T或P</td><td class="fr">露点：\(\sum_i y_i/K_i = 1\)</td><td class="lg">气→液转变，求开始冷凝条件</td></tr>
-          <tr><td class="kw">部分汽化、闪蒸、汽化率</td><td class="fr">R-R：\(\sum\frac{z_i(K_i-1)}{1+\psi(K_i-1)}=0\)</td><td class="lg">单级平衡，求ψ</td></tr>
-          <tr><td class="kw">过冷液体、是否闪蒸</td><td class="fr">判据：\(\sum K_iz_i\) 和 \(\sum z_i/K_i\)</td><td class="lg">两者都&gt;1 → 两相；否则判断全液/全气</td></tr>
+          <tr><td class="kw">已知液相x，求T或P</td><td class="fr">泡点：$\sum_i K_i x_i = 1$</td><td class="lg">液→气转变，求开始沸腾条件</td></tr>
+          <tr><td class="kw">已知气相y，求T或P</td><td class="fr">露点：$\sum_i y_i/K_i = 1$</td><td class="lg">气→液转变，求开始冷凝条件</td></tr>
+          <tr><td class="kw">部分汽化、闪蒸、汽化率</td><td class="fr">R-R：$\sum\frac{z_i(K_i-1)}{1+\psi(K_i-1)}=0$</td><td class="lg">单级平衡，求ψ</td></tr>
+          <tr><td class="kw">过冷液体、是否闪蒸</td><td class="fr">判据：$\sum K_iz_i$ 和 $\sum z_i/K_i$</td><td class="lg">两者都&gt;1 → 两相；否则判断全液/全气</td></tr>
           <tr><td class="kw">绝热闪蒸</td><td class="fr">R-R方程 + 热量衡算：Q=0</td><td class="lg">T和ψ耦合迭代，多一个外层循环</td></tr>
           <tr><td class="kw">相平衡条件</td><td class="fr">f̂_i^V = f̂_i^L（逸度相等）</td><td class="lg">不是φ相等！φ等于逸度系数，相平衡时两相φ可以不等</td></tr>
           <tr><td class="kw">q值、进料热状况</td><td class="fr">q = (饱和液进料为1；过热汽为负)</td><td class="lg">泡点液q=1，饱和汽q=0；决定Underwood右端</td></tr>
@@ -831,9 +834,9 @@ MathJax = {
       <div style="display:block;">
         <table class="ttable" style="margin:0;">
           <tr><th>题目看到这些词</th><th>→ 触发公式</th><th>判断逻辑</th></tr>
-          <tr><td class="kw">最少理论板数、全回流</td><td class="fr">Fenske：\(N_{\min}=\ln[\cdots]/\ln\bar{\alpha}\)</td><td class="lg">全回流=极限条件，Fenske正是全回流推导来的</td></tr>
-          <tr><td class="kw">最小回流比、夹点</td><td class="fr">Underwood：两步求\(\theta\)和\(R_{\min}\)</td><td class="lg">最小回流时塔内出现夹点，推动力趋于零</td></tr>
-          <tr><td class="kw">实际回流比R=1.2Rmin，求N</td><td class="fr">Gilliland关联：X→Y→N</td><td class="lg">\(X=(R-R_{\min})/(R+1)\)，\(Y=(N-N_{\min})/(N+1)\)</td></tr>
+          <tr><td class="kw">最少理论板数、全回流</td><td class="fr">Fenske：$N_{\min}=\ln[\cdots]/\ln\bar{\alpha}$</td><td class="lg">全回流=极限条件，Fenske正是全回流推导来的</td></tr>
+          <tr><td class="kw">最小回流比、夹点</td><td class="fr">Underwood：两步求$\theta$和$R_{\min}$</td><td class="lg">最小回流时塔内出现夹点，推动力趋于零</td></tr>
+          <tr><td class="kw">实际回流比R=1.2Rmin，求N</td><td class="fr">Gilliland关联：X→Y→N</td><td class="lg">$X=(R-R_{\min})/(R+1)$，$Y=(N-N_{\min})/(N+1)$</td></tr>
           <tr><td class="kw">进料位置、精馏段提馏段比</td><td class="fr">Kirkbride公式</td><td class="lg">经验公式，给初值</td></tr>
           <tr><td class="kw">关键组分、LK/HK</td><td class="fr">清晰分割假设：轻于LK全顶，重于HK全底</td><td class="lg">先确定关键组分才能用FUG</td></tr>
           <tr><td class="kw">α越大、分离越容易</td><td class="fr">ᾱ在Fenske分母：α大→Nmin小</td><td class="lg">α=1不能精馏，α越大越好</td></tr>
@@ -853,12 +856,12 @@ MathJax = {
       <div style="display:block;">
         <table class="ttable" style="margin:0;">
           <tr><th>题目看到这些词</th><th>→ 触发公式</th><th>判断逻辑</th></tr>
-          <tr><td class="kw">吸收因子A、液气比</td><td class="fr">\(A = L/(mV)\)</td><td class="lg">\(A>1\)有利吸收；\(A<1\)吸收不完全</td></tr>
+          <tr><td class="kw">吸收因子A、液气比</td><td class="fr">$A = L/(mV)$</td><td class="lg">$A>1$有利吸收；$A<1$吸收不完全</td></tr>
           <tr><td class="kw">气提因子S</td><td class="fr">S = mV/L = 1/A</td><td class="lg">S&gt;1有利解吸；与A互为倒数</td></tr>
           <tr><td class="kw">理论级数（吸收/气提）</td><td class="fr">Kremser方程（用A或S代入）</td><td class="lg">线性平衡线+操作线下的等比级数</td></tr>
-          <tr><td class="kw">总传质系数、气膜液膜</td><td class="fr">\(1/K_y=1/k_y+m/k_x\)</td><td class="lg">串联阻力，液膜阻力折算乘m</td></tr>
-          <tr><td class="kw">气体难溶（H₂、O₂）</td><td class="fr">液膜阻力控制：\(1/K_y\approx m/k_x\)</td><td class="lg">m大→液膜阻力项大→液膜控制</td></tr>
-          <tr><td class="kw">气体易溶（NH₃、HCl）</td><td class="fr">气膜阻力控制：\(1/K_y\approx 1/k_y\)</td><td class="lg">m小→气膜阻力项占主导</td></tr>
+          <tr><td class="kw">总传质系数、气膜液膜</td><td class="fr">$1/K_y=1/k_y+m/k_x$</td><td class="lg">串联阻力，液膜阻力折算乘m</td></tr>
+          <tr><td class="kw">气体难溶（H₂、O₂）</td><td class="fr">液膜阻力控制：$1/K_y\approx m/k_x$</td><td class="lg">m大→液膜阻力项大→液膜控制</td></tr>
+          <tr><td class="kw">气体易溶（NH₃、HCl）</td><td class="fr">气膜阻力控制：$1/K_y\approx 1/k_y$</td><td class="lg">m小→气膜阻力项占主导</td></tr>
           <tr><td class="kw">化学吸收、增强因子</td><td class="fr">E = 化学/物理吸收速率；E&gt;1</td><td class="lg">化学反应消耗溶质→界面浓度降低→推动力增大</td></tr>
           <tr><td class="kw">最小液气比</td><td class="fr">(L/V)_min = m（当y/x=m时为最小液气比）</td><td class="lg">此时需无限多级，实际取1.5倍以上</td></tr>
           <tr><td class="kw">多组分吸收，哪个是关键组分</td><td class="fr">题目明确要求的那个组分</td><td class="lg">吸收只有一个可调变量(L/V)，只能对一个组分提严格要求</td></tr>
@@ -875,13 +878,13 @@ MathJax = {
       <div style="display:block;">
         <table class="ttable" style="margin:0;">
           <tr><th>题目看到这些词</th><th>→ 触发公式/知识点</th><th>判断逻辑</th></tr>
-          <tr><td class="kw">MESH方程、严格计算、每级方程数</td><td class="fr">每级\(2c+3\)个；\(N\)级共\(N(2c+3)\)个</td><td class="lg">M:c个 + E:c个 + S:2个 + H:1个 = 2c+3</td></tr>
+          <tr><td class="kw">MESH方程、严格计算、每级方程数</td><td class="fr">每级$2c+3$个；$N$级共$N(2c+3)$个</td><td class="lg">M:c个 + E:c个 + S:2个 + H:1个 = 2c+3</td></tr>
           <tr><td class="kw">初值差、不收敛</td><td class="fr">先用简捷法(FUG)给初值</td><td class="lg">严格计算对初值敏感；简捷法是前置步骤</td></tr>
-          <tr><td class="kw">分配系数K（萃取）</td><td class="fr">\(K_A = y_A/x_A\)（萃取相/萃余相）</td><td class="lg">注意与精馏K值的区别（符号相同，含义不同）</td></tr>
-          <tr><td class="kw">选择性系数β（萃取）</td><td class="fr">\(\beta = K_A/K_B\)</td><td class="lg">对应精馏的α，β≈1无法分离</td></tr>
+          <tr><td class="kw">分配系数K（萃取）</td><td class="fr">$K_A = y_A/x_A$（萃取相/萃余相）</td><td class="lg">注意与精馏K值的区别（符号相同，含义不同）</td></tr>
+          <tr><td class="kw">选择性系数β（萃取）</td><td class="fr">$\beta = K_A/K_B$</td><td class="lg">对应精馏的α，β≈1无法分离</td></tr>
           <tr><td class="kw">超临界流体密度</td><td class="fr">密度决定溶解能力，接近液体密度</td><td class="lg">加压→密度↑→溶解↑；减压→密度↓→析出</td></tr>
           <tr><td class="kw">Langmuir、单层吸附、饱和平台</td><td class="fr">q = q_m·bP/(1+bP)</td><td class="lg">高压时q→q_m（表面全部占满）</td></tr>
-          <tr><td class="kw">Freundlich、非均匀表面</td><td class="fr">\(q = KP^n\;(n<1)\)</td><td class="lg">无饱和上限，适合中等浓度范围</td></tr>
+          <tr><td class="kw">Freundlich、非均匀表面</td><td class="fr">$q = KP^n\;(n<1)$</td><td class="lg">无饱和上限，适合中等浓度范围</td></tr>
           <tr><td class="kw">穿透曲线、破点时间</td><td class="fr">C_out/C_in = 5%时视为穿透</td><td class="lg">S型曲线；传质区移动导致出口浓度突增</td></tr>
           <tr><td class="kw">变温吸附TSA vs 变压吸附PSA</td><td class="fr">TSA：升温解吸；PSA：降压解吸</td><td class="lg">TSA周期长能耗高；PSA周期短能耗低</td></tr>
           <tr><td class="kw">RO净推动力</td><td class="fr">ΔP - Δπ（不是单纯ΔP）</td><td class="lg">渗透压抵消部分驱动力，是高频判断题</td></tr>
@@ -911,17 +914,17 @@ MathJax = {
       </div>
       <div class="cmatrix-row">
         <div class="cmatrix-key">低压理想（A类）</div>
-        <div class="cmatrix-v1">\(K_i=P_i^s/P\)</div>
+        <div class="cmatrix-v1">$K_i=P_i^s/P$</div>
         <div class="cmatrix-v2">P &lt; 5atm；气液均理想；φ≈1，γ≈1</div>
       </div>
       <div class="cmatrix-row">
         <div class="cmatrix-key">中压非理想液（B类）</div>
-        <div class="cmatrix-v1">\(K_i=\gamma_iP_i^s/P\)</div>
+        <div class="cmatrix-v1">$K_i=\gamma_iP_i^s/P$</div>
         <div class="cmatrix-v2">气相可近似理想（φ≈1），液相非理想（γ≠1）</div>
       </div>
       <div class="cmatrix-row">
         <div class="cmatrix-key">高压完整（E类）</div>
-        <div class="cmatrix-v1">\(K_i=\gamma_iP_i^s\varphi_i^s\exp[\cdots]/(\varphi_iP)\)</div>
+        <div class="cmatrix-v1">$K_i=\gamma_iP_i^s\varphi_i^s\exp[\cdots]/(\varphi_iP)$</div>
         <div class="cmatrix-v2">P &gt; 10atm；气液均非理想；Poynting因子不可忽略</div>
       </div>
       <div class="cmatrix-row">
@@ -941,23 +944,23 @@ MathJax = {
         <div class="cmatrix-v2">ψ的值</div>
       </div>
       <div class="cmatrix-row">
-        <div class="cmatrix-key">\(\sum K_iz_i<1\)</div>
+        <div class="cmatrix-key">$\sum K_iz_i<1$</div>
         <div class="cmatrix-v1" style="color:var(--c1);">全液相（过冷液体）</div>
-        <div class="cmatrix-v2">\(\psi=0\)</div>
+        <div class="cmatrix-v2">$\psi=0$</div>
       </div>
       <div class="cmatrix-row">
-        <div class="cmatrix-key">\(\sum z_i/K_i<1\)</div>
+        <div class="cmatrix-key">$\sum z_i/K_i<1$</div>
         <div class="cmatrix-v1" style="color:var(--c2);">全气相（过热蒸汽）</div>
-        <div class="cmatrix-v2">\(\psi=1\)</div>
+        <div class="cmatrix-v2">$\psi=1$</div>
       </div>
       <div class="cmatrix-row">
-        <div class="cmatrix-key">\(\sum K_iz_i>1\)且\(\sum z_i/K_i>1\)</div>
+        <div class="cmatrix-key">$\sum K_iz_i>1$且$\sum z_i/K_i>1$</div>
         <div class="cmatrix-v1" style="color:var(--c3);">气液两相共存</div>
-        <div class="cmatrix-v2">\(0<\psi<1\)，用R-R方程求解</div>
+        <div class="cmatrix-v2">$0<\psi<1$，用R-R方程求解</div>
       </div>
       <div class="cmatrix-row">
         <div class="cmatrix-key">注意：q与ψ的关系</div>
-        <div class="cmatrix-v1">\(q=1-\psi\)（液相分率+汽化率=1）</div>
+        <div class="cmatrix-v1">$q=1-\psi$（液相分率+汽化率=1）</div>
         <div class="cmatrix-v2">q∈(0,1)对应两相区</div>
       </div>
     </div>
@@ -974,16 +977,16 @@ MathJax = {
       <div class="cmatrix-row">
         <div class="cmatrix-key">全回流（R→∞）</div>
         <div class="cmatrix-v1" style="color:var(--c3);">N最少；分离能力最强；无产品输出</div>
-        <div class="cmatrix-v2">Fenske方程 → \(N_{\min}\)</div>
+        <div class="cmatrix-v2">Fenske方程 → $N_{\min}$</div>
       </div>
       <div class="cmatrix-row">
         <div class="cmatrix-key">最小回流（R=R_min）</div>
         <div class="cmatrix-v1" style="color:var(--c2);">N→∞；出现夹点；推动力趋于零</div>
-        <div class="cmatrix-v2">Underwood方程 → \(R_{\min}\)</div>
+        <div class="cmatrix-v2">Underwood方程 → $R_{\min}$</div>
       </div>
       <div class="cmatrix-row">
         <div class="cmatrix-key">实际操作</div>
-        <div class="cmatrix-v1" style="color:var(--c1);">\(R=(1.2{\sim}1.5)R_{\min}\)；\(N\)由Gilliland确定</div>
+        <div class="cmatrix-v1" style="color:var(--c1);">$R=(1.2{\sim}1.5)R_{\min}$；$N$由Gilliland确定</div>
         <div class="cmatrix-v2">Gilliland关联 → N实际</div>
       </div>
     </div>
@@ -1046,7 +1049,7 @@ MathJax = {
       <div class="cmatrix-row">
         <div class="cmatrix-key">RO（反渗透）&lt;1nm</div>
         <div class="cmatrix-v1">几乎所有溶质（包括盐）</div>
-        <div class="cmatrix-v2">溶解-扩散 | 指标：截留率 | \(\text{净推动力} = \Delta P - \Delta\pi\)</div>
+        <div class="cmatrix-v2">溶解-扩散 | 指标：截留率 | $\text{净推动力} = \Delta P - \Delta\pi$</div>
       </div>
       <div class="cmatrix-row">
         <div class="cmatrix-key">GS（气体分离）</div>
@@ -1128,7 +1131,7 @@ MathJax = {
       <div class="mm-title"><span style="color:var(--c4);">🟣</span> 遇到MESH/设计变量题</div>
       <div class="mm-row"><div class="mm-arrow">①</div><div class="mm-content"><strong>确认是哪类问题</strong><span class="sub">设计变量分析 / 方程个数计数 / 严格计算思想</span></div></div>
       <div class="mm-row"><div class="mm-arrow">②</div><div class="mm-content"><strong>MESH计数</strong><span class="sub">每级：M(c) + E(c) + S(2) + H(1) = 2c+3</span></div></div>
-      <div class="mm-row"><div class="mm-arrow">③</div><div class="mm-content"><strong>设计变量公式</strong><span class="sub">\(N_i=N_v-N_c\)；\(N_a=N_i-N_x\)</span></div></div>
+      <div class="mm-row"><div class="mm-arrow">③</div><div class="mm-content"><strong>设计变量公式</strong><span class="sub">$N_i=N_v-N_c$；$N_a=N_i-N_x$</span></div></div>
       <div class="mm-row"><div class="mm-arrow">④</div><div class="mm-content"><strong>BP法迭代顺序</strong><span class="sub">预设T_j → 求K_ij → M方程求x → S归一 → E求y → H方程更新T</span></div></div>
       <div class="mm-row"><div class="mm-arrow">⑤</div><div class="mm-content"><strong>不收敛原因</strong><span class="sub">初值差（用简捷法给初值）；体系高度非线性（逐步松弛）</span></div></div>
     </div>
@@ -1196,18 +1199,18 @@ MathJax = {
       <div class="fcard-body" style="display:none;">
         <div>
           <div class="fcol-label">标准形式</div>
-          <div class="fml">\[f(\psi)=\sum_i\frac{z_i(K_i-1)}{1+\psi(K_i-1)}=0\]</div>
+          <div class="fml">$$f(\psi)=\sum_i\frac{z_i(K_i-1)}{1+\psi(K_i-1)}=0$$</div>
           <div class="fcol-label" style="margin-top:10px;">求组成</div>
-          <div class="fml green">\[ x_i = \frac{z_i}{1+\psi(K_i-1)}, \qquad y_i = K_i x_i \]</div>
+          <div class="fml green">$$ x_i = \frac{z_i}{1+\psi(K_i-1)}, \qquad y_i = K_i x_i $$</div>
         </div>
         <div>
           <div class="info-grid" style="margin-top:0;">
             <div class="info-item"><div class="info-key">推导来源</div><div class="info-val">物料衡算(Fzᵢ=Vyᵢ+Lxᵢ) + 相平衡(yᵢ=Kᵢxᵢ) + ψ=V/F联立消去xᵢ,yᵢ</div></div>
-            <div class="info-item"><div class="info-key">单调性</div><div class="info-val">f(\(\psi\))对ψ严格<strong>单调递减</strong>，两相区内只有唯一根</div></div>
+            <div class="info-item"><div class="info-key">单调性</div><div class="info-val">f($\psi$)对ψ严格<strong>单调递减</strong>，两相区内只有唯一根</div></div>
             <div class="info-item"><div class="info-key">根区间</div><div class="info-val">0 &lt; ψ &lt; 1（两相区）；避开分母极点 ψ=-1/(Kᵢ-1)</div></div>
-            <div class="info-item"><div class="info-key">迭代方法</div><div class="info-val">Newton法：ψ_new=ψ_old-f(\(\psi\))/f'(\(\psi\))；初值ψ₀=0.5</div></div>
+            <div class="info-item"><div class="info-key">迭代方法</div><div class="info-val">Newton法：ψ_new=ψ_old-f($\psi$)/f'($\psi$)；初值ψ₀=0.5</div></div>
             <div class="info-item"><div class="info-key">绝热闪蒸</div><div class="info-val">外层迭代T，内层用R-R求ψ；热量衡算 Q=VHᵥ+LHₗ-FHF=0 校验T</div></div>
-            <div class="info-item"><div class="info-key">易错点</div><div class="info-val">f(\(\psi\))值受T影响（Kᵢ是T的函数）；等温闪蒸T固定所以Kᵢ固定</div></div>
+            <div class="info-item"><div class="info-key">易错点</div><div class="info-val">f($\psi$)值受T影响（Kᵢ是T的函数）；等温闪蒸T固定所以Kᵢ固定</div></div>
           </div>
         </div>
       </div>
@@ -1221,11 +1224,11 @@ MathJax = {
       <div class="fcard-body" style="display:none;">
         <div>
           <div class="fcol-label">标准形式</div>
-          <div class="fml">\[N_{\min}=\frac{\ln\!\left[\dfrac{x_{D,\text{LK}}}{x_{D,\text{HK}}}\cdot\dfrac{x_{B,\text{HK}}}{x_{B,\text{LK}}}\right]}{\ln\bar{\alpha}_{\text{LK,HK}}}\]</div>
+          <div class="fml">$$N_{\min} = \dfrac{\ln\!\Big(\dfrac{x_{D,LK}}{x_{D,HK}}\cdot\dfrac{x_{B,HK}}{x_{B,LK}}\Big)}{\ln\bar{\alpha}}$$</div>
           <div class="fcol-label" style="margin-top:10px;">平均相对挥发度</div>
-          <div class="fml orange">\[\bar{\alpha}=\sqrt{\alpha_\text{顶}\times\alpha_\text{釜}}\quad\text{[几何平均]}\]</div>
+          <div class="fml orange">$$\bar{\alpha}=\sqrt{\alpha_\text{顶}\times\alpha_\text{釜}}\quad\text{[几何平均]}$$</div>
           <div class="fcol-label" style="margin-top:10px;">非关键组分全回流分配</div>
-          <div class="fml green">\[\frac{d_i}{b_i}=\frac{d_\text{LK}}{b_\text{LK}}\cdot\alpha_{i,\text{LK}}^{N_{\min}}\]</div>
+          <div class="fml green">$$\frac{d_i}{b_i}=\frac{d_\text{LK}}{b_\text{LK}}\cdot\alpha_{i,\text{LK}}^{N_{\min}}$$</div>
         </div>
         <div>
           <div class="info-grid" style="margin-top:0;">
@@ -1248,11 +1251,11 @@ MathJax = {
       <div class="fcard-body" style="display:none;">
         <div>
           <div class="fcol-label">第一方程（求θ）</div>
-          <div class="fml orange">\[\sum_i\frac{\alpha_iz_{i,F}}{\alpha_i-\theta}=1-q\]</div>
+          <div class="fml orange">$$\sum_i\frac{\alpha_iz_{i,F}}{\alpha_i-\theta}=1-q$$</div>
           <div class="fcol-label" style="margin-top:10px;">第二方程（求Rmin）</div>
-          <div class="fml orange">\[\sum_i\frac{\alpha_ix_{i,D}}{\alpha_i-\theta}=R_{\min}+1\]</div>
+          <div class="fml orange">$$\sum_i\frac{\alpha_ix_{i,D}}{\alpha_i-\theta}=R_{\min}+1$$</div>
           <div class="fcol-label" style="margin-top:10px;">θ的约束</div>
-          <div class="fml red">\[\alpha_\text{HK}<\theta<\alpha_\text{LK}\quad\text{(必须满足！)}\]</div>
+          <div class="fml red">$$\alpha_\text{HK}<\theta<\alpha_\text{LK}\quad\text{(必须满足！)}$$</div>
         </div>
         <div>
           <div class="info-grid" style="margin-top:0;">
@@ -1275,11 +1278,11 @@ MathJax = {
       <div class="fcard-body" style="display:none;">
         <div>
           <div class="fcol-label">无因次变量定义</div>
-          <div class="fml">\[X=\frac{R-R_{\min}}{R+1},\qquad Y=\frac{N-N_{\min}}{N+1}\]</div>
+          <div class="fml">$$X=\frac{R-R_{\min}}{R+1},\qquad Y=\frac{N-N_{\min}}{N+1}$$</div>
           <div class="fcol-label" style="margin-top:10px;">Molokanov近似公式</div>
-          <div class="fml purple">\[Y=1-\exp\!\left[\frac{1+54.4X}{11+117.2X}\cdot\frac{X-1}{\sqrt{X}}\right]\approx0.75(1-X^{0.5668})\]</div>
+          <div class="fml purple">$$Y \approx 0.75\,(1 - X^{0.5668})$$</div>
           <div class="fcol-label" style="margin-top:10px;">反解N</div>
-          <div class="fml green">\[N=\frac{Y\cdot N_{\min}+N_{\min}-Y}{1-Y}\quad\text{→ 向上取整}\]</div>
+          <div class="fml green">$$N = \dfrac{Y(N_{\min}+1)+N_{\min}}{1-Y} \quad \text{（向上取整）}$$</div>
         </div>
         <div>
           <div class="info-grid" style="margin-top:0;">
@@ -1300,11 +1303,11 @@ MathJax = {
       <div class="fcard-body" style="display:none;">
         <div>
           <div class="fcol-label">理论级数公式（吸收，A≠1）</div>
-          <div class="fml green">\[N=\frac{\ln\!\left[\dfrac{y_{N+1}-mx_0}{y_1-mx_0}\!\left(1-\dfrac{1}{A}\right)+\dfrac{1}{A}\right]}{\ln A}\]</div>
+          <div class="fml green">$$N = \dfrac{\ln\!\Big[\dfrac{y_{N+1}-mx_0}{y_1-mx_0}\Big(1-\dfrac{1}{A}\Big)+\dfrac{1}{A}\Big]}{\ln A}$$</div>
           <div class="fcol-label" style="margin-top:10px;">吸收因子</div>
-          <div class="fml">\[A=\frac{L}{mV}\]</div>
+          <div class="fml">$$A=\frac{L}{mV}$$</div>
           <div class="fcol-label" style="margin-top:10px;">气提因子</div>
-          <div class="fml orange">\[S=\frac{mV}{L}=\frac{1}{A}\]</div>
+          <div class="fml orange">$$S=\frac{mV}{L}=\frac{1}{A}$$</div>
         </div>
         <div>
           <div class="info-grid" style="margin-top:0;">
@@ -1327,17 +1330,17 @@ MathJax = {
       <div class="fcard-body" style="display:none;">
         <div>
           <div class="fcol-label">以气相为基准</div>
-          <div class="fml">\(1/K_y=1/k_y+m/k_x\)</div>
+          <div class="fml">$1/K_y=1/k_y+m/k_x$</div>
           <div class="fcol-label" style="margin-top:10px;">以液相为基准</div>
-          <div class="fml">\[\frac{1}{K_x}=\frac{1}{mk_y}+\frac{1}{k_x}\]</div>
+          <div class="fml">$$\frac{1}{K_x}=\frac{1}{mk_y}+\frac{1}{k_x}$$</div>
           <div class="fcol-label" style="margin-top:10px;">传质速率</div>
-          <div class="fml green">\[N_A=K_y(y-y^*)=K_x(x^*-x)\]</div>
+          <div class="fml green">$$N_A=K_y(y-y^*)=K_x(x^*-x)$$</div>
         </div>
         <div>
           <div class="info-grid" style="margin-top:0;">
             <div class="info-item"><div class="info-key">为什么液膜阻力要乘m</div><div class="info-val">液相阻力1/kx折算到气相推动力基准时，需通过平衡关系y=mx换算，所以乘m</div></div>
-            <div class="info-item"><div class="info-key">气膜控制条件</div><div class="info-val">m小（气体易溶如NH₃）→m/kx项小→\(1/K_y\approx 1/k_y\)→气膜控制</div></div>
-            <div class="info-item"><div class="info-key">液膜控制条件</div><div class="info-val">m大（气体难溶如O₂）→m/kx项大→\(1/K_y\approx m/k_x\)→液膜控制</div></div>
+            <div class="info-item"><div class="info-key">气膜控制条件</div><div class="info-val">m小（气体易溶如NH₃）→m/kx项小→$1/K_y\approx 1/k_y$→气膜控制</div></div>
+            <div class="info-item"><div class="info-key">液膜控制条件</div><div class="info-val">m大（气体难溶如O₂）→m/kx项大→$1/K_y\approx m/k_x$→液膜控制</div></div>
             <div class="info-item"><div class="info-key">化学吸收强化</div><div class="info-val">反应消耗溶质→界面xᵢ↓→推动力↑→速率增加→E=化学/物理速率&gt;1</div></div>
           </div>
         </div>
@@ -1352,11 +1355,11 @@ MathJax = {
       <div class="fcard-body" style="display:none;">
         <div>
           <div class="fcol-label">标准形式</div>
-          <div class="fml purple">\[q=\frac{q_m bP}{1+bP}\]</div>
+          <div class="fml purple">$$q=\frac{q_m bP}{1+bP}$$</div>
           <div class="fcol-label" style="margin-top:10px;">线性化（用于实验求q_m和b）</div>
-          <div class="fml">\[\frac{P}{q}=\frac{1}{q_mb}+\frac{P}{q_m}\quad\text{(作}P/q\text{ vs }P\text{图)}\]</div>
+          <div class="fml">$$\frac{P}{q}=\frac{1}{q_mb}+\frac{P}{q_m}\quad\text{(作}P/q\text{ vs }P\text{图)}$$</div>
           <div class="fcol-label" style="margin-top:10px;">两个极限</div>
-          <div class="fml green">\[\text{低压: }q\approx q_mbP\quad\text{高压: }q\approx q_m\]</div>
+          <div class="fml green">$$\text{低压: }q\approx q_mbP\quad\text{高压: }q\approx q_m$$</div>
         </div>
         <div>
           <div class="info-grid" style="margin-top:0;">
@@ -1397,24 +1400,24 @@ const questions = [
     opts: ["系统压力增大，温度升高", "系统压力增大，温度降低", "系统压力减小，温度升高", "系统压力减小，温度降低"],
     ans: 2,
     ch: "第二章 · K值",
-    explain: "<strong>分析：</strong>理想物系 \(K_i=P_i^s/P\)。<br>温度升高 → P_i^s 增大（安托万方程：T↑→P^s↑）→ K_i 增大；<br>压力减小 → 分母减小 → K_i 增大。<br>两个条件方向一致，都使 K_i 增大，选C。",
-    formula: "\(K_i=P_i^s/P\)（低压理想物系）"
+    explain: "<strong>分析：</strong>理想物系 $K_i=P_i^s/P$。<br>温度升高 → P_i^s 增大（安托万方程：T↑→P^s↑）→ K_i 增大；<br>压力减小 → 分母减小 → K_i 增大。<br>两个条件方向一致，都使 K_i 增大，选C。",
+    formula: "$K_i=P_i^s/P$（低压理想物系）"
   },
   {
-    q: "闪蒸方程 f(\(\psi\)) = Σzᵢ(Kᵢ-1)/[1+ψ(Kᵢ-1)] = 0，对ψ而言是一个（）函数",
+    q: "闪蒸方程 f($\psi$) = Σzᵢ(Kᵢ-1)/[1+ψ(Kᵢ-1)] = 0，对ψ而言是一个（）函数",
     opts: ["单调递增", "单调递减", "先增后减", "先减后增"],
     ans: 1,
     ch: "第二章 · 闪蒸",
-    explain: "<strong>分析：</strong>对f(\(\psi\))求导：\(\partial f/\partial\psi=-\sum z_i(K_i-1)^2/[1+\psi(K_i-1)]^2<0\)（分子为负，分母为正）。<br>因此 f(\(\psi\)) 对 ψ 严格单调递减，这保证了两相区内根的唯一性。",
-    formula: "\(\partial f/\partial\psi=-\sum z_i(K_i-1)^2/[1+\psi(K_i-1)]^2<0\)"
+    explain: "<strong>分析：</strong>对f($\psi$)求导：$\partial f/\partial\psi=-\sum z_i(K_i-1)^2/[1+\psi(K_i-1)]^2<0$（分子为负，分母为正）。<br>因此 f($\psi$) 对 ψ 严格单调递减，这保证了两相区内根的唯一性。",
+    formula: "$\partial f/\partial\psi=-\sum z_i(K_i-1)^2/[1+\psi(K_i-1)]^2<0$"
   },
   {
     q: "某c组分混合物为过冷液体，其相平衡常数Kᵢ和进料组成zᵢ应满足（）",
     opts: ["ΣKᵢzᵢ > 1 且 Σzᵢ/Kᵢ > 1", "ΣKᵢzᵢ > 1 且 Σzᵢ/Kᵢ < 1", "ΣKᵢzᵢ < 1 且 Σzᵢ/Kᵢ > 1", "ΣKᵢzᵢ < 1 且 Σzᵢ/Kᵢ < 1"],
     ans: 3,
     ch: "第二章 · 闪蒸判据",
-    explain: "<strong>分析：</strong>三个区间：<br>全液相（过冷）：\(\sum K_iz_i < 1\) 且 \(\sum z_i/K_i < 1\) → 选D<br>气液两相：两者都 &gt; 1<br>全气相（过热）：\(\sum z_i/K_i < 1\)<br>过冷液体=全液相，选D。",
-    formula: "过冷液体判据：\(\sum K_iz_i<1\)（双小）"
+    explain: "<strong>分析：</strong>三个区间：<br>全液相（过冷）：$\sum K_iz_i < 1$ 且 $\sum z_i/K_i < 1$ → 选D<br>气液两相：两者都 &gt; 1<br>全气相（过热）：$\sum z_i/K_i < 1$<br>过冷液体=全液相，选D。",
+    formula: "过冷液体判据：$\sum K_iz_i<1$（双小）"
   },
   {
     q: "已知汽相组成y和系统压力P，这属于（）计算",
@@ -1422,7 +1425,7 @@ const questions = [
     ans: 2,
     ch: "第二章 · 泡露点",
     explain: "<strong>分析：</strong>已知气相y + P → 求T，这是露点温度计算。<br>规律：已知哪相组成 → 对应哪种状态（液相→泡点；气相→露点）；求T→温度型；求P→压力型。",
-    formula: "露点温度：已知\(y,P\) → 用\(\sum y_i/K_i=1\)迭代求\(T\)"
+    formula: "露点温度：已知$y,P$ → 用$\sum y_i/K_i=1$迭代求$T$"
   },
   {
     q: "泡点温度计算中，收敛条件是（）",
@@ -1430,7 +1433,7 @@ const questions = [
     ans: 2,
     ch: "第二章 · 泡点计算",
     explain: "<strong>分析：</strong>泡点计算的核心方程就是 ΣKᵢxᵢ = 1。<br>迭代过程：猜T → 求Kᵢ → 计算ΣKᵢxᵢ → 若=1则收敛，否则调整T。<br>收敛后再由 yᵢ=Kᵢxᵢ 求气相组成，验证Σyᵢ=1（不是收敛条件，是验算）。",
-    formula: "泡点收敛方程：\(\sum K_ix_i=1\)"
+    formula: "泡点收敛方程：$\sum K_ix_i=1$"
   },
   {
     q: "Fenske方程适用的条件是（）",
@@ -1446,7 +1449,7 @@ const questions = [
     ans: 1,
     ch: "第三章 · Underwood",
     explain: "<strong>分析：</strong>θ是Underwood方程的核心参数，物理上代表夹点状态的特征参数。<br>θ必须位于两个关键组分的挥发度之间：α_HK &lt; θ &lt; α_LK。<br>这是因为Underwood第一方程在θ = αᵢ处有奇点（分母为零），θ必须在相邻奇点之间才有物理意义。",
-    formula: "\(\theta\)约束：\(\alpha_\text{HK}<\theta<\alpha_\text{LK}\)"
+    formula: "$\theta$约束：$\alpha_\text{HK}<\theta<\alpha_\text{LK}$"
   },
   {
     q: "吉利兰关联图中，X轴变量X = (R-Rmin)/(R+1)，当R趋向无穷大时，X趋向（）",
@@ -1454,7 +1457,7 @@ const questions = [
     ans: 2,
     ch: "第三章 · Gilliland",
     explain: "<strong>分析：</strong>X = (R-Rmin)/(R+1)。当R→∞时：<br>分子 = R-Rmin ≈ R（Rmin可忽略）<br>分母 = R+1 ≈ R<br>因此X→R/R=1。<br>此时Y→0，意味着N→Nmin（全回流时板数最少）。",
-    formula: "\(R\to\infty\)时\(X\to1,Y\to0,N\to N_{\min}\)"
+    formula: "$R\to\infty$时$X\to1,Y\to0,N\to N_{\min}$"
   },
   {
     q: "泡点液体进料时，Underwood第一方程的右端等于（）",
@@ -1462,7 +1465,7 @@ const questions = [
     ans: 1,
     ch: "第三章 · Underwood",
     explain: "<strong>分析：</strong>Underwood第一方程：Σαᵢzᵢ/(αᵢ-θ) = 1-q<br>泡点液体进料时，q = 1（定义：泡点液体q=1）<br>代入：右端 = 1-1 = 0<br>这使得θ的方程更简洁，迭代更容易。",
-    formula: "泡点液体(\(q=1\))→右端\(=0\)：\(\sum\alpha_iz_i/(\alpha_i-\theta)=0\)"
+    formula: "泡点液体($q=1$)→右端$=0$：$\sum\alpha_iz_i/(\alpha_i-\theta)=0$"
   },
   {
     q: "多组分精馏塔的可调设计变量数为（）",
@@ -1478,15 +1481,15 @@ const questions = [
     ans: 1,
     ch: "第四章 · 吸收因子",
     explain: "<strong>分析：</strong>吸收因子A=L/(mV)=L/(KV)，物理意义是液气摩尔流率比除以相平衡常数。<br>A&gt;1：液相流量大于平衡所需最小量 → 溶质更倾向进入液相 → 有利于吸收。<br>A&lt;1：液量不足 → 吸收不完全。<br>类比：A对应精馏中L/V的概念。",
-    formula: "\(A=L/(mV)>1\)→有利吸收"
+    formula: "$A=L/(mV)>1$→有利吸收"
   },
   {
     q: "双膜理论中，气体难溶（m值很大）时，总传质阻力主要由（）控制",
     opts: ["气膜阻力", "液膜阻力", "界面阻力", "两者相当"],
     ans: 1,
     ch: "第四章 · 双膜理论",
-    explain: "<strong>分析：</strong>总传质系数：\(1/K_y=1/k_y+m/k_x\)<br>m很大 → m/kx项远大于1/ky → 1/Ky ≈ m/kx<br>总阻力由液膜(m/kx)控制。<br>直觉理解：气体难溶(m大)→溶质宁愿待在气相→液相中溶质浓度极低→液膜浓度梯度决定速率。<br>反之，气体易溶(m小)→气膜控制。",
-    formula: "\(m\)大→液膜控制：\(1/K_y\approx m/k_x\)"
+    explain: "<strong>分析：</strong>总传质系数：$1/K_y=1/k_y+m/k_x$<br>m很大 → m/kx项远大于1/ky → 1/Ky ≈ m/kx<br>总阻力由液膜(m/kx)控制。<br>直觉理解：气体难溶(m大)→溶质宁愿待在气相→液相中溶质浓度极低→液膜浓度梯度决定速率。<br>反之，气体易溶(m小)→气膜控制。",
+    formula: "$m$大→液膜控制：$1/K_y\approx m/k_x$"
   },
   {
     q: "多组分吸收中，可以提出严格分离要求的组分数为（）",
@@ -1502,7 +1505,7 @@ const questions = [
     ans: 2,
     ch: "第五章 · MESH",
     explain: "<strong>分析：</strong>每个平衡级的MESH方程数：<br>M（物料衡算）：c个（每个组分一个）<br>E（相平衡）：c个（yᵢ=Kᵢxᵢ）<br>S（加和归一）：2个（Σxᵢ=1, Σyᵢ=1）<br>H（热量衡算）：1个<br>合计：c+c+2+1 = 2c+3",
-    formula: "每级MESH方程数\(=2c+3\)"
+    formula: "每级MESH方程数$=2c+3$"
   },
   {
     q: "下列不属于MESH方程组的是（）",
@@ -1534,7 +1537,7 @@ const questions = [
     ans: 2,
     ch: "第七章 · Langmuir",
     explain: "<strong>分析：</strong>q = q_m·bP/(1+bP)<br>当bP≫1时：分母≈bP<br>q ≈ q_m·bP/bP = q_m<br>即达到饱和平台，这是Langmuir单层吸附有限位点的直接推论：所有吸附位都被占满后，吸附量不再增加。",
-    formula: "高压极限：\(q\to q_m\)（饱和平台）"
+    formula: "高压极限：$q\to q_m$（饱和平台）"
   },
   {
     q: "变压吸附(PSA)和变温吸附(TSA)相比，PSA的特点是（）",
@@ -1550,7 +1553,7 @@ const questions = [
     ans: 1,
     ch: "第七章 · 穿透曲线",
     explain: "<strong>分析：</strong>工程上定义破点(breakthrough point)为 C_out/C_F = 0.05（即5%）。<br>当出口浓度达到进料浓度的5%时，认为床层已经'穿透'，需要切换到再生状态。<br>这是工程约定，不同行业标准可能有所不同，但5%是最常用的定义。",
-    formula: "破点定义：\(C_\text{out}/C_F=0.05=5\%\)"
+    formula: "破点定义：$C_\text{out}/C_F=0.05=5\%$"
   },
   {
     q: "RO膜操作的净推动力为（）",
@@ -1558,7 +1561,7 @@ const questions = [
     ans: 2,
     ch: "第八章 · 反渗透",
     explain: "<strong>分析：</strong>RO膜操作中：<br>施加压力ΔP驱动水透过膜；<br>但渗透压Δπ是抵抗水从稀侧→浓侧流动的天然阻力。<br>因此净推动力 = ΔP - Δπ。<br>只有当ΔP &gt; Δπ时，才能实现反渗透（水从浓侧→稀侧）。",
-    formula: "RO净推动力\(=\Delta P-\Delta\pi\)（不是单纯\(\Delta P\)！）"
+    formula: "RO净推动力$=\Delta P-\Delta\pi$（不是单纯$\Delta P$！）"
   },
   {
     q: "下列膜分离过程中，主要属于筛分机理的是（）",
@@ -1582,7 +1585,7 @@ const questions = [
     ans: 3,
     ch: "第八章 · 气体分离膜",
     explain: "<strong>分析：</strong>不同膜的性能指标：<br>MF：平均孔径（μm）<br>UF：截留分子量MWCO（Da）<br>NF/RO：截留率（%）<br>GS（气体分离）：分离因子αij = Pᵢ/Pⱼ（渗透速率之比）<br>PVap（渗透蒸发）：分离因子（同GS）",
-    formula: "气体分离膜：\(\alpha_{ij} = P_i/P_j\) (渗透速率比)"
+    formula: "气体分离膜：$\alpha_{ij} = P_i/P_j$ (渗透速率比)"
   },
   {
     q: "萃取精馏塔中，萃取剂从塔（）离开",
@@ -1598,7 +1601,7 @@ const questions = [
     ans: 1,
     ch: "第三章 · 平均α",
     explain: "<strong>分析：</strong>ᾱ = √(α_顶 × α_釜)，即几何平均值。<br>为什么用几何平均？因为α沿塔板变化，而Fenske方程中每级都乘以一个α，多级连乘的'等效'α是几何平均，而不是算术平均。<br>高频易错点：很多同学误用算术平均，导致Nmin计算偏差。",
-    formula: "\(\bar{\alpha}=\sqrt{\alpha_\text{顶}\times\alpha_\text{釜}}\)[几何平均！不是算术平均]"
+    formula: "$\bar{\alpha}=\sqrt{\alpha_\text{顶}\times\alpha_\text{釜}}$[几何平均！不是算术平均]"
   },
   {
     q: "比较精馏和吸收的传质方向，吸收属于（）",
@@ -1614,7 +1617,7 @@ const questions = [
     ans: 3,
     ch: "第四章 · 设计变量",
     explain: "<strong>分析：</strong>多组分吸收塔只有1个可调设计变量：液气比（或吸收剂流量L）。<br>对比精馏塔有5个可调变量，吸收塔的可调自由度极少，这也是为什么：①吸收只能对1个关键组分提要求；②吸收效果对L/V特别敏感。",
-    formula: "吸收塔可调设计变量\(=1\)（液气比）"
+    formula: "吸收塔可调设计变量$=1$（液气比）"
   },
   {
     q: "完全描述一股c组分的两相物流，所需的独立变量数为（）",
@@ -1622,7 +1625,7 @@ const questions = [
     ans: 2,
     ch: "第一章 · 设计变量",
     explain: "<strong>分析：</strong>两相物流变量：c个气相摩尔分率 + c个液相摩尔分率 + T + P + 气相分率 = 2c+3个总变量。<br>约束：Σyᵢ=1（1个）+ Σxᵢ=1（1个）= 2个约束。<br>独立变量 = 2c+3 - 2 = 2c+1。",
-    formula: "\(c\)组分两相物流：独立变量数\(=2c+1\)"
+    formula: "$c$组分两相物流：独立变量数$=2c+1$"
   },
   {
     q: "物理吸附与化学吸附最本质的区别是（）",
@@ -1638,7 +1641,7 @@ const questions = [
     ans: 2,
     ch: "第三章 · FUG法",
     explain: "<strong>分析：</strong>FUG三步法是多组分精馏设计的核心：<br>F = Fenske（芬斯克）→ 全回流 → 求Nmin<br>U = Underwood（昂德伍德）→ 最小回流 → 求Rmin<br>G = Gilliland（吉利兰）→ 实际操作 → 求N实际<br>三个方程环环相扣，构成完整的简捷设计体系。",
-    formula: "FUG = Fenske(\(N_{\min}\))+Underwood(\(R_{\min}\))+Gilliland(\(N\))"
+    formula: "FUG = Fenske($N_{\min}$)+Underwood($R_{\min}$)+Gilliland($N$)"
   }
 ];
 
