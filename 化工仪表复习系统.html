@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>化工仪表及自动化 · 期末冲刺</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #22263a;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.15);
+    --text: #e8eaf0;
+    --text2: #9aa0b8;
+    --text3: #5f6580;
+    --accent: #6c8cf5;
+    --accent2: #4a6af0;
+    --gold: #f0c060;
+    --red: #f06060;
+    --green: #50d890;
+    --teal: #40c8c0;
+    --orange: #f08040;
+    --purple: #a080f0;
+    --radius: 14px;
+    --radius-sm: 8px;
+    --font: 'Noto Sans SC', system-ui, sans-serif;
+    --font-serif: 'Noto Serif SC', serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 16px;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── TOP NAV ── */
+  .topbar {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(15,17,23,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 20px;
+    display: flex; align-items: center; gap: 4px;
+    overflow-x: auto; scrollbar-width: none;
+    height: 56px;
+  }
+  .topbar::-webkit-scrollbar { display: none; }
+  .topbar-title {
+    font-size: 14px; font-weight: 700; color: var(--accent);
+    white-space: nowrap; margin-right: 12px;
+    letter-spacing: 0.03em;
+  }
+  .tab {
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-size: 13px; font-weight: 500;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--text2);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.18s;
+    flex-shrink: 0;
+  }
+  .tab:hover { color: var(--text); background: var(--surface); }
+  .tab.active {
+    background: var(--accent2);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  /* ── MAIN ── */
+  .main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 28px 20px 80px;
+  }
+
+  /* ── SECTIONS ── */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ── PAGE HEADER ── */
+  .page-hero {
+    background: linear-gradient(135deg, #1c2240 0%, #1a2535 50%, #1c2035 100%);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-hero::before {
+    content: '';
+    position: absolute; top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(108,140,245,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-title {
+    font-family: var(--font-serif);
+    font-size: 24px; font-weight: 600;
+    color: #fff; margin-bottom: 6px;
+  }
+  .hero-sub { font-size: 13px; color: var(--text2); }
+  .score-pills {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px;
+  }
+  .score-pill {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border2);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 12px; color: var(--text2);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .score-pill .n { color: var(--gold); font-weight: 700; font-size: 14px; }
+
+  /* ── SECTION TITLE ── */
+  .sec-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--text3);
+    margin-bottom: 14px;
+    padding-left: 10px;
+    border-left: 2px solid var(--accent);
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    margin-bottom: 14px;
+    transition: border-color 0.15s;
+  }
+  .card:hover { border-color: var(--border2); }
+
+  .card-header {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 12px;
+  }
+  .card-title {
+    font-size: 15px; font-weight: 500; color: var(--text);
+  }
+
+  /* ── TAGS ── */
+  .tag {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.06em;
+    padding: 3px 9px; border-radius: 20px;
+    flex-shrink: 0;
+  }
+  .tag-red { background: rgba(240,96,96,0.15); color: var(--red); }
+  .tag-gold { background: rgba(240,192,96,0.15); color: var(--gold); }
+  .tag-green { background: rgba(80,216,144,0.15); color: var(--green); }
+  .tag-teal { background: rgba(64,200,192,0.15); color: var(--teal); }
+  .tag-blue { background: rgba(108,140,245,0.15); color: var(--accent); }
+  .tag-purple { background: rgba(160,128,240,0.15); color: var(--purple); }
+  .tag-orange { background: rgba(240,128,64,0.15); color: var(--orange); }
+
+  /* ── CONTENT TEXT ── */
+  .body-text { font-size: 14px; color: var(--text2); line-height: 1.8; }
+  .body-text strong, .hl { color: var(--text); font-weight: 500; }
+  .body-text .em { color: var(--gold); font-weight: 500; }
+  .body-text .warn { color: var(--red); font-weight: 500; }
+  .body-text .ok { color: var(--green); font-weight: 500; }
+
+  /* ── FORMULA BOX ── */
+  .formula {
+    background: #0d1020;
+    border: 1px solid rgba(108,140,245,0.25);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    font-family: 'Courier New', monospace;
+    font-size: 13px; color: #a0c0f8;
+    margin: 10px 0;
+    white-space: pre-wrap;
+    line-height: 1.8;
+  }
+
+  /* ── TIP / WARN BOXES ── */
+  .tip-box {
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    font-size: 13px; margin: 10px 0;
+    line-height: 1.7;
+  }
+  .tip-warn { background: rgba(240,96,96,0.08); border-left: 3px solid var(--red); color: #f0a0a0; }
+  .tip-ok { background: rgba(80,216,144,0.08); border-left: 3px solid var(--green); color: #80e8b0; }
+  .tip-info { background: rgba(108,140,245,0.08); border-left: 3px solid var(--accent); color: #a0b8f0; }
+  .tip-gold { background: rgba(240,192,96,0.08); border-left: 3px solid var(--gold); color: #f0d080; }
+
+  /* ── TABLE ── */
+  .data-table {
+    width: 100%; border-collapse: collapse;
+    font-size: 13px; margin: 10px 0;
+  }
+  .data-table th {
+    background: var(--surface2);
+    padding: 9px 12px; text-align: left;
+    color: var(--text2); font-weight: 500;
+    border-bottom: 1px solid var(--border2);
+    font-size: 12px;
+  }
+  .data-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text2); vertical-align: top;
+  }
+  .data-table td:first-child { color: var(--text); font-weight: 500; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* ── CHAPTER GRID (overview) ── */
+  .chapter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px; margin-bottom: 24px;
+  }
+  .ch-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .ch-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .ch-num { font-size: 11px; color: var(--text3); margin-bottom: 4px; }
+  .ch-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 8px; }
+  .ch-star { font-size: 12px; color: var(--gold); margin-bottom: 6px; }
+  .ch-desc { font-size: 11px; color: var(--text3); line-height: 1.5; }
+
+  /* ── EXAMPLE PROBLEMS ── */
+  .example-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .example-header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 16px 20px;
+    background: var(--surface2);
+    cursor: pointer;
+    user-select: none;
+  }
+  .example-header:hover { background: #262a40; }
+  .example-num {
+    width: 28px; height: 28px;
+    background: var(--accent2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: #fff;
+    flex-shrink: 0;
+  }
+  .example-title { flex: 1; font-size: 14px; font-weight: 500; color: var(--text); }
+  .example-chapter { font-size: 11px; color: var(--text3); }
+  .chevron {
+    font-size: 12px; color: var(--text3);
+    transition: transform 0.2s;
+  }
+  .chevron.open { transform: rotate(180deg); }
+
+  .example-body {
+    display: none;
+    padding: 0 20px 20px;
+  }
+  .example-body.open { display: block; }
+
+  .problem-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+    color: var(--text3); margin: 14px 0 6px;
+    text-transform: uppercase;
+  }
+  .problem-text {
+    font-size: 14px; color: var(--text2); line-height: 1.8;
+    padding: 12px 14px;
+    background: rgba(255,255,255,0.03);
+    border-radius: var(--radius-sm);
+    border-left: 2px solid var(--border2);
+  }
+  .answer-text {
+    font-size: 14px; color: var(--text2); line-height: 1.8;
+  }
+  .show-ans-btn {
+    margin-top: 10px;
+    padding: 7px 18px;
+    border-radius: 20px;
+    font-size: 12px; font-weight: 500;
+    border: 1px solid var(--border2);
+    background: transparent;
+    color: var(--text2);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .show-ans-btn:hover { background: var(--surface2); color: var(--text); }
+  .ans-block { display: none; margin-top: 10px; }
+  .ans-block.visible { display: block; }
+
+  /* ── QUIZ ── */
+  .quiz-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    margin-bottom: 16px;
+  }
+  .quiz-meta { display: flex; gap: 8px; align-items: center; margin-bottom: 12px; }
+  .quiz-q { font-size: 15px; color: var(--text); line-height: 1.8; margin-bottom: 14px; }
+  .quiz-opts { display: flex; flex-direction: column; gap: 8px; }
+  .quiz-opt {
+    padding: 10px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 14px; color: var(--text2);
+    background: var(--bg); cursor: pointer;
+    text-align: left; transition: all 0.15s;
+  }
+  .quiz-opt:hover:not(:disabled) { border-color: var(--accent); color: var(--text); }
+  .quiz-opt.correct { background: rgba(80,216,144,0.1); border-color: var(--green); color: var(--green); }
+  .quiz-opt.wrong { background: rgba(240,96,96,0.1); border-color: var(--red); color: var(--red); }
+  .quiz-opt:disabled { cursor: default; }
+  .quiz-reveal {
+    padding: 8px 18px; border-radius: 20px;
+    font-size: 12px; font-weight: 500;
+    border: 1px solid var(--border2);
+    background: transparent; color: var(--text3);
+    cursor: pointer; margin-top: 8px;
+    transition: all 0.15s;
+  }
+  .quiz-reveal:hover { background: var(--surface2); color: var(--text2); }
+  .quiz-explain {
+    display: none; margin-top: 12px; padding: 12px 14px;
+    background: rgba(108,140,245,0.06);
+    border: 1px solid rgba(108,140,245,0.2);
+    border-radius: var(--radius-sm);
+    font-size: 13px; color: var(--text2); line-height: 1.8;
+  }
+  .quiz-explain.show { display: block; }
+  .quiz-input {
+    width: 100%; padding: 10px 14px;
+    background: var(--bg); border: 1px solid var(--border2);
+    border-radius: var(--radius-sm);
+    color: var(--text); font-size: 14px;
+    font-family: var(--font); line-height: 1.7;
+    resize: vertical; min-height: 80px;
+    margin-bottom: 8px;
+  }
+  .quiz-input:focus { outline: none; border-color: var(--accent); }
+
+  /* ── STRATEGY ── */
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 12px; margin-bottom: 20px;
+  }
+  .strategy-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+  }
+  .strategy-score {
+    font-size: 32px; font-weight: 700;
+    color: var(--gold); font-family: var(--font-serif);
+    line-height: 1;
+  }
+  .strategy-label { font-size: 12px; color: var(--text3); margin: 4px 0 12px; }
+  .strategy-items { font-size: 13px; color: var(--text2); line-height: 2; }
+  .strategy-items li { list-style: none; padding-left: 0; }
+  .strategy-items li::before { content: "→ "; color: var(--accent); }
+
+  /* ── PROGRESS BAR ── */
+  .progress-wrap { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .pbar-outer { flex: 1; height: 4px; background: var(--surface2); border-radius: 2px; }
+  .pbar-inner { height: 4px; background: var(--accent); border-radius: 2px; transition: width 0.3s; }
+  .pbar-text { font-size: 12px; color: var(--text3); white-space: nowrap; }
+
+  /* ── DIAGRAM ASCII ── */
+  .diagram-box {
+    background: #0a0d18;
+    border: 1px solid rgba(108,140,245,0.2);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    font-family: 'Courier New', monospace;
+    font-size: 12px; color: #7090d0;
+    line-height: 1.8; overflow-x: auto;
+    margin: 10px 0;
+    white-space: pre;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 2px; }
+
+  /* ── TABLET OPTIMIZATION ── */
+  @media (min-width: 600px) {
+    .main { padding: 32px 28px 80px; }
+    .hero-title { font-size: 26px; }
+    .quiz-opt { font-size: 15px; }
+  }
+  @media (min-width: 768px) {
+    .main { padding: 36px 36px 80px; }
+    .hero-title { font-size: 28px; }
+  }
+
+  /* ── SUBSECTION DIVIDER ── */
+  .divider { height: 1px; background: var(--border); margin: 24px 0; }
+
+  /* ── STEP LIST ── */
+  .step-list { counter-reset: steps; }
+  .step-item {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+  }
+  .step-item:last-child { border-bottom: none; }
+  .step-num {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--accent2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: #fff;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .step-text { font-size: 14px; color: var(--text2); line-height: 1.7; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="topbar-title">化工仪表</span>
+  <button class="tab active" onclick="showTab('overview')">📊 考点地图</button>
+  <button class="tab" onclick="showTab('examples')">📖 例题原题</button>
+  <button class="tab" onclick="showTab('knowledge')">🧠 核心考点</button>
+  <button class="tab" onclick="showTab('formulas')">📐 公式速查</button>
+  <button class="tab" onclick="showTab('quiz')">✏️ 真题练习</button>
+  <button class="tab" onclick="showTab('strategy')">🎯 60分策略</button>
+</div>
+
+<div class="main">
+
+  <!-- ══════════════ 考点地图 ══════════════ -->
+  <div class="section active" id="tab-overview">
+    <div class="page-hero">
+      <div class="hero-title">化工仪表及自动化 · 期末冲刺</div>
+      <div class="hero-sub">基于 2024–2025 两套真题 · 例题原题 + 知识点 + 刷题 · 目标 60 分</div>
+      <div class="score-pills">
+        <div class="score-pill"><span class="n">10</span>选择题</div>
+        <div class="score-pill"><span class="n">10</span>填空题</div>
+        <div class="score-pill"><span class="n">25</span>简答题 × 5</div>
+        <div class="score-pill"><span class="n">25</span>问答题 × 2</div>
+        <div class="score-pill"><span class="n">30</span>计算题 × 3</div>
+      </div>
+    </div>
+
+    <div class="sec-title">章节考点权重</div>
+    <div class="chapter-grid">
+      <div class="ch-card" onclick="showTab('knowledge')">
+        <div class="ch-num">第一章</div>
+        <div class="ch-name">自动控制基本概念</div>
+        <div class="ch-star">★★★ 超高频</div>
+        <div class="ch-desc">过渡过程品质指标计算、系统变量定义、方框图</div>
+      </div>
+      <div class="ch-card" onclick="showTab('knowledge')">
+        <div class="ch-num">第二章</div>
+        <div class="ch-name">过程特性数学模型</div>
+        <div class="ch-star">★★ 常考</div>
+        <div class="ch-desc">K/T/τ 三参数定义、RC电路阶跃响应计算</div>
+      </div>
+      <div class="ch-card" onclick="showTab('knowledge')">
+        <div class="ch-num">第三章</div>
+        <div class="ch-name">检测仪表与传感器</div>
+        <div class="ch-star">★★★ 超高频</div>
+        <div class="ch-desc">精度等级计算、热电偶补偿、差压液位迁移</div>
+      </div>
+      <div class="ch-card" onclick="showTab('knowledge')">
+        <div class="ch-num">第四章</div>
+        <div class="ch-name">自动控制仪表</div>
+        <div class="ch-star">★★★ 超高频</div>
+        <div class="ch-desc">PID控制规律、比例度、积分饱和（10分问答）</div>
+      </div>
+      <div class="ch-card" onclick="showTab('knowledge')">
+        <div class="ch-num">第五章</div>
+        <div class="ch-name">执行器</div>
+        <div class="ch-star">★★ 常考</div>
+        <div class="ch-desc">气开/气关选择、流量特性、三阀组操作步骤</div>
+      </div>
+      <div class="ch-card" onclick="showTab('knowledge')">
+        <div class="ch-num">第六章</div>
+        <div class="ch-name">简单控制系统</div>
+        <div class="ch-star">★★★ 超高频</div>
+        <div class="ch-desc">控制器正反作用判断、DDZ-Ⅲ型计算</div>
+      </div>
+      <div class="ch-card" onclick="showTab('knowledge')">
+        <div class="ch-num">第七章</div>
+        <div class="ch-name">复杂控制系统</div>
+        <div class="ch-star">★★★ 超高频</div>
+        <div class="ch-desc">串级控制系统设计（15分大题必考！）</div>
+      </div>
+      <div class="ch-card" onclick="showTab('knowledge')">
+        <div class="ch-num">第十章</div>
+        <div class="ch-name">典型化工单元控制</div>
+        <div class="ch-star">★ 了解</div>
+        <div class="ch-desc">精馏塔、反应器、离心泵控制方案</div>
+      </div>
+    </div>
+
+    <div class="sec-title">真题题型对应考点</div>
+    <div class="card">
+      <div class="card-header">
+        <span class="tag tag-red">必背 25分</span>
+        <span class="card-title">两道问答大题</span>
+      </div>
+      <div class="body-text">
+        <strong>① 积分饱和（10分）</strong>：定义 → 产生条件 → 防止措施，三问缺一不可，每问约3分<br>
+        <strong>② 串级控制系统设计（15分）</strong>：釜式反应器温度控制 → 画控制流程图 → 方框图 → 执行器方向 → 副控制器方向 → 主控制器方向（后三问必须写判断过程，只写结论=0分）
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="tag tag-gold">计算 30分</span>
+        <span class="card-title">三道计算题</span>
+      </div>
+      <div class="body-text">
+        <strong>① DDZ-Ⅲ型PI控制器（10分）</strong>：输入mA→比例度δ→放大倍数Kc→输出变化量<br>
+        <strong>② 过渡过程品质指标（10分）</strong>：读图求最大偏差、余差、衰减比、振荡周期、过渡时间<br>
+        <strong>③ 差压液位测量（10分）</strong>：判断有无迁移、正/负迁移、迁移量 + 12mA对应液位计算
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ 例题原题 ══════════════ -->
+  <div class="section" id="tab-examples">
+
+    <div class="sec-title">第一章 · 过渡过程品质指标</div>
+
+    <div class="example-card">
+      <div class="example-header" onclick="toggleExample(this)">
+        <div class="example-num">1</div>
+        <div>
+          <div class="example-title">课件例题1：换热器品质指标计算</div>
+          <div class="example-chapter">第一章 · 计算题 · 必考原题</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="example-body">
+        <div class="problem-label">题目</div>
+        <div class="problem-text">某换热器的温度控制系统在单位阶跃干扰作用下的过渡过程曲线如图所示，试分别求出最大偏差、衰减比、振荡周期和过渡时间（给定值为 200℃）。<br><br>
+        📊 曲线数据（读图）：<br>
+        · 第一波峰：230℃，出现在 t = 5 min<br>
+        · 波谷：205℃，出现在 t = 12.5 min<br>
+        · 第二波峰：210℃，出现在 t = 20 min<br>
+        · 系统稳定时间约：t = 22 min，稳态值约 200℃
+        </div>
+        <button class="show-ans-btn" onclick="toggleAns(this)">查看解答 ▼</button>
+        <div class="ans-block">
+          <div class="problem-label">解题步骤</div>
+          <div class="formula">① 最大偏差 A = 第一波峰 − 给定值
+  A = 230 − 200 = 30℃
+
+② 衰减比 n = B / B'
+  B  = 第一波峰 − 稳态值 = 230 − 205 = 25
+  B' = 第二波峰 − 稳态值 = 210 − 205 = 5
+  n = 25 / 5 = 5 : 1   ✓（在工业要求 4:1~10:1 范围内）
+
+③ 振荡周期 T = 相邻两同向波峰时间差
+  T = 20 − 5 = 15 min
+
+④ 过渡时间 ts = 进入 ±5% 误差带的时间
+  ts ≈ 22 min</div>
+          <div class="tip-box tip-ok">答：A = 30℃，n = 5:1，T = 15 min，ts = 22 min</div>
+          <div class="tip-box tip-warn">⚠️ 易错：衰减比是用"相对稳态值的幅值"做比，不是直接用温度做比！</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-header" onclick="toggleExample(this)">
+        <div class="example-num">2</div>
+        <div>
+          <div class="example-title">课本例题1-20：随动系统品质指标</div>
+          <div class="example-chapter">第一章 · 计算题</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="example-body">
+        <div class="problem-label">题目</div>
+        <div class="problem-text">蒸汽加热器出口温度从 80℃ 提高到 81℃，给定值阶跃变化后，被控变量变化曲线如图所示（随动控制系统）。<br><br>
+        📊 读图数据：第一波峰 81.5℃，波谷 80.7℃，最终稳态 81℃<br><br>
+        试求：最大偏差、衰减比、余差。</div>
+        <button class="show-ans-btn" onclick="toggleAns(this)">查看解答 ▼</button>
+        <div class="ans-block">
+          <div class="formula">新给定值 = 81℃
+
+① 最大偏差 A = 81.5 − 81 = 0.5℃
+
+② B = 81.5 − 80.7 = 0.8℃
+   B' = 0.8 / 5 = 0.16℃（衰减比5:1推算）
+   n = B / B' = 5 : 1
+
+③ 余差 e(∞) = 最终稳态值 − 新给定值
+   e(∞) = 81 − 81 = 0℃（PI控制，无余差）</div>
+          <div class="tip-box tip-info">💡 随动控制：给定值变化，系统跟踪。余差是相对新给定值计算。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="sec-title">第二章 · 对象特性</div>
+
+    <div class="example-card">
+      <div class="example-header" onclick="toggleExample(this)">
+        <div class="example-num">3</div>
+        <div>
+          <div class="example-title">课本例题2-3：RC电路阶跃响应</div>
+          <div class="example-chapter">第二章 · 计算题</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="example-body">
+        <div class="problem-label">题目</div>
+        <div class="problem-text">RC 电路中，已知 R = 5 Ω，C = 2 F。当输入电压 eᵢ 突然由 0 阶跃变化到 5V 时，试画出输出电压 eₒ 的变化曲线，并计算 t = T、t = 2T、t = 3T 时的 eₒ 值。</div>
+        <button class="show-ans-btn" onclick="toggleAns(this)">查看解答 ▼</button>
+        <div class="ans-block">
+          <div class="formula">时间常数：T = RC = 5 × 2 = 10 s
+
+阶跃响应公式：
+  eₒ(t) = Kx₀ × (1 − e^(−t/T))
+  eₒ(t) = 5 × (1 − e^(−t/10))
+
+计算各时刻值：
+  t = T  = 10s：eₒ = 5 × 0.632 = 3.16 V   (63.2%)
+  t = 2T = 20s：eₒ = 5 × 0.865 = 4.33 V   (86.5%)
+  t = 3T = 30s：eₒ = 5 × 0.950 = 4.75 V   (95.0%)</div>
+          <div class="diagram-box">eₒ(V)
+  5 ──────────────────────────────── (终值)
+                         ·····
+  4.75  ·············
+  4.33 ··
+  3.16·
+     ·
+     ·
+  0  ├────┬────┬────┬────┬────→ t(s)
+     0   10   20   30   40</div>
+          <div class="tip-box tip-info">💡 63.2% 是时间常数 T 的定义，必须记住！</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="sec-title">第三章 · 检测仪表误差与精度</div>
+
+    <div class="example-card">
+      <div class="example-header" onclick="toggleExample(this)">
+        <div class="example-num">4</div>
+        <div>
+          <div class="example-title">课件例题3：压力表误差四项计算</div>
+          <div class="example-chapter">第三章 · 计算题 · 基础必会</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="example-body">
+        <div class="problem-label">题目</div>
+        <div class="problem-text">某压力表刻度范围为 0～100 kPa，在 50 kPa 处校定值（标准表读数）为 49 kPa，求该仪表的：① 绝对误差，② 相对误差，③ 引用误差，④ 修正值。</div>
+        <button class="show-ans-btn" onclick="toggleAns(this)">查看解答 ▼</button>
+        <div class="ans-block">
+          <div class="formula">① 绝对误差  Δ = 指示值 − 真值（标准表值）
+   Δ = 49 − 50 = −1 kPa
+
+② 相对误差  δ = Δ / 真值 × 100%
+   δ = −1 / 50 × 100% = −2%
+
+③ 引用误差  δₘ = Δmax / 量程 × 100%
+   δₘ = −1 / (100−0) × 100% = −1%
+
+④ 修正值  C = 真值 − 指示值 = −Δ
+   C = 50 − 49 = +1 kPa</div>
+          <div class="tip-box tip-warn">⚠️ 修正值与绝对误差反号！加上修正值才能得到真值。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-header" onclick="toggleExample(this)">
+        <div class="example-num">5</div>
+        <div>
+          <div class="example-title">课件例题4：1000 kPa量程压力表误差</div>
+          <div class="example-chapter">第三章 · 计算题</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="example-body">
+        <div class="problem-label">题目</div>
+        <div class="problem-text">压力表刻度为 0～1000 kPa，在 500 kPa 处校定值为 505 kPa，求绝对误差、相对误差、引用误差、修正值。</div>
+        <button class="show-ans-btn" onclick="toggleAns(this)">查看解答 ▼</button>
+        <div class="ans-block">
+          <div class="formula">① Δ = 505 − 500 = +5 kPa
+② δ = 5 / 500 × 100% = +1%
+③ δₘ = 5 / 1000 × 100% = +0.5%
+④ C = 500 − 505 = −5 kPa</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-header" onclick="toggleExample(this)">
+        <div class="example-num">6</div>
+        <div>
+          <div class="example-title">课件例题5：精度等级确定</div>
+          <div class="example-chapter">第三章 · 计算题 · 真题原型</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="example-body">
+        <div class="problem-label">题目</div>
+        <div class="problem-text">某台测温仪的测温范围为 200～700℃，校验时得到的最大绝对误差为 4℃，试确定该仪表的精度等级。</div>
+        <button class="show-ans-btn" onclick="toggleAns(this)">查看解答 ▼</button>
+        <div class="ans-block">
+          <div class="formula">最大引用误差 = Δmax / 量程 × 100%
+  = 4 / (700 − 200) × 100%
+  = 4 / 500 × 100%
+  = 0.8%
+
+精度等级：0.8% 超过 0.5 级的要求（0.5%）
+→ 向高一档取标准等级：定为 1.0 级</div>
+          <div class="tip-box tip-warn">⚠️ 精度等级"就高不就低"——实际误差0.8%，超过0.5级，只能定1.0级！</div>
+          <div class="tip-box tip-info">国标精度系列：0.1, 0.2, 0.5, 1.0, 1.5, 2.5, 4.0</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-header" onclick="toggleExample(this)">
+        <div class="example-num">7</div>
+        <div>
+          <div class="example-title">压力表选型：量程与精度验证</div>
+          <div class="example-chapter">第三章 · 计算题</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="example-body">
+        <div class="problem-label">题目</div>
+        <div class="problem-text">某反应器最大压力为 0.8 MPa，允许最大绝对误差为 0.01 MPa。<br>① 选用 0~1.6 MPa、精度1级的压力表，能否符合要求？<br>② 改用 0~1.0 MPa、精度1级的压力表，能符合吗？</div>
+        <button class="show-ans-btn" onclick="toggleAns(this)">查看解答 ▼</button>
+        <div class="ans-block">
+          <div class="formula">① 0~1.6 MPa / 精度1级：
+   允许最大绝对误差 = 量程 × 精度等级%
+   = 1.6 × 1% = 0.016 MPa
+   0.016 > 0.01 MPa → ❌ 不符合
+
+② 0~1.0 MPa / 精度1级：
+   允许最大绝对误差 = 1.0 × 1% = 0.01 MPa
+   0.01 = 0.01 MPa（刚好满足）
+   且 0.8 MPa 在量程 80% 处（合理范围）→ ✅ 符合</div>
+          <div class="tip-box tip-info">💡 量程越大，允许的绝对误差越大。量程要选合适——太大反而精度差。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="sec-title">第四章 · DDZ-Ⅲ型控制器计算</div>
+
+    <div class="example-card">
+      <div class="example-header" onclick="toggleExample(this)">
+        <div class="example-num">8</div>
+        <div>
+          <div class="example-title">课本例题：比例控制器输出变化</div>
+          <div class="example-chapter">第四章 · 计算题 · 真题原型</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="example-body">
+        <div class="problem-label">题目</div>
+        <div class="problem-text">一台 DDZ-Ⅲ型温度比例控制器，测量全量程为 0～1000℃。当指示值变化 100℃，控制器比例度为 80%，求相应的控制器输出将变化多少？（DDZ-Ⅲ输出信号：4～20 mA）</div>
+        <button class="show-ans-btn" onclick="toggleAns(this)">查看解答 ▼</button>
+        <div class="ans-block">
+          <div class="formula">DDZ-Ⅲ信号范围：4~20 mA，全跨度 = 16 mA
+
+输入变化百分比：
+  Δe% = 100 / 1000 × 100% = 10%
+
+比例度公式：
+  δ = (Δe% / Δy%) × 100%
+  0.80 = 0.10 / Δy%
+  Δy% = 0.10 / 0.80 = 0.125 = 12.5%
+
+对应输出变化：
+  Δy = 12.5% × 16 mA = 2 mA</div>
+          <div class="tip-box tip-ok">答：控制器输出变化 2 mA</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-header" onclick="toggleExample(this)">
+        <div class="example-num">9</div>
+        <div>
+          <div class="example-title">课本例题：PI控制器输出（5分钟后）</div>
+          <div class="example-chapter">第四章 · 计算题 · 真题原型</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="example-body">
+        <div class="problem-label">题目</div>
+        <div class="problem-text">某 DDZ-Ⅲ型比例积分控制器，比例度 δ = 100%，积分时间 TI = 2 min。稳态时输出为 5 mA。某瞬间输入突然增加了 0.2 mA（阶跃偏差，保持不变），试问经过 5 min 后输出将变化到多少 mA？</div>
+        <button class="show-ans-btn" onclick="toggleAns(this)">查看解答 ▼</button>
+        <div class="ans-block">
+          <div class="formula">δ = 100% → Kc = 100/100 = 1
+
+PI 控制律：
+  Δy = Kc × [Δe + (1/TI) × ∫Δe dt]
+
+阶跃偏差恒定 Δe = 0.2 mA，持续 t = 5 min：
+  积分项 = (1/TI) × Δe × t
+         = (1/2) × 0.2 × 5
+         = 0.5 mA
+
+  Δy = 1 × [0.2 + 0.5] = 0.7 mA
+
+最终输出：y = 5 + 0.7 = 5.7 mA</div>
+          <div class="tip-box tip-ok">答：5 min 后输出为 5.7 mA</div>
+          <div class="tip-box tip-warn">⚠️ TI 是积分时间（分钟），积分项 = Δe × t / TI，注意单位一致！</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-header" onclick="toggleExample(this)">
+        <div class="example-num">10</div>
+        <div>
+          <div class="example-title">真题原题：温度控制器比例度计算</div>
+          <div class="example-chapter">第四章 · 真题 · 10分计算</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="example-body">
+        <div class="problem-label">题目（2024-2025真题）</div>
+        <div class="problem-text">DDZ-Ⅲ型比例积分温度控制器，已知：<br>
+        · 输入范围：0～500℃<br>
+        · 测量值从 250℃ 增大到 300℃ 时，控制器输出从 12 mA 增大到 13.6 mA<br><br>
+        （1）求比例度 δ 和放大倍数 Kc<br>
+        （2）若比例度调整为 60%，当测量值变化 50℃ 时，控制器输出变化多少？</div>
+        <button class="show-ans-btn" onclick="toggleAns(this)">查看解答 ▼</button>
+        <div class="ans-block">
+          <div class="formula">（1）求 δ 和 Kc：
+
+输入变化量：Δe = 300 − 250 = 50℃
+输入变化百分比：Δe% = 50 / 500 × 100% = 10%
+
+输出变化量：Δy = 13.6 − 12 = 1.6 mA
+输出变化百分比（DDZ-Ⅲ全跨度16mA）：
+  Δy% = 1.6 / 16 × 100% = 10%
+
+比例度：δ = Δe% / Δy% = 10% / 10% = 100%
+（δ以百分数表示，去掉%符号 = 100%）
+
+放大倍数：Kc = 100 / δ = 100 / 100 = 1
+
+（2）δ = 60% 时，Δe = 50℃：
+
+Δe% = 50 / 500 = 10%
+Kc = 100/60 = 1.667
+Δy% = Δe% × Kc = 10% × 1.667 = 16.67%
+Δy = 16.67% × 16 mA ≈ 2.67 mA</div>
+          <div class="tip-box tip-ok">答：（1）δ = 100%，Kc = 1；（2）输出变化约 2.67 mA</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="sec-title">第六章 · 参数整定计算</div>
+
+    <div class="example-card">
+      <div class="example-header" onclick="toggleExample(this)">
+        <div class="example-num">11</div>
+        <div>
+          <div class="example-title">临界比例度法整定 PI / PID 参数</div>
+          <div class="example-chapter">第六章 · 计算题</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="example-body">
+        <div class="problem-label">题目</div>
+        <div class="problem-text">某控制系统采用 DDZ-Ⅲ 型控制器，用临界比例度法整定参数。已测得临界比例度 δₖ = 30%，临界振荡周期 Tₖ = 3 min。试确定 PI 作用和 PID 作用时控制器的参数。</div>
+        <button class="show-ans-btn" onclick="toggleAns(this)">查看解答 ▼</button>
+        <div class="ans-block">
+          <div class="formula">临界比例度法公式：
+
+PI 作用：
+  δ  = 2.2 × δₖ = 2.2 × 30% = 66%
+  TI = 0.85 × Tₖ = 0.85 × 3 = 2.55 min
+
+PID 作用：
+  δ  = 1.7 × δₖ = 1.7 × 30% = 51%
+  TI = 0.5 × Tₖ = 0.5 × 3 = 1.5 min
+  TD = 0.13 × Tₖ = 0.13 × 3 = 0.39 min</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-header" onclick="toggleExample(this)">
+        <div class="example-num">12</div>
+        <div>
+          <div class="example-title">4:1衰减曲线法整定参数</div>
+          <div class="example-chapter">第六章 · 计算题</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="example-body">
+        <div class="problem-label">题目</div>
+        <div class="problem-text">某控制系统用 4:1 衰减曲线法整定控制器参数。已测得 4:1 衰减时的比例度 δₛ = 50%，对应的振荡周期 Tₛ = 5 min。试确定 PI 作用和 PID 作用时控制器的参数。</div>
+        <button class="show-ans-btn" onclick="toggleAns(this)">查看解答 ▼</button>
+        <div class="ans-block">
+          <div class="formula">4:1 衰减曲线法公式：
+
+PI 作用：
+  δ  = 1.2 × δₛ = 1.2 × 50% = 60%
+  TI = 0.5 × Tₛ = 0.5 × 5 = 2.5 min
+
+PID 作用：
+  δ  = 0.8 × δₛ = 0.8 × 50% = 40%
+  TI = 0.3 × Tₛ = 0.3 × 5 = 1.5 min
+  TD = 0.1 × Tₛ = 0.1 × 5 = 0.5 min</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="sec-title">真题原题 · 差压液位计算</div>
+
+    <div class="example-card">
+      <div class="example-header" onclick="toggleExample(this)">
+        <div class="example-num">13</div>
+        <div>
+          <div class="example-title">真题原题：液位测量系统（DDZ-Ⅲ）</div>
+          <div class="example-chapter">第三章 · 真题 · 10分计算</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="example-body">
+        <div class="problem-label">题目（2024-2025真题）</div>
+        <div class="problem-text">槽液位测量系统，仪表型号 DDZ-Ⅲ，液体密度 ρ = 1100 kg/m³，液位量程 0～8 m。<br>
+        要求：液位 = 0 时输出 = 4 mA，液位 = 8 m 时输出 = 20 mA。<br><br>
+        （1）判断是否存在迁移？若存在，是正迁移还是负迁移，迁移量是多少？<br>
+        （2）当变送器输出为 12 mA 时，求液位高度 H。</div>
+        <button class="show-ans-btn" onclick="toggleAns(this)">查看解答 ▼</button>
+        <div class="ans-block">
+          <div class="formula">（1）迁移判断：
+
+差压变送器测液位的基本原理：ΔP = ρ × g × h
+
+标准安装（正压室接底部，负压室通大气）时：
+  当 h = 0，ΔP = 0 → 输出 4 mA（正常，无迁移）
+  当 h = 8m，ΔP = 1100×9.8×8 = 86240 Pa
+
+但题目中若安装位置导致 h=0 时 ΔP ≠ 0
+（如正压室取压口在容器底部，变送器安装在
+ 取压口以下，或负压室有冷凝液），
+则需要迁移（具体看图）。
+
+若题目给出 h=0 时差压ΔP₀ > 0 → 正迁移，迁移量 = ΔP₀
+若 h=0 时差压ΔP₀ < 0 → 负迁移，迁移量 = |ΔP₀|
+
+（2）12 mA 对应液位：
+
+DDZ-Ⅲ：4 mA → 0%，20 mA → 100%
+线性关系：H = (I − 4) / (20 − 4) × 量程
+
+H = (12 − 4) / 16 × 8
+  = 8/16 × 8
+  = 0.5 × 8
+  = 4 m</div>
+          <div class="tip-box tip-ok">答：（2）H = 4 m</div>
+          <div class="tip-box tip-info">💡 线性公式万能：H = (I − 4) / 16 × 量程，任何 DDZ-Ⅲ 液位题都适用！</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="sec-title">真题原题 · 串级控制系统设计（15分）</div>
+
+    <div class="example-card">
+      <div class="example-header" onclick="toggleExample(this)">
+        <div class="example-num">14</div>
+        <div>
+          <div class="example-title">真题原题：釜式反应器串级控制设计</div>
+          <div class="example-chapter">第七章 · 问答大题 · 15分</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="example-body">
+        <div class="problem-label">题目（2024-2025真题）</div>
+        <div class="problem-text">背景：釜内温度控制系统。主要干扰为冷却水温度波动大，釜内温度过高存在安全隐患。要求设计一套串级控制系统。<br><br>
+        （1）描述变量并在图中画控制流程图（主变量、副变量、操纵变量、干扰变量）<br>
+        （2）画出控制系统方框图<br>
+        （3）确定执行器作用方向（写判断过程）<br>
+        （4）确定副控制器作用方向（写判断过程）<br>
+        （5）确定主控制器作用方向（写判断过程）<br>
+        <span style="color:#f06060;">注意：后三问只写结论不给分，必须写分析过程！</span></div>
+        <button class="show-ans-btn" onclick="toggleAns(this)">查看解答 ▼</button>
+        <div class="ans-block">
+          <div class="problem-label">（1）变量说明</div>
+          <div class="formula">主变量（被控变量）：釜内温度 T₁
+副变量：冷却水出口温度 T₂（或冷却夹套温度）
+操纵变量：冷却水流量（通过调节阀控制）
+干扰变量：冷却水温度波动（主要干扰）、进料温度、反应热变化</div>
+
+          <div class="problem-label">（2）方框图</div>
+          <div class="diagram-box">给定值         副给定值(来自TC₁)
+T₁sp →⊗→ TC₁(主)→⊗→ TC₂(副)→ 调节阀 → 冷却水
+       ↑                 ↑
+       |    T₁测量(TT₁)  |    T₂测量(TT₂)
+       └──────────────←──┘
+              主回路(外环)
+              ↑——副回路(内环)——↑</div>
+
+          <div class="problem-label">（3）执行器作用方向</div>
+          <div class="formula">判断原则：气源中断时，阀门故障位置应保证安全
+
+分析：釜内温度过高有安全隐患
+→ 气源中断时，冷却水阀应保持全开（继续冷却）
+→ 无气时阀全开 = 气关式（FO型）
+
+结论：执行器选气关式，正常信号增大→阀开度减小（反作用方向）</div>
+
+          <div class="problem-label">（4）副控制器作用方向</div>
+          <div class="formula">分析副回路：副对象 + 阀 + 副控制器 = 负反馈
+
+副对象方向：冷却水流量↑ → 夹套温度T₂↓（降温）→ 反作用（−）
+执行器（气关）方向：信号↑ → 阀开度↓ → 流量↓ → 反作用（−）
+
+要使副回路构成负反馈，需要：
+（副控制器）×（执行器）×（副对象）= 负
+  (?)      ×   (−)    ×   (−)    = 负
+  (?) = 负 → 反作用
+
+结论：副控制器选反作用（TC₂：测量值↑→输出↓）</div>
+
+          <div class="problem-label">（5）主控制器作用方向</div>
+          <div class="formula">分析主回路：主对象 + 副回路等效 + 主控制器 = 负反馈
+
+主对象方向：冷却水流量↑ → 釜温T₁↓ → 反作用（−）
+副回路等效：已构成负反馈，等效为正作用（+）
+
+要使主回路构成负反馈：
+（主控制器）×（副回路等效+）×（主对象−）= 负
+  (?)      ×   (+)   ×   (−)   = 负
+  (+) × (+) × (−) = −（负反馈 ✓）
+  → 主控制器选反作用（+）
+
+结论：主控制器 TC₁ 选反作用（测量值↑→输出↓）</div>
+          <div class="tip-box tip-warn">⚠️ 一定要写全分析过程！只写"反作用"两个字 = 0分！</div>
+          <div class="tip-box tip-info">💡 口诀：先定阀（安全第一），再定副（副回路负反馈），最后定主（主回路负反馈）</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════ 核心考点 ══════════════ -->
+  <div class="section" id="tab-knowledge">
+
+    <div class="sec-title">系统基本概念</div>
+    <div class="card">
+      <div class="card-header"><span class="tag tag-blue">必背</span><span class="card-title">系统四大组成及作用</span></div>
+      <table class="data-table">
+        <tr><th>环节</th><th>作用</th><th>例子</th></tr>
+        <tr><td>被控对象</td><td>需要控制工艺参数的设备</td><td>换热器、反应釜</td></tr>
+        <tr><td>测量变送装置</td><td>检测被控变量→转换标准信号</td><td>热电偶+变送器</td></tr>
+        <tr><td>控制器</td><td>计算偏差e→按规律输出控制信号</td><td>DDZ-Ⅲ型控制器</td></tr>
+        <tr><td>执行器</td><td>改变操纵变量（阀门开度）</td><td>气动调节阀</td></tr>
+      </table>
+      <div class="tip-box tip-gold">偏差 e = 给定值 − 测量值（给定减测量！）</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><span class="tag tag-red">必背</span><span class="card-title">积分饱和——10分问答必背</span></div>
+      <div class="body-text">
+        <strong>①什么是积分饱和</strong><br>
+        当偏差长期存在且方向不变时，积分作用使控制器输出不断向极限方向变化，到达输出上限或下限后，即使偏差开始减小或反向，输出也不能立即改变，这种现象称为积分饱和（Windup）。<br><br>
+        <strong>②产生条件</strong>（三条都要写）<br>
+        a. 系统存在长期同向偏差<br>
+        b. 控制器含积分作用（PI 或 PID）<br>
+        c. 执行器已到达极限位置（全开或全关）<br><br>
+        <strong>③防止措施</strong>（写出3~4种）<br>
+        a. <span class="hl">限幅法</span>：将积分器输出限制在执行器正常工作范围内<br>
+        b. <span class="hl">积分分离法</span>：偏差大时切换为纯比例控制，偏差小时才引入积分<br>
+        c. <span class="hl">外部反馈法</span>：用阀位（执行器位置）信号代替控制器输出反馈积分<br>
+        d. 条件积分法：只有在偏差较小时才允许积分累积
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><span class="tag tag-gold">必背</span><span class="card-title">控制器正反作用判断（必考！）</span></div>
+      <div class="body-text">
+        <strong>正作用</strong>：测量值↑ → 输出↑<br>
+        <strong>反作用</strong>：测量值↑ → 输出↓<br><br>
+        <strong>判断步骤：</strong>
+      </div>
+      <div class="step-list">
+        <div class="step-item"><div class="step-num">1</div><div class="step-text">先确定执行器：<span style="color:var(--green)">气开阀 = 正作用</span>，<span style="color:var(--orange)">气关阀 = 反作用</span></div></div>
+        <div class="step-item"><div class="step-num">2</div><div class="step-text">确定被控对象方向：操纵变量↑ → 被控变量↑（正），↓（反）</div></div>
+        <div class="step-item"><div class="step-num">3</div><div class="step-text">确定控制器方向：使整个回路构成<strong>负反馈</strong>，即各环节正作用数目为<strong>奇数个</strong></div></div>
+      </div>
+      <div class="tip-box tip-warn">⚠️ 气开/气关选择原则：气源中断时，阀的位置应保证人身和设备安全！<br>加热炉燃料→断气应关→气开式；冷却水→断气应开→气关式</div>
+    </div>
+
+    <div class="sec-title">检测仪表要点</div>
+    <div class="card">
+      <div class="card-header"><span class="tag tag-teal">必背</span><span class="card-title">热电偶冷端补偿4种方法</span></div>
+      <div class="body-text">
+        <strong>为什么要补偿</strong>：分度表以冷端 0℃ 标定，实际冷端 ≠ 0℃，产生误差<br><br>
+        1. <span class="hl">冰浴法</span>：将冷端置于 0℃ 冰水中（实验室用）<br>
+        2. <span class="hl">补偿电桥法</span>：利用铜电阻温度特性产生补偿电压（最常用）<br>
+        3. <span class="hl">计算修正法</span>：E(t,0) = E(t,t₀) + E(t₀,0) 查分度表换算<br>
+        4. <span class="hl">机械零点调整法</span>：将显示仪表指针零位调至室温处
+      </div>
+      <div class="formula">中间温度定律（计算法核心公式）：
+E(t, 0) = E(t, t₀) + E(t₀, 0)
+测量值 = 仪表读数对应热电势 + 冷端温度对应热电势</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><span class="tag tag-teal">必背</span><span class="card-title">差压液位计负压室为什么接气相？</span></div>
+      <div class="body-text">
+        <strong>有压容器</strong>内气相有压力 P₀。<br><br>
+        <strong>若负压室通大气</strong>：ΔP = (P₀ + ρgh) − Pa，包含了 P₀，气相压力波动会带来干扰。<br><br>
+        <strong>若负压室接气相</strong>：ΔP = (P₀ + ρgh) − P₀ = ρgh，消除了气相压力的影响，准确反映液位。
+      </div>
+    </div>
+
+    <div class="sec-title">执行器 · 流量特性</div>
+    <div class="card">
+      <div class="card-header"><span class="tag tag-purple">必背</span><span class="card-title">控制阀流量特性（简答题）</span></div>
+      <table class="data-table">
+        <tr><th>特性类型</th><th>特点</th><th>初期控制作用</th></tr>
+        <tr><td>直线特性</td><td>单位开度流量变化量恒定</td><td>中等</td></tr>
+        <tr><td>等百分比（对数）</td><td>单位开度引起的相对流量变化恒定；放大系数随开度增大而增大</td><td>最弱 ← 考点！</td></tr>
+        <tr><td>快开特性</td><td>小开度时流量变化大，主要用于双位控制</td><td>最强</td></tr>
+      </table>
+      <div class="tip-box tip-info">💡 等百分比特性初期（小开度）控制作用最弱，与工业对象非线性互补，实际使用最广</div>
+    </div>
+
+    <div class="sec-title">P/I/D 控制规律</div>
+    <div class="card">
+      <div class="card-header"><span class="tag tag-blue">必背</span><span class="card-title">三种控制规律适用场合</span></div>
+      <table class="data-table">
+        <tr><th>规律</th><th>特点</th><th>适用场合</th></tr>
+        <tr><td>P（比例）</td><td>快速响应，有余差</td><td>容量大、扰动小、允许余差 → 液位</td></tr>
+        <tr><td>PI（比例积分）</td><td>无余差，稳定性降</td><td>要求无余差、扰动不大 → 流量、压力</td></tr>
+        <tr><td>PID</td><td>响应快、无余差、有超前</td><td>容量/纯滞后大、扰动频繁 → 温度</td></tr>
+      </table>
+      <div class="tip-box tip-warn">⚠️ 比例度 δ 越大 → Kc = 100/δ 越小 → 控制作用越弱（最易错！）</div>
+      <div class="tip-box tip-warn">⚠️ 微分对纯滞后无效，只对容量滞后有效！</div>
+    </div>
+
+    <div class="sec-title">三阀组操作</div>
+    <div class="card">
+      <div class="card-header"><span class="tag tag-orange">必背</span><span class="card-title">孔板流量计三阀组操作步骤</span></div>
+      <div class="body-text">
+        三阀组组成：<strong>正压侧切断阀 + 负压侧切断阀 + 平衡阀</strong><br><br>
+        <strong>切除步骤</strong>（口诀：先开平衡，再关两断）：
+      </div>
+      <div class="step-list">
+        <div class="step-item"><div class="step-num">1</div><div class="step-text">打开平衡阀（使正负压室连通，保护差压计）</div></div>
+        <div class="step-item"><div class="step-num">2</div><div class="step-text">关闭正压侧切断阀</div></div>
+        <div class="step-item"><div class="step-num">3</div><div class="step-text">关闭负压侧切断阀</div></div>
+      </div>
+      <div class="body-text" style="margin-top:10px"><strong>投用步骤</strong>（口诀：先开一断，关平衡，再开另一断）：</div>
+      <div class="step-list">
+        <div class="step-item"><div class="step-num">1</div><div class="step-text">打开正压侧切断阀</div></div>
+        <div class="step-item"><div class="step-num">2</div><div class="step-text">缓慢关闭平衡阀</div></div>
+        <div class="step-item"><div class="step-num">3</div><div class="step-text">打开负压侧切断阀</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════ 公式速查 ══════════════ -->
+  <div class="section" id="tab-formulas">
+
+    <div class="sec-title">仪表误差与精度</div>
+    <div class="card">
+      <div class="formula">绝对误差  Δ = 指示值 − 真值
+相对误差  δ = Δ / 真值 × 100%
+引用误差  δₘ = Δmax / 量程 × 100%
+修正值    C = −Δ = 真值 − 指示值
+精度等级  = |δₘ| 去掉±和%，就高取国标等级
+  国标系列：0.1  0.2  0.5  1.0  1.5  2.5  4.0</div>
+    </div>
+
+    <div class="sec-title">DDZ-Ⅲ 型控制器（4~20 mA）</div>
+    <div class="card">
+      <div class="formula">信号全跨度：20 − 4 = 16 mA（不是20！）
+mA → 百分比：(I − 4) / 16 × 100%
+输入变化%：Δe% = Δe实际 / 量程 × 100%
+
+比例度：δ = (Δe% / Δy%) × 100%
+放大系数：Kc = 100 / δ（δ的数值，如δ=80%则Kc=100/80=1.25）
+
+PI 输出：Δy = Kc × [Δe + (Δe × t) / TI]
+  （恒定阶跃偏差Δe，持续时间t，TI为积分时间）
+
+液位线性：H = (I − 4) / 16 × 量程</div>
+    </div>
+
+    <div class="sec-title">参数整定公式表</div>
+    <div class="card">
+      <table class="data-table">
+        <tr><th>方法</th><th>规律</th><th>δ</th><th>TI</th><th>TD</th></tr>
+        <tr><td rowspan="2" style="vertical-align:middle">临界比例度法<br><small>（δₖ，Tₖ）</small></td><td>PI</td><td>2.2δₖ</td><td>0.85Tₖ</td><td>—</td></tr>
+        <tr><td>PID</td><td>1.7δₖ</td><td>0.5Tₖ</td><td>0.13Tₖ</td></tr>
+        <tr><td rowspan="2" style="vertical-align:middle">4:1衰减法<br><small>（δₛ，Tₛ）</small></td><td>PI</td><td>1.2δₛ</td><td>0.5Tₛ</td><td>—</td></tr>
+        <tr><td>PID</td><td>0.8δₛ</td><td>0.3Tₛ</td><td>0.1Tₛ</td></tr>
+      </table>
+    </div>
+
+    <div class="sec-title">一阶系统阶跃响应</div>
+    <div class="card">
+      <div class="formula">响应公式：y(t) = K · x₀ · (1 − e^(−t/T))
+
+关键数值（必记）：
+  t = T  →  y = 63.2% × Kx₀   ← T 的定义！
+  t = 2T →  y = 86.5% × Kx₀
+  t = 3T →  y = 95.0% × Kx₀
+
+RC电路：T = RC</div>
+    </div>
+
+    <div class="sec-title">过渡过程品质指标</div>
+    <div class="card">
+      <div class="formula">最大偏差 A  = 第一波峰 − 给定值
+衰减比 n    = B / B'
+  B  = 第一波峰 − 稳态值
+  B' = 第二同向波峰 − 稳态值
+振荡周期 T  = 相邻同向波峰时间差
+余差 e(∞)   = 最终稳态值 − 给定值
+过渡时间 ts = 进入 ±5% 误差带的时间
+
+工业要求：n = 4:1 ~ 10:1</div>
+    </div>
+
+    <div class="sec-title">差压液位 · 迁移判断</div>
+    <div class="card">
+      <div class="formula">基本原理：ΔP = ρ · g · h
+
+迁移判断：
+  计算 h = 0 时的 ΔP₀
+  · ΔP₀ = 0   → 无迁移
+  · ΔP₀ > 0   → 正迁移，迁移量 = ΔP₀
+  · ΔP₀ < 0   → 负迁移，迁移量 = |ΔP₀|
+
+液位计算（DDZ-Ⅲ）：
+  H = (I − 4) / 16 × 量程</div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════ 真题练习 ══════════════ -->
+  <div class="section" id="tab-quiz">
+    <div class="progress-wrap">
+      <div class="pbar-outer"><div class="pbar-inner" id="pbar" style="width:0%"></div></div>
+      <span class="pbar-text" id="pbar-text">0 / 12 题</span>
+    </div>
+    <div id="quiz-container"></div>
+  </div>
+
+  <!-- ══════════════ 60分策略 ══════════════ -->
+  <div class="section" id="tab-strategy">
+
+    <div class="page-hero">
+      <div class="hero-title">60 分稳过策略</div>
+      <div class="hero-sub">根据真题配分，重点拿稳这几块</div>
+    </div>
+
+    <div class="strategy-grid">
+      <div class="strategy-card">
+        <div class="strategy-score">30</div>
+        <div class="strategy-label">计算题（3题×10分）</div>
+        <ul class="strategy-items">
+          <li>差压液位线性插值</li>
+          <li>品质指标读图5个量</li>
+          <li>DDZ-Ⅲ比例度Kc计算</li>
+        </ul>
+      </div>
+      <div class="strategy-card">
+        <div class="strategy-score">25</div>
+        <div class="strategy-label">问答题（2题）</div>
+        <ul class="strategy-items">
+          <li>积分饱和3问背熟</li>
+          <li>串级控制必须写过程</li>
+        </ul>
+      </div>
+      <div class="strategy-card">
+        <div class="strategy-score">25</div>
+        <div class="strategy-label">简答题（5题×5分）</div>
+        <ul class="strategy-items">
+          <li>系统变量定义</li>
+          <li>精度等级计算</li>
+          <li>流量特性对比</li>
+          <li>三阀组操作步骤</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sec-title">考场时间分配</div>
+    <div class="card">
+      <table class="data-table">
+        <tr><th>题型</th><th>建议时间</th><th>策略</th></tr>
+        <tr><td>选择+填空（20分）</td><td>20 min</td><td>先做，遇到难题跳过</td></tr>
+        <tr><td>简答5题（25分）</td><td>25 min</td><td>背过的直接写，逐题5分钟</td></tr>
+        <tr><td>问答①积分饱和</td><td>10 min</td><td>三问分段写清楚</td></tr>
+        <tr><td>问答②串级控制</td><td>20 min</td><td>每问写完整判断过程</td></tr>
+        <tr><td>计算题（30分）</td><td>30 min</td><td>先做品质指标（最简单）</td></tr>
+        <tr><td>检查</td><td>5 min</td><td>重点查正反作用和mA跨度</td></tr>
+      </table>
+    </div>
+
+    <div class="sec-title">最危险失分点</div>
+    <div class="card">
+      <div class="body-text">
+        <span class="warn">① 串级控制只写"反作用"=0分</span>，必须写：对象方向→阀方向→推导→结论<br><br>
+        <span class="warn">② 比例度越大≠控制越强</span>，δ大→Kc=100/δ 小→弱！<br><br>
+        <span class="warn">③ 衰减比 n = B/B'（大比小）</span>，不是B'/B<br><br>
+        <span class="warn">④ DDZ-Ⅲ全跨度是16 mA</span>（4~20mA，不是20mA！）<br><br>
+        <span class="warn">⑤ 精度等级"就高不就低"</span>，0.8%→选1.0级，不是0.5级<br><br>
+        <span class="warn">⑥ 迁移正负看ΔP(h=0)的符号</span>，正→正迁移，负→负迁移
+      </div>
+    </div>
+
+  </div>
+
+</div><!-- end .main -->
+
+<script>
+// ── TAB NAVIGATION ──
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  const tabs = ['overview','examples','knowledge','formulas','quiz','strategy'];
+  const idx = tabs.indexOf(id);
+  if (idx >= 0) document.querySelectorAll('.tab')[idx].classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ── TOGGLE EXAMPLE ──
+function toggleExample(header) {
+  const body = header.nextElementSibling;
+  const chevron = header.querySelector('.chevron');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open');
+  chevron.classList.toggle('open');
+}
+
+// ── TOGGLE ANSWER ──
+function toggleAns(btn) {
+  const block = btn.nextElementSibling;
+  const visible = block.classList.contains('visible');
+  block.classList.toggle('visible');
+  btn.textContent = visible ? '查看解答 ▼' : '收起解答 ▲';
+}
+
+// ── QUIZ DATA ──
+const quizData = [
+  {
+    type: '选择', ch: '第一章',
+    q: '自动控制系统的过渡过程中，工业生产上最希望得到的形式是？',
+    opts: ['A. 非周期衰减过程', 'B. 衰减振荡过程', 'C. 等幅振荡过程', 'D. 发散振荡过程'],
+    ans: 1,
+    explain: '衰减振荡过程：被控变量经过几次振荡后达到新稳态，既有快速响应又能稳定，是工业最希望的形式。衰减比一般要求4:1~10:1。'
+  },
+  {
+    type: '选择', ch: '第三章',
+    q: '仪表精度等级数值越小，说明该仪表？',
+    opts: ['A. 量程越大', 'B. 精确程度越低', 'C. 精确程度越高', 'D. 灵敏度越低'],
+    ans: 2,
+    explain: '精度等级 = 最大引用误差的数值（去掉±和%）。数值越小，允许的最大误差占量程的比例越小，仪表精度越高。'
+  },
+  {
+    type: '选择', ch: '第四章',
+    q: '关于比例度δ和放大倍数Kc的关系，正确的是？',
+    opts: ['A. Kc = δ / 100', 'B. Kc = 100 / δ（δ取百分数值）', 'C. δ越大Kc越大', 'D. δ和Kc没有关系'],
+    ans: 1,
+    explain: 'Kc = 100/δ（δ以百分数表示的数值，如δ=80%，则Kc=100/80=1.25）。因此δ越大，Kc越小，控制作用越弱。这是最常考的易错点！'
+  },
+  {
+    type: '选择', ch: '第五章',
+    q: '等百分比流量特性中，初期（小开度）的控制作用与其他特性相比如何？',
+    opts: ['A. 最强', 'B. 最弱', 'C. 与直线特性相同', 'D. 不确定'],
+    ans: 1,
+    explain: '等百分比特性：放大系数随开度增大而增大。小开度时放大系数小，因此初期控制作用最弱。但与工业对象非线性互补，是实际中使用最广的特性。'
+  },
+  {
+    type: '选择', ch: '第六章',
+    q: '某加热系统中，蒸汽调节阀的选择原则是？',
+    opts: ['A. 气开式，确保断气时蒸汽切断', 'B. 气关式，确保断气时蒸汽畅通', 'C. 根据流量大小选择', 'D. 随意选择'],
+    ans: 0,
+    explain: '安全原则：加热系统断气（气源故障）时，必须切断蒸汽防止超温危险。气开式：有信号→开阀，无气→自动关阀，满足安全要求。'
+  },
+  {
+    type: '填空', ch: '第一章',
+    q: '自动控制系统中，衰减振荡过渡过程的衰减比 n = ____，工业要求通常为 ____。（格式：B/B\'的定义；范围）',
+    ans: 0,
+    explain: '衰减比 n = B/B\'，即相邻两个同向波峰幅值之比（第一波峰幅/第二波峰幅）。工业要求：n = 4:1 ~ 10:1。'
+  },
+  {
+    type: '填空', ch: '第三章',
+    q: 'DDZ-Ⅲ型仪表标准电流信号范围是 ____ mA，信号全跨度是 ____ mA，液位0%对应 ____ mA，100%对应 ____ mA。',
+    ans: 0,
+    explain: 'DDZ-Ⅲ型：4~20 mA，全跨度 = 20-4 = 16 mA（注意！不是20mA）。4 mA对应0%（量程下限），20 mA对应100%（量程上限）。'
+  },
+  {
+    type: '填空', ch: '第二章',
+    q: '一阶系统阶跃响应中，t = T 时输出达到终值的 ____%，t = 2T 时达到 ____%，t = 3T 时达到 ____%。',
+    ans: 0,
+    explain: '一阶系统：t=T时63.2%，t=2T时86.5%，t=3T时95.0%。T（时间常数）由63.2%这个关键数值定义，必须背熟！'
+  },
+  {
+    type: '简答', ch: '第七章',
+    q: '串级控制系统中，主变量和副变量应如何选择？副回路和主回路各起什么作用？',
+    ans: 0,
+    explain: '主变量：对产品质量/安全起关键作用的参数（如釜温）。副变量选择原则：①包含主要干扰；②T副<T主（响应快）；③与主变量有单值关系。\n副回路（内环）：快速粗调，克服进入副回路的干扰。主回路（外环）：精调消余差。'
+  },
+  {
+    type: '简答', ch: '第六章',
+    q: '控制器参数整定的三种工程方法是什么？简述衰减曲线法的步骤。',
+    ans: 0,
+    explain: '三种方法：①临界比例度法；②4:1衰减曲线法；③经验凑试法。\n衰减曲线法步骤：①置TI=∞, TD=0（纯比例）；②由大到小调δ，每次加阶跃干扰；③调至4:1衰减，记下δs和Ts；④用经验公式计算PI/PID参数。'
+  },
+  {
+    type: '计算', ch: '第一章',
+    q: '某温控系统给定值200℃。过渡曲线读图：第一波峰230℃（t=5min），波谷205℃（t=12.5min），第三波峰210℃（t=20min），稳态200℃（t=22min）。求：最大偏差、衰减比、振荡周期、过渡时间、余差。',
+    ans: 0,
+    explain: '最大偏差 A = 230-200 = 30℃\n衰减比 n = B/B\' = (230-205)/(210-205) = 25/5 = 5:1\n振荡周期 T = 20-5 = 15 min\n过渡时间 ts ≈ 22 min\n余差 e(∞) = 200-200 = 0℃（PI控制消余差）'
+  },
+  {
+    type: '计算', ch: '第四章',
+    q: 'DDZ-Ⅲ型PI控制器，δ=100%，TI=2min，初始输出5mA。某时刻输入突然阶跃增加0.2mA并保持。求5min后输出为多少mA？',
+    ans: 0,
+    explain: 'Kc = 100/100 = 1\nPI规律：Δy = Kc × [Δe + Δe×t/TI]\n= 1 × [0.2 + 0.2×5/2]\n= 1 × [0.2 + 0.5]\n= 0.7 mA\n最终输出 = 5 + 0.7 = 5.7 mA'
+  }
+];
+
+let answered = new Array(quizData.length).fill(false);
+
+function renderQuiz() {
+  const c = document.getElementById('quiz-container');
+  c.innerHTML = '';
+  quizData.forEach((q, i) => {
+    const d = document.createElement('div');
+    d.className = 'quiz-card';
+
+    const tagColor = q.type === '计算' ? 'tag-gold' : q.type === '简答' ? 'tag-teal' : q.type === '填空' ? 'tag-purple' : 'tag-blue';
+
+    if (q.type === '选择') {
+      d.innerHTML = `
+        <div class="quiz-meta">
+          <span class="tag ${tagColor}">${q.type}题</span>
+          <span style="font-size:12px;color:var(--text3)">${q.ch}</span>
+        </div>
+        <div class="quiz-q">${i+1}. ${q.q}</div>
+        <div class="quiz-opts">
+          ${q.opts.map((o,j) => `<button class="quiz-opt" onclick="answerQ(${i},${j})" id="opt-${i}-${j}">${o}</button>`).join('')}
+        </div>
+        <div class="quiz-explain" id="exp-${i}"><strong>解析：</strong>${q.explain.replace(/\n/g,'<br>')}</div>
+      `;
+    } else {
+      d.innerHTML = `
+        <div class="quiz-meta">
+          <span class="tag ${tagColor}">${q.type}题</span>
+          <span style="font-size:12px;color:var(--text3)">${q.ch}</span>
+        </div>
+        <div class="quiz-q">${i+1}. ${q.q}</div>
+        <textarea class="quiz-input" placeholder="写下你的答案..." rows="${q.type === '计算' ? 4 : 3}"></textarea>
+        <br>
+        <button class="quiz-reveal" onclick="revealQ(${i})">查看参考答案 ▼</button>
+        <div class="quiz-explain" id="exp-${i}"><strong>参考答案：</strong><br>${q.explain.replace(/\n/g,'<br>')}</div>
+      `;
+    }
+    c.appendChild(d);
+  });
+  updateProgress();
+}
+
+function answerQ(qi, selected) {
+  if (answered[qi]) return;
+  answered[qi] = true;
+  const q = quizData[qi];
+  q.opts.forEach((_, j) => {
+    const btn = document.getElementById(`opt-${qi}-${j}`);
+    btn.disabled = true;
+    if (j === q.ans) btn.classList.add('correct');
+    else if (j === selected) btn.classList.add('wrong');
+  });
+  document.getElementById(`exp-${qi}`).classList.add('show');
+  updateProgress();
+}
+
+function revealQ(qi) {
+  if (answered[qi]) return;
+  answered[qi] = true;
+  document.getElementById(`exp-${qi}`).classList.add('show');
+  updateProgress();
+}
+
+function updateProgress() {
+  const done = answered.filter(Boolean).length;
+  const pct = Math.round(done / quizData.length * 100);
+  document.getElementById('pbar').style.width = pct + '%';
+  document.getElementById('pbar-text').textContent = `${done} / ${quizData.length} 题`;
+}
+
+renderQuiz();
+</script>
+</body>
+</html>
